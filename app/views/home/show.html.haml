@@ -1,27 +1,2 @@
-%h1.edit#title
-  Worklist
-
-- if current_user
-  %h1 Welcome! Start building your CV!
-- else
-  %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
-    %div{:style => "margin:0;padding:0;display:inline"}
-      %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-      %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
-    %div
-      %label{:for => "user_email"} Email
-      %br/
-      %input#user_email{:autofocus => "autofocus", :name => "user[email]", :type => "email", :value => ""}/
-    %div
-      %label{:for => "user_password"} Password
-      %br/
-      %input#user_password{:name => "user[password]", :type => "password"}/
-    %div
-      %label{:for => "user_password_confirmation"} Password confirmation
-      %br/
-      %input#user_password_confirmation{:name => "user[password_confirmation]", :type => "password"}/
-    %div
-      %input{:name => "commit", :type => "submit", :value => "Sign up"}/
-  %a{:href => "/users/sign_in"} Sign in
-  %br/
-  %a{:href => "/users/password/new"} Forgot your password?
+= render :partial => 'cv'
+= render :partial => 'account_bar'
