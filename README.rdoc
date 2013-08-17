@@ -6,4 +6,8 @@ install rvm from rvm.io
 
     guard
 
+    rake db:create:all
+    rake db:migrate
+    RAILS_ENV=test rake db:migrate
+
 
