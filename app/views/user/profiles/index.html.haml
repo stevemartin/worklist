@@ -1,0 +1,41 @@
+%h1 Listing user_profiles
+
+%table
+  %tr
+    %th First name
+    %th Middle names
+    %th Last name
+    %th Date of birth
+    %th Email address
+    %th Website
+    %th Landline phone
+    %th Mobile phone
+    %th Description
+    %th Education
+    %th Work history
+    %th Personal
+    %th
+    %th
+    %th
+
+  - @user_profiles.each do |user_profile|
+    %tr
+      %td= user_profile.first_name
+      %td= user_profile.middle_names
+      %td= user_profile.last_name
+      %td= user_profile.date_of_birth
+      %td= user_profile.email_address
+      %td= user_profile.website
+      %td= user_profile.landline_phone
+      %td= user_profile.mobile_phone
+      %td= user_profile.description
+      %td= user_profile.education
+      %td= user_profile.work_history
+      %td= user_profile.personal
+      %td= link_to 'Show', user_profile
+      %td= link_to 'Edit', edit_user_profile_path(user_profile)
+      %td= link_to 'Destroy', user_profile, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Profile', new_user_profile_path

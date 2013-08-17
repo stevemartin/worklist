@@ -1,0 +1,47 @@
+= form_for @user, @user_profile do |f|
+  - if @profile.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@profile.errors.count, "error")} prohibited this user_profile from being saved:"
+      %ul
+        - @profile.errors.full_messages.each do |msg|
+          %li= msg
+
+    -# = f.hidden_field :user_id
+  .field
+    = f.label :first_name
+    = f.text_field :first_name
+  .field
+    = f.label :middle_names
+    = f.text_field :middle_names
+  .field
+    = f.label :last_name
+    = f.text_field :last_name
+  .field
+    = f.label :date_of_birth
+    = f.datetime_select :date_of_birth
+  .field
+    = f.label :email_address
+    = f.text_field :email_address
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :landline_phone
+    = f.text_field :landline_phone
+  .field
+    = f.label :mobile_phone
+    = f.text_field :mobile_phone
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :education
+    = f.text_area :education
+  .field
+    = f.label :work_history
+    = f.text_area :work_history
+  .field
+    = f.label :personal
+    = f.text_area :personal
+  .actions
+    = f.submit 'Save'

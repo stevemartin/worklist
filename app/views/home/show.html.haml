@@ -1,5 +1,8 @@
+%h1.edit#title
+  Worklist
+
 - if current_user
-  %h1 Welcome!
+  %h1 Welcome! Start building your CV!
 - else
   %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
     %div{:style => "margin:0;padding:0;display:inline"}

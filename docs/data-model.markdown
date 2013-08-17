@@ -12,6 +12,7 @@ User
 ## Basic CV
   Profile info
     Names
+    DOB
     Email address(es)
     Website(es)
     Telephone(es)

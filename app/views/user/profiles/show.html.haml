@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @user_profile.first_name
+%p
+  %b Middle names:
+  = @user_profile.middle_names
+%p
+  %b Last name:
+  = @user_profile.last_name
+%p
+  %b Date of birth:
+  = @user_profile.date_of_birth
+%p
+  %b Email address:
+  = @user_profile.email_address
+%p
+  %b Website:
+  = @user_profile.website
+%p
+  %b Landline phone:
+  = @user_profile.landline_phone
+%p
+  %b Mobile phone:
+  = @user_profile.mobile_phone
+%p
+  %b Description:
+  = @user_profile.description
+%p
+  %b Education:
+  = @user_profile.education
+%p
+  %b Work history:
+  = @user_profile.work_history
+%p
+  %b Personal:
+  = @user_profile.personal
+
+= link_to 'Edit', edit_user_profile_path(@user_profile)
+\|
+= link_to 'Back', user_profiles_path
