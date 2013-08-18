@@ -4,7 +4,7 @@
     "dependencies": {
     },
     "devDependencies": {
-      "ng-karma-scenario":"*"
+      "karma-ng-scenario":"latest"
     },
     "engines": {
       "node": ">=0.8.0"

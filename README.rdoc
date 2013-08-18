@@ -3,9 +3,13 @@
 install rvm from rvm.io
 
     bundle install
+    npm install
 
     rake db:create:all
     rake db:migrate
     RAILS_ENV=test rake db:migrate
 
+in seperate terminals or tmux windows respectively...
     guard
+    karma start
+    karma start karma-e2e.conf.js
