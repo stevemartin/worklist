@@ -15,7 +15,6 @@ end
 
 When(/^I edit the homepage CV$/) do
   editable = first('[wl-editable]')
-  binding.pry
   editable.click
   fill_in editable['id'], :with => 'New text'
 end
