@@ -1,4 +1,4 @@
-Given(/^I go to the home page$/) do
+Given(/^I go to the homepage$/) do
   visit root_url
 end
 
@@ -11,4 +11,12 @@ end
 
 Then(/^I should be logged in$/) do
   page.should have_content "Welcome!"
+end
+
+When(/^I edit the homepage CV$/) do
+    pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should be able to save it and register$/) do
+    pending # express the regexp above with the code you wish you had
 end
