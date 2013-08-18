@@ -8,7 +8,7 @@
 %section.row
   %section#summary
     %h1 Summary
-    %p 
+    %p.edit#summary 
       = t(:home)[:summary]
     %section#career-objective
       %h2 Career Objective
@@ -18,41 +18,41 @@
       %h2 Key Skills
       %ul
         - t(:home)[:key_skills].each do |skill|
-          %li
+          %li.edit#skill
             = skill
 %section.row#job-history
   %h1
     Employment History
   - t(:home)[:employment_history].each do |job|
     %section.job
-      %h2.employer
+      %h2.edit.employer
         = job['employer']
-      %h4.employer-address
+      %h4.edit.employer-address
         = job['address']
-      %span.job-start-date
+      %span.edit.job-start-date
         = job['start_date']
-      %span.job-end-date
+      %span.edit.job-end-date
         = job['end_date']
-      %h3.job-title
+      %h3.edit.job-title
         = job['title']
-      %p.employer-description
+      %p.edit.employer-description
         = job['employer_description']
-      %p.job-description
+      %p.edit.job-description
         = job['job_description']
-      %ul.job-skills
+      %ul.edit.job-skills
         - job['skills'].each do |skill|
-          %li
+          %li.edit
             = skill
 
 %secion.row#education-history
   %h1 Education History
   %section.education
     - t(:home)[:qualifications].each do |qual|
-      %h3.qualification
+      %h3.edit.qualification
         = qual['title']
-      %span.grade
+      %span.edit.grade
         = qual['grade']
-      %span.institute
+      %span.edit.institute
         = qual['institute']
 
 %section.row#skills
@@ -60,15 +60,15 @@
   %section.skill
     %h3 Jedi Skills
     %dl
-      %dt
+      %dt.edit
         Force powers
-      %dd
+      %dd.edit
         Telekenisis
         Psychic manipulation
         Mytichlorian Regeneration
-      %dt
+      %dt.edit
         Weopon skills
-      %dd
+      %dd.edit
         Light Sabre grade 3
 
 %sction.row#interests
