@@ -1,64 +1,79 @@
-%section.row
-  %h1.edit#title
-    = t(:home)[:title]
-  %h2.edit#address
-    = t(:home)[:address]
-  %section.edit#contact-details
-    = t(:home)[:contact_details]
-%section.row
-  %section#summary
-    %h1 Summary
-    %p.edit#summary 
-      = t(:home)[:summary]
-    %section#career-objective
-      %h2 Career Objective
+.container.col-md-8.col-md-offset-2.wrapper
+  %header.row
+    %h1.edit#title
+      = t(:home)[:title]
+    %h2.edit#address
+      = t(:home)[:address]
+    %section.edit#contact-details
+      = t(:home)[:contact_details]
+  %section.row.cv-summary
+    %section#summary
+      %h1 Summary
       %p
-        = t(:home)[:career_objectives]
-    %section#key-skills
-      %h2 Key Skills
-      %ul
-        - t(:home)[:key_skills].each do |skill|
-          %li.edit#skill
-            = skill
-%section.row#job-history
-  %h1
-    Employment History
-  - t(:home)[:employment_history].each do |job|
-    %section.job
-      %h2.edit.employer
-        = job['employer']
-      %h4.edit.employer-address
-        = job['address']
-      %span.edit.job-start-date
-        = job['start_date']
-      %span.edit.job-end-date
-        = job['end_date']
-      %h3.edit.job-title
-        = job['title']
-      %p.edit.employer-description
-        = job['employer_description']
-      %p.edit.job-description
-        = job['job_description']
-      %ul.edit.job-skills
-        - job['skills'].each do |skill|
-          %li.edit
-            = skill
+        = t(:home)[:summary]
+      %section#career-objective
+        %h2 Career Objective
+        %p
+          = t(:home)[:career_objectives]
+      %section#key-skills
+        %h2 Key Skills
+        %ul
+          - t(:home)[:key_skills].each do |skill|
+            %li
+              = skill
+  %section.row#job-history
+    %h1
+      Employment History
+    - t(:home)[:employment_history].each do |job|
+      %section.job
+        %h2.employer
+          = job['employer']
+        %h4.employer-address
+          = job['address']
+        %span.job-start-date
+          = job['start_date']
+        %span.job-end-date
+          = job['end_date']
+        %h3.job-title
+          = job['title']
+        %p.employer-description
+          = job['employer_description']
+        %p.job-description
+          = job['job_description']
+        %ul.job-skills
+          - job['skills'].each do |skill|
+            %li
+              = skill
 
-%secion.row#education-history
-  %h1 Education History
-  %section.education
-    - t(:home)[:qualifications].each do |qual|
-      %h3.edit.qualification
-        = qual['title']
-      %span.edit.grade
-        = qual['grade']
-      %span.edit.institute
-        = qual['institute']
+  %secion.row#education-history
+    %h1 Education History
+    %section.education
+      - t(:home)[:qualifications].each do |qual|
+        %h3.qualification
+          = qual['title']
+        %span.grade
+          = qual['grade']
+        %span.institute
+          = qual['institute']
 
-%section.row#skills
-  %h1 Skills
-  %section.skill
-    %h3 Jedi Skills
+  %section.row#skills
+    %h1 Skills
+    %section.skill
+      %h3 Jedi Skills
+      %dl
+        %dt
+          Force powers
+        %dd
+          Telekenisis
+          Psychic manipulation
+          Mytichlorian Regeneration
+        %dt
+          Weopon skills
+        %dd
+          Light Sabre grade 3
+
+  %sction.row#interests
+    %h1 Interests
     %dl
       %dt.edit
         Force powers

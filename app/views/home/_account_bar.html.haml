@@ -1,21 +1,20 @@
-%secion.row#account-bar
+%secion.row#account-bar.hidden
   %nav.navbar-fixed-bottom.navbar
-    .hidden
-      %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
-        %div{:style => "margin:0;padding:0;display:inline"}
-          %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-          %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
-        %div
-          %label{:for => "user_email"} Email
-          %input#user_email{:autofocus => "autofocus", :name => "user[email]", :type => "email", :value => ""}/
-        %div
-          %label{:for => "user_password"} Password
-          %input#user_password{:name => "user[password]", :type => "password"}/
-        %div
-          %label{:for => "user_password_confirmation"} Password confirmation
-          %input#user_password_confirmation{:name => "user[password_confirmation]", :type => "password"}/
-        %div
-          %input{:name => "commit", :type => "submit", :value => "Sign up"}/
-      %a{:href => "/users/sign_in"} Sign in
-      %br/
-      %a{:href => "/users/password/new"} Forgot your password?
+    %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
+      %div{:style => "margin:0;padding:0;display:inline"}
+        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
+      %div
+        %label{:for => "user_email"} Email
+        %input#user_email{:autofocus => "autofocus", :name => "user[email]", :type => "email", :value => ""}/
+      %div
+        %label{:for => "user_password"} Password
+        %input#user_password{:name => "user[password]", :type => "password"}/
+      %div
+        %label{:for => "user_password_confirmation"} Password confirmation
+        %input#user_password_confirmation{:name => "user[password_confirmation]", :type => "password"}/
+      %div
+        %input{:name => "commit", :type => "submit", :value => "Sign up"}/
+    %a{:href => "/users/sign_in"} Sign in
+    %br/
+    %a{:href => "/users/password/new"} Forgot your password?
