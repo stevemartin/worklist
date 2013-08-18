@@ -6,7 +6,7 @@
       = t(:home)[:address]
     %section.edit#contact-details
       = t(:home)[:contact_details]
-  %section.row.cv-summary
+  %section.row.content-section
     %section#summary
       %h1 Summary
       %p
@@ -21,7 +21,7 @@
           - t(:home)[:key_skills].each do |skill|
             %li
               = skill
-  %section.row#job-history
+  %section.row#job-history.content-section
     %h1
       Employment History
     - t(:home)[:employment_history].each do |job|
@@ -45,7 +45,7 @@
             %li
               = skill
 
-  %secion.row#education-history
+  %secion.row#education-history.content-section
     %h1 Education History
     %section.education
       - t(:home)[:qualifications].each do |qual|
@@ -56,7 +56,7 @@
         %span.institute
           = qual['institute']
 
-  %section.row#skills
+  %section.row#skills.content-section
     %h1 Skills
     %section.skill
       %h3 Jedi Skills
@@ -72,7 +72,7 @@
         %dd
           Light Sabre grade 3
 
-  %sction.row#interests
+  %sction.row#interests.content-section
     %h1 Interests
     %dl
       %dt
