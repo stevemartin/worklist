@@ -4,6 +4,6 @@ Feature: Registration
   So I can create a CV
 
   Scenario: User signs up
-    Given I go to the home page
+    Given I go to the homepage
     When I sign up
     Then I should be logged in

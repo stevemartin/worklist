@@ -9,6 +9,13 @@ User
   Build Basic CV template
   Build a basic payment system
 
+# Second iteration
+  Make the home page a cv
+  Make the homepage CV editable inline
+  Make a save and registration for the editable CV
+  Make a pdf version of the CV.
+
+
 ## Basic CV
   Profile info
     Names

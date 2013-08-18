@@ -1,46 +1,46 @@
-.container.col-md-8.col-md-offset-2.wrapper
+.container.col-md-8.col-md-offset-2.wrapper{'ng-controller' => 'editor'}
   %header.row
-    %h1.edit#title
+    %h1#title{'wl-editable' => ''}
       = t(:home)[:title]
-    %h2.edit#address
+    %h2#address{'wl-editable' => ''}
       = t(:home)[:address]
-    %section.edit#contact-details
+    %section#contact-details{'wl-editable' => ''}
       = t(:home)[:contact_details]
   %section.row.content-section
     %section#summary
       %h1 Summary
-      %p
+      %p#summary{'wl-editable' => ''}
         = t(:home)[:summary]
       %section#career-objective
         %h2 Career Objective
-        %p
+        %p#career-objective{'wl-editable' => ''}
           = t(:home)[:career_objectives]
       %section#key-skills
         %h2 Key Skills
         %ul
           - t(:home)[:key_skills].each do |skill|
-            %li
+            %li{'wl-editable' => ''}
               = skill
   %section.row#job-history.content-section
     %h1
       Employment History
     - t(:home)[:employment_history].each do |job|
       %section.job
-        %h2.employer
+        %h2.employer{'wl-editable' => ''}
           = job['employer']
-        %h4.employer-address
+        %h4.employer-address{'wl-editable' => ''}
           = job['address']
-        %span.job-start-date
+        %span.job-start-date{'wl-editable' => ''}
           = job['start_date']
-        %span.job-end-date
+        %span.job-end-date{'wl-editable' => ''}
           = job['end_date']
-        %h3.job-title
+        %h3.job-title{'wl-editable' => ''}
           = job['title']
-        %p.employer-description
+        %p.employer-description{'wl-editable' => ''}
           = job['employer_description']
-        %p.job-description
+        %p.job-description{'wl-editable' => ''}
           = job['job_description']
-        %ul.job-skills
+        %ul.job-skills{'wl-editable' => ''}
           - job['skills'].each do |skill|
             %li
               = skill
@@ -49,11 +49,11 @@
     %h1 Education History
     %section.education
       - t(:home)[:qualifications].each do |qual|
-        %h3.qualification
+        %h3.qualification{'wl-editable' => ''}
           = qual['title']
-        %span.grade
+        %span.grade{'wl-editable' => ''}
           = qual['grade']
-        %span.institute
+        %span.institute{'wl-editable' => ''}
           = qual['institute']
 
   %section.row#skills.content-section
@@ -61,27 +61,27 @@
     %section.skill
       %h3 Jedi Skills
       %dl
-        %dt
+        %dt{'wl-editable' => ''}
           Force powers
-        %dd
+        %dd{'wl-editable' => ''}
           Telekenisis
           Psychic manipulation
           Mytichlorian Regeneration
-        %dt
+        %dt{'wl-editable' => ''}
           Weopon skills
-        %dd
+        %dd{'wl-editable' => ''}
           Light Sabre grade 3
 
   %section.row#interests.content-section
     %h1 Interests
     %dl
-      %dt.edit
+      %dt{'wl-editable' => ''}
         Force powers
-      %dd.edit
+      %dd{'wl-editable' => ''}
         Telekenisis
         Psychic manipulation
         Mytichlorian Regeneration
-      %dt.edit
+      %dt{'wl-editable' => ''}
         Weopon skills
-      %dd.edit
+      %dd{'wl-editable' => ''}
         Light Sabre grade 3

@@ -10,11 +10,12 @@ When(/^I sign up$/) do
 end
 
 Then(/^I should be logged in$/) do
-  page.should have_content "Welcome!"
+  page.should have_content "Worklist"
 end
 
 When(/^I edit the homepage CV$/) do
-    pending # express the regexp above with the code you wish you had
+  binding.pry
+  click_on 'Worklist'
 end
 
 Then(/^I should be able to save it and register$/) do
