@@ -1,3 +1,3 @@
 'use strict';
 
-var app = angular.module('worklistApp', []);
+var app = angular.module('worklistApp', ['worklistApp.directives']);
