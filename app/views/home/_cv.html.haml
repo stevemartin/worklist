@@ -1,91 +1,85 @@
-%section.row
-  %h1.edit#title
-    = t(:home)[:title]
-  %h2.edit#address
-    = t(:home)[:address]
-  %section.edit#contact-details
-    = t(:home)[:contact_details]
-%section.row
-  %section#summary
-    %h1 Summary
-    %p 
-      = t(:home)[:summary]
-    %section#career-objective
-      %h2 Career Objective
+.container.col-md-8.col-md-offset-2.wrapper
+  %header.row
+    %h1.edit#title
+      = t(:home)[:title]
+    %h2.edit#address
+      = t(:home)[:address]
+    %section.edit#contact-details
+      = t(:home)[:contact_details]
+  %section.row.cv-summary
+    %section#summary
+      %h1 Summary
       %p
-        = t(:home)[:career_objectives]
-    %section#key-skills
-      %h2 Key Skills
-      %ul
-        - t(:home)[:key_skills].each do |skill|
-          %li
-            = skill
-%section.row#job-history
-  %h1
-    Employment History
-  - t(:home)[:employment_history].each do |job|
-    %section.job
-      %h2.employer
-        = job['employer']
-      %h4.employer-address
-        = job['address']
-      %span.job-start-date
-        = job['start_date']
-      %span.job-end-date
-        = job['end_date']
-      %h3.job-title
-        = job['title']
-      %p.employer-description
-        = job['employer_description']
-      %p.job-description
-        = job['job_description']
-      %ul.job-skills
-        - job['skills'].each do |skill|
-          %li
-            = skill
+        = t(:home)[:summary]
+      %section#career-objective
+        %h2 Career Objective
+        %p
+          = t(:home)[:career_objectives]
+      %section#key-skills
+        %h2 Key Skills
+        %ul
+          - t(:home)[:key_skills].each do |skill|
+            %li
+              = skill
+  %section.row#job-history
+    %h1
+      Employment History
+    - t(:home)[:employment_history].each do |job|
+      %section.job
+        %h2.employer
+          = job['employer']
+        %h4.employer-address
+          = job['address']
+        %span.job-start-date
+          = job['start_date']
+        %span.job-end-date
+          = job['end_date']
+        %h3.job-title
+          = job['title']
+        %p.employer-description
+          = job['employer_description']
+        %p.job-description
+          = job['job_description']
+        %ul.job-skills
+          - job['skills'].each do |skill|
+            %li
+              = skill
 
-%secion.row#education-history
-  %h1 Education History
-  %section.education
-    - t(:home)[:qualifications].each do |qual|
-      %h3.qualification
-        = qual['title']
-      %span.grade
-        = qual['grade']
-      %span.institute
-        = qual['institute']
+  %secion.row#education-history
+    %h1 Education History
+    %section.education
+      - t(:home)[:qualifications].each do |qual|
+        %h3.qualification
+          = qual['title']
+        %span.grade
+          = qual['grade']
+        %span.institute
+          = qual['institute']
 
-%section.row#skills
-  %h1 Skills
-  %section.skill
-    %h3 Jedi Skills
+  %section.row#skills
+    %h1 Skills
+    %section.skill
+      %h3 Jedi Skills
+      %dl
+        %dt
+          Force powers
+        %dd
+          Telekenisis
+          Psychic manipulation
+          Mytichlorian Regeneration
+        %dt
+          Weopon skills
+        %dd
+          Light Sabre grade 3
+
+  %sction.row#interests
+    %h1 Interests
     %dl
       %dt
-        Force powers
+        Universal domination
       %dd
-        Telekenisis
-        Psychic manipulation
-        Mytichlorian Regeneration
+        I am interested in taking over the entire universe and turning it to the dark ways.
       %dt
-        Weopon skills
+        Sith geneology
       %dd
-        Light Sabre grade 3
-
-%sction.row#interests
-  %h1 Interests
-  %dl
-    %dt
-      Universal domination
-    %dd
-      I am interested in taking over the entire universe and turning it to the dark ways.
-    %dt
-      Sith geneology
-    %dd
-      I like to study the history of our great masters.
-%br
-%br
-%br
-%br
-%br
-%br
-%br
+        I like to study the history of our great masters.

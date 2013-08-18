@@ -1,0 +1,93 @@
+// App Colours
+$cv-colour: #F5F5F5;
+$light-text: #EEE;
+// Important numbers
+$line: 20;
+$column: 100% / 18;
+$font-size: 13;
+$em: $font-size * 1;
+
+//converts a px value to ems
+// @param $px - value in pixels
+// @return em
+@function ems($px){
+  @return #{$px/$em}em;
+}
+
+@function equal-width( $itemCount:4, $width: 100% ){
+  @return $width/ $itemCount;
+}
+
+@function line-height-ratio($font-size, $line-height){
+  @return $line-height / $font-size;
+}
+
+@mixin font-size($size: $em){
+  font-size: ems($size);
+}
+
+@mixin margin( $amount, $direction:all ){
+    @if $direction == top{
+        margin-top: ems($amount);
+    } @else if $direction == bottom{
+        margin-bottom: ems($amount);
+    } @else if $direction == left{
+        margin-left: ems($amount);
+    } @else if $direction == right{
+        margin-right: ems($amount);
+    } @else if $direction == vertical {
+        margin:  ems($amount) 0;
+    } @else if $direction == horizontal {
+        margin: 0 ems($amount);
+    } @else if $direction == auto {
+        margin: ems($amount) auto;
+    } @else {
+        margin: ems($amount);
+    }
+}
+
+@mixin padding( $amount, $direction:all ){
+    @if $direction == top{
+        padding-top: ems($amount);
+    } @else if $direction == bottom{
+        padding-bottom: ems($amount);
+    } @else if $direction == left{
+        padding-left: ems($amount);
+    } @else if $direction == right{
+        padding-right: ems($amount);
+    } @else if $direction == vertical {
+        padding:  ems($amount) 0;
+    } @else if $direction == horizontal {
+        padding: 0 ems($amount);
+    } @else {
+        padding: ems($amount);
+    }
+}
+
+@mixin width($width, $type, $ems: true){
+  $output: '';
+  @if $ems == false {
+    $output: $width;
+  } @else{
+    $output: ems($width);
+  }
+
+  @if $type == min{
+    min-width: $output;
+  }@else if $type == max{
+    max-width: $output;
+  }@else {
+    width: $output;
+  }
+
+}
+
+@mixin height( $amount, $type:all) {
+    @if $type == min{
+        min-height: px-to-ems($amount);
+    } @else if $type == max {
+        max-height: px-to-ems($amount);
+    } @else {
+        height: px-to-ems($amount);
+    }
+}

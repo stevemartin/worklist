@@ -1,0 +1,26 @@
+@import 'mixins';
+
+.wrapper{
+  background:$cv-colour;
+  margin-top: ems(50);
+  margin-bottom: ems(50);
+  text-align:center; border: 1px solid #ccc;
+  border-radius: ems(3);
+  overflow: hidden;
+}
+
+header{
+  h1{
+    @include font-size(36);
+    @include margin(10, vertical);
+  }
+  h2{
+    @include font-size(18);
+  }
+  #contact-details{
+    background:#333;
+    margin: 0 auto;
+    @include width(70%, all, false);
+    color:$light-text;
+  }
+}
