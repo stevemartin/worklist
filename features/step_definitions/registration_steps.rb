@@ -14,8 +14,10 @@ Then(/^I should be logged in$/) do
 end
 
 When(/^I edit the homepage CV$/) do
+  editable = first('[wl-editable]')
   binding.pry
-  click_on 'Worklist'
+  editable.click
+  fill_in editable['id'], :with => 'New text'
 end
 
 Then(/^I should be able to save it and register$/) do
