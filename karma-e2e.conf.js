@@ -1,18 +1,21 @@
 // Karma E2E configuration
 
+module.exports = function(config){
+  config.set({});
+
+}
 // base path, that will be used to resolve files and exclude
 basePath = '';
 
+frameworks = ["ng-scenario"];
 // list of files / patterns to load in the browser
 files = [
-  ANGULAR_SCENARIO,
-  ANGULAR_SCENARIO_ADAPTER,
   'vendor/assets/javascripts/angular/angular.js',
   'vendor/assets/javascripts/angular-resource/angular-resource.js',
   'vendor/assets/javascripts/angular-scenario/angular-scenario.js',
-  'app/scripts/*.js',
-  'app/scripts/*/.js',
-  'spec/javascripts/e2e/**/*Spec.js'
+  'app/assets/javascripts/*.js',
+  'app/assets/javascripts/*/.js',
+  'spec/javascripts/e2e/**/*_spec.js'
 ];
 
 proxies = {
@@ -38,7 +41,7 @@ colors = true;
 
 // level of logging
 // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
+// logLevel = LOG_INFO;
 
 // enable / disable watching file and executing tests whenever any file changes
 autoWatch = true;
