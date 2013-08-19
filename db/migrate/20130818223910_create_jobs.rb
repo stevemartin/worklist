@@ -8,7 +8,7 @@ class CreateJobs < ActiveRecord::Migration
       t.string :title
       t.string :employer_description
       t.text :job_description
-      t.references :user
+      t.references :profile
 
       t.timestamps
     end
