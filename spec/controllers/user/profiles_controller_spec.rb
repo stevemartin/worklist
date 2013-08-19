@@ -74,15 +74,32 @@ describe User::ProfilesController do
           }.to change(Job, :count).by(2)
         end
 
-      it "redirects to the created user_profile" do
-        post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
-        response.should redirect_to(User::Profile.last)
-      end
+        it "redirects to the created user_profile" do
+          post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
+          response.should redirect_to(User::Profile.last)
+        end
       end
 
       context "with new skills" do
-        it "assigns the skills to the user profile" do
+        let(:valid_attributes) do
+          {first_name:'Bugs',
+           last_name:'Bunny',
+            skills_attributes:[
+              {title:'Snake charmer'},
+              {title:'Super hero'}
+            ]
+          }
+        end
 
+        it "assigns the jobs to the user profile" do
+          expect {
+            post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
+          }.to change(Skill, :count).by(2)
+        end
+
+        it "redirects to the created user_profile" do
+          post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
+          response.should redirect_to(User::Profile.last)
         end
       end
     end
