@@ -6,7 +6,7 @@ class CreateSkills < ActiveRecord::Migration
       t.references :skill, index: true
       t.boolean :key_skill
       t.references :user
-      t.references :job
+      t.references :profile
 
       t.timestamps
     end

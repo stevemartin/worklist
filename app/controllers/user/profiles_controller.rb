@@ -16,7 +16,7 @@ class User::ProfilesController < ApplicationController
   # GET /user/profiles/new
   def new
     @user_profile = @user.build_profile
-    @jobs = @user.jobs
+    @jobs = @user_profile.jobs
   end
 
   # GET /user/profiles/1/edit
@@ -26,6 +26,7 @@ class User::ProfilesController < ApplicationController
   # POST /user/profiles
   # POST /user/profiles.json
   def create
+    # @user_profile = @user.build_profile(params[:user_profile])
     @user_profile = @user.build_profile(user_profile_params)
 
     respond_to do |format|
@@ -76,6 +77,7 @@ class User::ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:first_name, :middle_names, :last_name, :date_of_birth, :email_address, :website, :landline_phone, :mobile_phone, :description, :education, :work_history, :personal)
+      params.require(:user_profile).permit(:first_name, :middle_names, :last_name, :date_of_birth, :email_address, :website, :landline_phone, :mobile_phone, :description, :education, :work_history, :personal, jobs_attributes: [:id, :employer, :address_id, :start_date, :end_date, :title, :employer_description, :job_description], skills_attributes:[])
     end
+    
 end

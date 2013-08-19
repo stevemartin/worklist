@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130818224100) do
     t.string   "title"
     t.string   "employer_description"
     t.text     "job_description"
-    t.integer  "user_id"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20130818224100) do
     t.integer  "skill_id"
     t.boolean  "key_skill"
     t.integer  "user_id"
-    t.integer  "job_id"
+    t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
