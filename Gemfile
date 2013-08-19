@@ -5,6 +5,7 @@ gem 'rails', '4.0.0'
 
 gem 'puma'
 
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'devise'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
