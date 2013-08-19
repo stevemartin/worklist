@@ -30,6 +30,9 @@ describe User::ProfilesController do
   # User::ProfilesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:user_with_profile) { FactoryGirl.create(:user_with_profile) }
+  let(:user_without_profile) { FactoryGirl.create(:user) }
+
   # describe "GET index" do
   #   it "assigns all user_profiles as @user_profiles" do
   #     profile = User::Profile.create! valid_attributes
@@ -40,7 +43,6 @@ describe User::ProfilesController do
 
   describe "GET show" do
     it "assigns the requested user_profile as @user_profile" do
-      user_with_profile = FactoryGirl.create(:user_with_profile)
       profile = user_with_profile.profile
       get :show, {:user_id => user_with_profile.id}, valid_session
       assigns(:user_profile).should eq(profile)
@@ -49,16 +51,16 @@ describe User::ProfilesController do
 
   describe "GET new" do
     it "assigns a new user_profile as @user_profile" do
-      get :new, {}, valid_session
+      get :new, {:user_id => user_with_profile.id}, valid_session
       assigns(:user_profile).should be_a_new(User::Profile)
+      assigns(:jobs).should be_an ActiveRecord::Associations::CollectionProxy
     end
   end
 
   describe "GET edit" do
     it "assigns the requested user_profile as @user_profile" do
-      profile = User::Profile.create! valid_attributes
-      get :edit, {:id => profile.to_param}, valid_session
-      assigns(:user_profile).should eq(profile)
+      get :edit, {:user_id => user_with_profile.id}, valid_session
+      assigns(:user_profile).should eq(user_with_profile.profile)
     end
   end
 
@@ -66,18 +68,18 @@ describe User::ProfilesController do
     describe "with valid params" do
       it "creates a new User::Profile" do
         expect {
-          post :create, {:user_profile => valid_attributes}, valid_session
+          post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
         }.to change(User::Profile, :count).by(1)
       end
 
       it "assigns a newly created user_profile as @user_profile" do
-        post :create, {:user_profile => valid_attributes}, valid_session
+        post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
         assigns(:user_profile).should be_a(User::Profile)
         assigns(:user_profile).should be_persisted
       end
 
       it "redirects to the created user_profile" do
-        post :create, {:user_profile => valid_attributes}, valid_session
+        post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
         response.should redirect_to(User::Profile.last)
       end
     end
@@ -86,14 +88,14 @@ describe User::ProfilesController do
       it "assigns a newly created but unsaved user_profile as @user_profile" do
         # Trigger the behavior that occurs when invalid params are submitted
         User::Profile.any_instance.stub(:save).and_return(false)
-        post :create, {:user_profile => { "first_name" => "invalid value" }}, valid_session
+        post :create, {:user_id => user_with_profile.id, :user_profile => { "first_name" => "invalid value" }}, valid_session
         assigns(:user_profile).should be_a_new(User::Profile)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         User::Profile.any_instance.stub(:save).and_return(false)
-        post :create, {:user_profile => { "first_name" => "invalid value" }}, valid_session
+        post :create, {:user_id => user_with_profile.id, :user_profile => { "first_name" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -102,42 +104,40 @@ describe User::ProfilesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested user_profile" do
-        profile = User::Profile.create! valid_attributes
         # Assuming there are no other user_profiles in the database, this
         # specifies that the User::Profile created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         User::Profile.any_instance.should_receive(:update).with({ "first_name" => "MyString" })
-        put :update, {:id => profile.to_param, :user_profile => { "first_name" => "MyString" }}, valid_session
+        put :update, {:user_id => user_with_profile.id, :user_profile => { "first_name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested user_profile as @user_profile" do
-        profile = User::Profile.create! valid_attributes
-        put :update, {:id => profile.to_param, :user_profile => valid_attributes}, valid_session
-        assigns(:user_profile).should eq(profile)
+        put :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+        assigns(:user_profile).should eq(user_with_profile.profile)
       end
 
       it "redirects to the user_profile" do
-        profile = User::Profile.create! valid_attributes
-        put :update, {:id => profile.to_param, :user_profile => valid_attributes}, valid_session
-        response.should redirect_to(profile)
+        put :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+        response.should redirect_to(user_with_profile.profile)
       end
     end
 
     describe "with invalid params" do
       it "assigns the user_profile as @user_profile" do
-        profile = User::Profile.create! valid_attributes
+        user = user_with_profile
+        profile = user.profile
         # Trigger the behavior that occurs when invalid params are submitted
         User::Profile.any_instance.stub(:save).and_return(false)
-        put :update, {:id => profile.to_param, :user_profile => { "first_name" => "invalid value" }}, valid_session
+        put :update, {:user_id => user.id, :user_profile => { "first_name" => "invalid value" }}, valid_session
         assigns(:user_profile).should eq(profile)
       end
 
       it "re-renders the 'edit' template" do
-        profile = User::Profile.create! valid_attributes
+        user = user_with_profile
         # Trigger the behavior that occurs when invalid params are submitted
         User::Profile.any_instance.stub(:save).and_return(false)
-        put :update, {:id => profile.to_param, :user_profile => { "first_name" => "invalid value" }}, valid_session
+        put :update, {:user_id => user.id, :user_profile => { "first_name" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
@@ -145,16 +145,17 @@ describe User::ProfilesController do
 
   describe "DELETE destroy" do
     it "destroys the requested user_profile" do
-      profile = User::Profile.create! valid_attributes
+      user_with_profile = FactoryGirl.create(:user_with_profile)
+      # profile = user_with_profile.profile
       expect {
-        delete :destroy, {:id => profile.to_param}, valid_session
+        delete :destroy, {:user_id => user_with_profile.id}, valid_session
       }.to change(User::Profile, :count).by(-1)
     end
 
     it "redirects to the user_profiles list" do
-      profile = User::Profile.create! valid_attributes
-      delete :destroy, {:id => profile.to_param}, valid_session
-      response.should redirect_to(user_profiles_url)
+      user_with_profile = FactoryGirl.create(:user_with_profile)
+      delete :destroy, {:user_id => user_with_profile.id}, valid_session
+      response.should redirect_to(user_profile_url)
     end
   end
 
