@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130817103439) do
+ActiveRecord::Schema.define(version: 20130818224100) do
+
+  create_table "jobs", force: true do |t|
+    t.string   "employer"
+    t.integer  "address_id"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "title"
+    t.string   "employer_description"
+    t.text     "job_description"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "jobs", ["address_id"], name: "index_jobs_on_address_id"
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -30,6 +45,19 @@ ActiveRecord::Schema.define(version: 20130817103439) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "skills", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "skill_id"
+    t.boolean  "key_skill"
+    t.integer  "user_id"
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["skill_id"], name: "index_skills_on_skill_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,6 +1,6 @@
 class User::ProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:new]
+  before_action :set_user, only: [:new, :create]
 
   # GET /user/profiles
   # GET /user/profiles.json
@@ -15,7 +15,8 @@ class User::ProfilesController < ApplicationController
 
   # GET /user/profiles/new
   def new
-    @profile = @user.build_profile
+    @user_profile = @user.build_profile
+    @jobs = @user.jobs
   end
 
   # GET /user/profiles/1/edit
@@ -57,7 +58,7 @@ class User::ProfilesController < ApplicationController
   def destroy
     @user_profile.destroy
     respond_to do |format|
-      format.html { redirect_to user_profiles_url }
+      format.html { redirect_to user_profile_url }
       format.json { head :no_content }
     end
   end
