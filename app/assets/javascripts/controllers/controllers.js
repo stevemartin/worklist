@@ -1,7 +1,13 @@
 'use strict';
 
-var app = angular.module('worklistApp',['worklistApp.directives']);
+var app = angular.module('worklistApp',[]);
 
-app.controller('edit_controller',['$scope', function($scope){
+
+function EditCtrl($scope){
   $scope.editable = false;
-}]);
+}
+
+EditCtrl.inject = ['$scope'];
+// app.controller('EditCtrl', ['$scope',function($scope){
+//   $scope.editable = false;
+// }]);
