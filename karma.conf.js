@@ -11,9 +11,19 @@ module.exports = function(config) {
     // frameworks to use
     frameworks: ['jasmine'],
 
+    plugins: [
+      // these plugins will be require() by Karma
+      'karma-jasmine',
+      'karma-chrome-launcher'
+    ],
+
 
     // list of files / patterns to load in the browser
     files: [
+      'vendor/assets/javascripts/angular-1.0.7/angular.js',
+      'vendor/assets/javascripts/angular-1.0.7/angular-resource.js',
+      'vendor/assets/javascripts/angular-1.0.7/angular-mocks.js',
+      'app/assets/javascripts/',
       'app/assets/javascripts/**/*.js',
       'spec/javascripts/',
       'spec/javascripts/**/*_spec.js'
@@ -21,9 +31,7 @@ module.exports = function(config) {
 
 
     // list of files to exclude
-    exclude: [
-      
-    ],
+    exclude: [],
 
 
     // test results reporter to use

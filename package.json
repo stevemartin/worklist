@@ -1,12 +1,15 @@
 {
   "name": "worklist",
-    "version": "0.0.1",
-    "dependencies": {
-    },
-    "devDependencies": {
-      "karma-ng-scenario":"latest"
-    },
-    "engines": {
-      "node": ">=0.8.0"
-    }
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "karma-ng-scenario": "latest",
+    "karma": "~0.10",
+    "karma-jasmine": "latest",
+    "karma-phantomjs-launcher": "latest",
+    "karma-chrome-launcher": "~0.1.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
 }
