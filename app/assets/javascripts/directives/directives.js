@@ -1,17 +1,18 @@
 'use strict';
 
-var directives = angular.module('worklistApp.directives',[]);
-
-directives.directive('wl-editable', function(){
+angular.module('worklistApp',[]).controller('EditCtrl', ['$scope',function($scope){
+    $scope.editable = false;
+  }]).directive('wlEditable', function(){
   return {
     link: function(scope, element,attrs ){
       var _this = element[0];
 
       console.log("SCOPE", scope);
 
-      _this.contentEditable = !$scope.editable ;
+      _this.contentEditable = !scope.editable ;
 
-      _this.on('click', toggleEditable);
+      console.log("Element", _this);
+      _this.onclick = toggleEditable;
 
       function toggleEditable(){
         $scope.editable != $scope.editable;

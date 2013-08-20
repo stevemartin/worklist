@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app='worklistApp'>
 <head>
   <title>Worklist</title>
   <%= stylesheet_link_tag    "application"%>
   <%= javascript_include_tag "application"%>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body ng-controller='EditCtrl' >
 
 <%= yield %>
 
