@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require angular
+//= require angular-bootstrap
+//= require angular-resource
 //= require main
 //= require directives/directives
 //= require controllers/controllers
