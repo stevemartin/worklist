@@ -15,7 +15,7 @@ angular.module('worklistApp',[]).controller('EditCtrl', ['$scope',function($scop
       _this.onclick = toggleEditable;
 
       function toggleEditable(){
-        $scope.editable != $scope.editable;
+	scope.editable != scope.editable;
       }
     }
   };
