@@ -1,5 +1,5 @@
 describe("controllers", function(){
-  beforeEach(module("worklistApp"));
+  beforeEach(module("worklist"));
 
   describe("EditCtrl", function(){
     beforeEach( inject(function($rootScope,$controller){
@@ -12,7 +12,6 @@ describe("controllers", function(){
     it("should initialise with scope editable false", function(){
       expect($scope.editable).toBe(false);
     });
-
   });
 
 });
