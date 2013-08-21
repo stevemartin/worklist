@@ -2,12 +2,6 @@ class User::ProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
   before_action :set_user, only: [:new, :create]
 
-  # GET /user/profiles
-  # GET /user/profiles.json
-  # def index
-  #   @user_profiles = User::Profile.all
-  # end
-
   # GET /user/profiles/1
   # GET /user/profiles/1.json
   def show
@@ -17,6 +11,7 @@ class User::ProfilesController < ApplicationController
   def new
     @user_profile = @user.build_profile
     @jobs = @user_profile.jobs
+    @jobs = @user_profile.skills
   end
 
   # GET /user/profiles/1/edit
@@ -26,7 +21,6 @@ class User::ProfilesController < ApplicationController
   # POST /user/profiles
   # POST /user/profiles.json
   def create
-    # @user_profile = @user.build_profile(params[:user_profile])
     @user_profile = @user.build_profile(user_profile_params)
 
     respond_to do |format|

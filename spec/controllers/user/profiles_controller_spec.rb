@@ -28,6 +28,7 @@ describe User::ProfilesController do
       get :new, {:user_id => user_with_profile.id}, valid_session
       assigns(:user_profile).should be_a_new(User::Profile)
       assigns(:jobs).should be_an ActiveRecord::Associations::CollectionProxy
+      assigns(:skills).should be_an ActiveRecord::Associations::CollectionProxy
     end
   end
 
