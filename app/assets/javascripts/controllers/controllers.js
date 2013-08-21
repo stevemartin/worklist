@@ -1,11 +1,8 @@
 'use strict';
 
-// function EditCtrl($scope){
-//   $scope.editable = false;
-// }
+var app = angular.module('worklist',
+  ['worklist.directives']);
 
-// EditCtrl.inject = ['$scope'];
-
-// app.controller('EditCtrl', ['$scope',function($scope){
-//   $scope.editable = false;
-// }]);
+app.controller('EditCtrl', ['$scope',function($scope){
+    $scope.editable = false;
+}]);
