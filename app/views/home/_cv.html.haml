@@ -1,10 +1,10 @@
 .container.col-md-8.col-md-offset-2.wrapper{'ng-controller' => 'EditCtrl'}
   %header.row
-    %h1#title{'wl-editable' => ''}
+    %h1#title{'wl-editable' => '','data-default-text' => 'Your name', 'editing' => '{{editing}}'}
       = t(:home)[:title]
-    %h2#address{'wl-editable' => ''}
+    %h2#address{'wl-editable' => '', 'default-text' => 'Your home address'}
       = t(:home)[:address]
-    %section#contact-details{'wl-editable' => ''}
+    %section#contact-details{'wl-editable' => '', 'default-text' => 'Contact Details'}
       = t(:home)[:contact_details]
   %section.row.content-section
     %section#summary
