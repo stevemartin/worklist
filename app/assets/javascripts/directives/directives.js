@@ -3,7 +3,7 @@
 var directives = angular.module('worklist.directives',[]);
 
 
-directives.directive('wlEditable', function($rootScope){
+directives.directive('wlEditable', function(){
   return {
     scope:{
       defaultText: '@'
@@ -11,14 +11,18 @@ directives.directive('wlEditable', function($rootScope){
 
     link: function(scope, element, attrs ){
 
-      var _this = element[0];
-      var editing = false;
-
-      _this.contentEditable = false;
+      var _this = element[0],
+	  editing = false;
+      element.addClass('is-editable');
+      _this.contentEditable = editing;
 
       element.bind('click', function(event){
 	_this.contentEditable = !editing;
 	element.addClass('is-editing');
+	scope.$apply(function(){
+	  //@TODO: this needs to be less hacky
+	  scope.$parent.$parent.editing = true;
+	});
       });
 
       element.bind('blur', function(event){

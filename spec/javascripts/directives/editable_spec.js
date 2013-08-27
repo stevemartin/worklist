@@ -27,11 +27,11 @@ describe("directives", function(){
       expect(el.attr('contentEditable')).toBe('false');
     });
 
-    //@TODO: test that we can update the scope to show the log in bar
-    // it('should set scope.editing to be true when clicked', function(){
-    //   el.triggerHandler('click');
-    //   expect(scope.editing).toBe(true);
-    // });
+    // @TODO: test that we can update the scope to show the log in bar
+    it('should set scope.editing to be true when clicked', function(){
+      el.triggerHandler('click');
+      expect(scope.editing).toBe(true);
+    });
 
     it('should add a class of editing to the element', function(){
       el.triggerHandler('click');
