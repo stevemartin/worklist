@@ -9,8 +9,7 @@ directives.directive('wlEditable', function(){
       defaultText: '@'
     },
 
-    link: function(scope, element, attrs ){
-
+    link: function(scope, element, attrs, ngModel ){
       var _this = element[0],
 	  editing = false;
       element.addClass('is-editable');
