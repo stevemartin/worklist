@@ -1,20 +1,23 @@
 %secion.row#account-bar{'ng-show' => 'editing'}
-  %nav.navbar-fixed-bottom.navbar
-    %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
-      %div{:style => "margin:0;padding:0;display:inline"}
-        %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-        %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
-      %div
-        %label{:for => "user_email"} Email
-        %input#user_email{:autofocus => "autofocus", :name => "user[email]", :type => "email", :value => ""}/
-      %div
-        %label{:for => "user_password"} Password
-        %input#user_password{:name => "user[password]", :type => "password"}/
-      %div
-        %label{:for => "user_password_confirmation"} Password confirmation
-        %input#user_password_confirmation{:name => "user[password_confirmation]", :type => "password"}/
-      %div
-        %input{:name => "commit", :type => "submit", :value => "Sign up"}/
-    %a{:href => "/users/sign_in"} Sign in
-    %br/
-    %a{:href => "/users/password/new"} Forgot your password?
+  %nav.navbar-fixed-bottom.navbar.navbar-default
+    .navbar-header{'role' => 'navigation'}
+      %a.navbar-brand{ :href =>"/"} workli.st
+
+      %form#new_user.navbar-form.navbar-left.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post"}
+	%div{:style => "margin:0;padding:0;display:inline"}
+	  %input{:name => "utf8", :type => "hidden", :value => "✓"}/
+	  %input{:name => "authenticity_token", :type => "hidden", :value => "#{form_authenticity_token}"}/
+	.input-group
+	  %label.input-group-addon{:for => "user_email"} Email
+	  %input#user_email.form-control{:autofocus => "autofocus", :name => "user[email]", :type => "email", :value => ""}/
+	.input-group
+	  %label.input-group-addon{:for => "user_password"} Password
+	  %input#user_password.form-control{:name => "user[password]", :type => "password"}/
+	.input-group
+	  %label.input-group-addon{:for => "user_password_confirmation"} Password
+	  %input#user_password_confirmation.form-control{:name => "user[password_confirmation]", :type => "password"}/
+	%div
+	  %input.btn.btn-default{:name => "commit", :type => "submit", :value => "Sign up"}/
+      %a{:href => "/users/sign_in"} Sign in
+      %br/
+      %a{:href => "/users/password/new"} Forgot your password?
