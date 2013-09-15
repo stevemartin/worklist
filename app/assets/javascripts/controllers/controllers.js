@@ -4,10 +4,25 @@
   var app = angular.module('worklist',
     ['worklist.directives','worklist.services']);
 
-  app.controller('AppCtrl', ['$scope','WorkList',function($scope, WorkList){
-      $scope.editing = true;
-      $scope.saveWorkList = function() {};
+  app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+    .when('/', {
+      controller: 'EditCtrl',
+      templateUrl: '/templates/cv.html'
+    })
+    .otherwise({ redirectTo: '/'});
   }]);
 
+  app.controller('AppCtrl', ['$scope','WorkList',function($scope, WorkList){
+      $scope.editing = true;
+  }]);
+
+  app.controller('EditCtrl', ['$scope', 'WorkList',function($scope, WorkList){
+    $scope.worklist = new WorkList( window.worklist_data );
+
+    $scope.saveWorkList = function() {
+      $scope.worklist.$save();
+    };
+  }]);
 
 })();
