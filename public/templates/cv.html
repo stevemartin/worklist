@@ -1,0 +1,20 @@
+<div class="container col-md-8 col-md-offset-2 wrapper">
+  <form name="new_worklist">
+    <header class="row">
+      <input class="h1" id="title" ng-model="worklist.title" placeholder="Your name" />
+      <input class="h2" id="address" ng-model="worklist.address" placeholder="Your address" />
+      <section id="contact-details">
+        <input class="span" ng-model="worklist.email" placeholder ="Contact Details" />
+      </section>
+    </header>
+  </form>
+</div>
+
+<section class="row" id="#account-bar">
+  <nav class="navbar-fixed-bottom navbar navbar-default">
+    <div class="navbar-header" role="navigation">
+      <a class="navbar-brand" href="/">workli.st</a>
+    </div>
+    <button ng-click="saveWorkList()">Save</button>
+  </nav>
+</section>
