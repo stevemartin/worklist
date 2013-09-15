@@ -28,7 +28,7 @@ describe("directives", function(){
     });
 
     // @TODO: test that we can update the scope to show the log in bar
-    it('should set scope.editing to be true when clicked', function(){
+    xit('should set scope.editing to be true when clicked', function(){
       el.triggerHandler('click');
       expect(scope.editing).toBe(true);
     });
