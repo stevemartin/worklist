@@ -11,7 +11,7 @@ class User::ProfilesController < ApplicationController
   def new
     @user_profile = @user.build_profile
     @jobs = @user_profile.jobs
-    @jobs = @user_profile.skills
+    @skills = @user_profile.skills
   end
 
   # GET /user/profiles/1/edit

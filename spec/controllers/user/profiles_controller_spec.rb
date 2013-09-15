@@ -60,8 +60,9 @@ describe User::ProfilesController do
 
       context "with new jobs" do
         let(:valid_attributes) do
-          {first_name:'Bugs',
-           last_name:'Bunny',
+          {
+            first_name:'Bugs',
+            last_name:'Bunny',
             jobs_attributes:[
               {employer:'Loony Toons'},
               {employer:'Time Warner'}
@@ -83,10 +84,11 @@ describe User::ProfilesController do
 
       context "with new skills" do
         let(:valid_attributes) do
-          {first_name:'Bugs',
-           last_name:'Bunny',
+          {
+            first_name:'Bugs',
+            last_name:'Bunny',
             skills_attributes:[
-              {title:'Snake charmer'},
+              {title:'Sales guru'},
               {title:'Super hero'}
             ]
           }
@@ -141,6 +143,53 @@ describe User::ProfilesController do
       it "redirects to the user_profile" do
         put :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
         response.should redirect_to(user_with_profile.profile)
+      end
+
+      context "with existing skills" do
+        let(:skill_1) do
+          # binding.pry
+          FactoryGirl.create(:skill, title:"Skill 1", profile_id: user_with_profile.profile.id,
+                            user_id:user_with_profile.id)
+        end
+
+        let(:skill_2) do
+          FactoryGirl.create(:skill, title:"Skill 2", :profile_id => user_with_profile.profile.id,
+                            user_id:user_with_profile.id)
+        end
+
+        let(:valid_attributes) do
+          {
+            first_name:'Bugs',
+            last_name:'Bunny',
+            skills_attributes:[
+              {id: skill_1.id, title:'Sales guru'},
+              {id: skill_2.id, title:'Super hero'}
+            ]
+          }
+        end
+
+        before do
+          skill_1
+          skill_2
+        end
+
+        it "does not create new skills" do
+          expect {
+            post :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+          }.to change(Skill, :count).by(0)
+        end
+
+        it 'updates the existing skill attributes' do
+          expect {
+            post :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+          }.to change(Skill, :count).by(0)
+          Skill.find(skill_1.id).title.should == 'Sales guru'
+        end
+
+        it "redirects to the created user_profile" do
+          post :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+          response.should redirect_to(User::Profile.last)
+        end
       end
     end
 
