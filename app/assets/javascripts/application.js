@@ -15,4 +15,5 @@
 //= require angular-resource
 //= require main
 //= require directives/directives
+//= require services/services
 //= require controllers/controllers

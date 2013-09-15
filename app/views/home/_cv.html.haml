@@ -1,6 +1,8 @@
 .container.col-md-8.col-md-offset-2.wrapper{'ng-controller' => 'EditCtrl'}
+  %form{:name => 'worklist'}
   %header.row
-    %h1#title{'wl-editable' => '','data-default-text' => 'Your name', 'ng-model' => 'name'}
+    %input.h1#title{'ng-model' => 'workList.name', :placeholder => 'Your name', }
+    / %h1#title{'wl-editable' => '','data-default-text' => 'Your name', 'ng-model' => 'workList.name'}
       = t(:home)[:title]
     %h2#address{'wl-editable' => '', 'default-text' => 'Your home address'}
       = t(:home)[:address]
