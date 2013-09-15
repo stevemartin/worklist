@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818224100) do
+ActiveRecord::Schema.define(version: 20130915204440) do
 
   create_table "jobs", force: true do |t|
     t.string   "employer"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20130818224100) do
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "job_id"
   end
 
   add_index "skills", ["skill_id"], name: "index_skills_on_skill_id"
