@@ -21,6 +21,7 @@ class User::ProfilesController < ApplicationController
   # POST /user/profiles
   # POST /user/profiles.json
   def create
+    # @user_profile = @user.build_profile(params[:user_profile])
     @user_profile = @user.build_profile(user_profile_params)
 
     respond_to do |format|
