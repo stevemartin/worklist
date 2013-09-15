@@ -7,6 +7,53 @@
         <input class="span" ng-model="worklist.email" placeholder ="Contact Details" />
       </section>
     </header>
+    <section id="summary">
+      <h1>Summary</h1>
+      <textarea class="p" id="summary" ng-model="worklist.summary" placeholder= "A summary of you"></textarea>
+      <section id="career-objective">
+        <h2> Career Objective</h2>
+        <textarea class="p" id="career-objective" ng-model="worklist.career_objectives"></textarea>
+      </section>
+      <section id="key-skills">
+        <h2> Key Skills </h2>
+        <ul ng-repeat="skill in worklist.key_skills">
+          <li><input ng-model="skill" /></li>
+        </ul>
+      </section>
+    </section>
+    <section id="job-history" class="content-section">
+      <h1>Employment History</h1>
+      <div ng-repeat="job in worklist.employment_history">
+        <section class="job">
+          <input class="h2 employer" ng-model="job.employer" />
+          <input class="h4 employer-address" ng-model="job.address" />
+          <input class="span job-start-date" ng-model="job.start_date" />
+          <input class="span job-end-date" ng-model="job.end_date" />
+          <input class="h3 job-title" ng-model="job.title" />
+          <textarea class="p employer-description" ng-model="job.employer_description"></textarea>
+          <textarea class="p job-description" ng-model="job.job_description"></textarea>
+          <ul class="job-skills" ng-repeat="skill in job.skills">
+            <li>
+              <input ng-model="skill" />
+            </li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    <section class="row content-section" id="education-history">
+      <h1>Education History</h1>
+      <div ng-repeat="education in worklist.qualifications">
+        <section class="education">
+          <input class="h3 qualification" ng-model="education.title" />
+          <input class="span grade" ng-model="education.grade" />
+          <input class="span institute" ng-model="education.institute" />
+        </section>
+      </div>
+    </section>
+    <section id="skills" class="row content-section">
+    </section>
+    <section id="interests" class="row content-section">
+    </section>
   </form>
 </div>
 

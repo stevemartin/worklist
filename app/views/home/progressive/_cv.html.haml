@@ -7,79 +7,79 @@
       %section#contact-details
 	%input.span{':placeholder' => 'Contact Details', 'ng-model' => 'worklist.email', :placeholder => "#{t(:home)[:contact_details]}"}
     %section.row.content-section
-      %section#summary
-	%h1 Summary
-	%textarea.p#summary{'ng-model' => 'worklist.summary', :placeholder => "A summary of you"}
-	  =t(:home)[:summary]
-	%section#career-objective
-	  %h2 Career Objective
-	  %textarea.p#career-objective{ 'ng-model' => 'worklist.careerObjective'}
-	    =t(:home)[:career_objectives]
-	%section#key-skills
-	  %h2 Key Skills
-	  %ul
-	    - i = 0
-	    - t(:home)[:key_skills].each do |skill|
-	      - i++
-	      %li
-		%input{'ng-model' => "worklist.keySkill", :placeholder => "#{skill}"}
-    %section.row#job-history.content-section
-      %h1
-	Employment History
-      - i = 0
-      - t(:home)[:employment_history].each do |job|
-      - i++
-	%section.job
-	  %input.h2.employer{'ng-model' => "worklist.jobs.employer", :placeholder => "#{job['employer']}"}
-	  %input.h4.employer-address{'ng-model' => "worklist.jobs.address", :placeholder => "#{job['address']}"}
-	  %input.span.job-start-date{'ng-model' => "worklist.jobs.startDate", :placeholder => "#{job['start_date']}"}
-	  %input.span.job-end-date{'ng-model' => "worklist.jobs.endDate", :placeholder => "#{job['end_date']}"}
-	  %input.h3.job-title{'ng-model' =>"worklist.jobs.title", :placeholder => "#{job['title']}"}
-	  %textarea.p.employer-description{ 'ng-model' => "worklist.jobs.employerDescription", :placeholder => "#{job['employer_description']}"}
-	  %textarea.p.job-description{'ng-model' => "worklist.jobs.jobDescription", :placeholder => "#{job['job_description']}"}
-	  %ul.job-skills{'wl-editable' => ''}
-	    - j = 0
-	    - job['skills'].each do |skill|
-	    - j++
-	      %li
-		%input{'ng-model' => "worklist.job.job_skills", :placeholder => "#{skill}"}
+  %section#summary
+  	%h1 Summary
+  	%textarea.p#summary{'ng-model' => 'worklist.summary', :placeholder => "A summary of you"}
+  	  =t(:home)[:summary]
+  	%section#career-objective
+  	  %h2 Career Objective
+  	  %textarea.p#career-objective{ 'ng-model' => 'worklist.careerObjective'}
+  	    =t(:home)[:career_objectives]
+  	%section#key-skills
+  	  %h2 Key Skills
+  	  %ul
+  	    - i = 0
+  	    - t(:home)[:key_skills].each do |skill|
+  	      - i++
+  	      %li
+  		%input{'ng-model' => "worklist.keySkill", :placeholder => "#{skill}"}
+      %section.row#job-history.content-section
+        %h1
+  	Employment History
+        - i = 0
+        - t(:home)[:employment_history].each do |job|
+        - i++
+  	%section.job
+  	  %input.h2.employer{'ng-model' => "worklist.jobs.employer", :placeholder => "#{job['employer']}"}
+  	  %input.h4.employer-address{'ng-model' => "worklist.jobs.address", :placeholder => "#{job['address']}"}
+  	  %input.span.job-start-date{'ng-model' => "worklist.jobs.startDate", :placeholder => "#{job['start_date']}"}
+  	  %input.span.job-end-date{'ng-model' => "worklist.jobs.endDate", :placeholder => "#{job['end_date']}"}
+  	  %input.h3.job-title{'ng-model' =>"worklist.jobs.title", :placeholder => "#{job['title']}"}
+  	  %textarea.p.employer-description{ 'ng-model' => "worklist.jobs.employerDescription", :placeholder => "#{job['employer_description']}"}
+  	  %textarea.p.job-description{'ng-model' => "worklist.jobs.jobDescription", :placeholder => "#{job['job_description']}"}
+  	  %ul.job-skills{'wl-editable' => ''}
+  	    - j = 0
+  	    - job['skills'].each do |skill|
+  	    - j++
+  	      %li
+  		%input{'ng-model' => "worklist.job.job_skills", :placeholder => "#{skill}"}
 
-    %secion.row#education-history.content-section
-      %h1 Education History
-      %section.education
-	- i=0
-	- t(:home)[:qualifications].each do |qual|
-	- i++
-	  %input.h3.qualification{'ng-model' => "worklist.education.title", :placeholder => "#{qual['title']}"}
-	  %input.span.grade{'ng-model' => "worklist.education.grade", :placeholder => "#{qual['grade']}"}
-	  %input.span.institute{ 'ng-model' => "worklist.education.institute", :placeholder =>"#{qual['institute']}"}
+      %secion.row#education-history.content-section
+        %h1 Education History
+        %section.education
+  	- i=0
+  	- t(:home)[:qualifications].each do |qual|
+  	- i++
+  	  %input.h3.qualification{'ng-model' => "worklist.education.title", :placeholder => "#{qual['title']}"}
+  	  %input.span.grade{'ng-model' => "worklist.education.grade", :placeholder => "#{qual['grade']}"}
+  	  %input.span.institute{ 'ng-model' => "worklist.education.institute", :placeholder =>"#{qual['institute']}"}
 
-    %section.row#skills.content-section
-      %h1 Skills
-      %section.skill
-	%h3 Jedi Skills
-	%dl
-	  %dt{'wl-editable' => ''}
-	    Force powers
-	  %dd{'wl-editable' => ''}
-	    Telekenisis
-	    Psychic manipulation
-	    Mytichlorian Regeneration
-	  %dt{'wl-editable' => ''}
-	    Weopon skills
-	  %dd{'wl-editable' => ''}
-	    Light Sabre grade 3
+      %section.row#skills.content-section
+        %h1 Skills
+        %section.skill
+  	%h3 Jedi Skills
+  	%dl
+  	  %dt{'wl-editable' => ''}
+  	    Force powers
+  	  %dd{'wl-editable' => ''}
+  	    Telekenisis
+  	    Psychic manipulation
+  	    Mytichlorian Regeneration
+  	  %dt{'wl-editable' => ''}
+  	    Weopon skills
+  	  %dd{'wl-editable' => ''}
+  	    Light Sabre grade 3
 
-    %section.row#interests.content-section
-      %h1 Interests
-      %dl
-        %dt{'wl-editable' => ''}
-          Force powers
-        %dd{'wl-editable' => ''}
-          Telekenisis
-          Psychic manipulation
-          Mytichlorian Regeneration
-        %dt{'wl-editable' => ''}
-          Weopon skills
-        %dd{'wl-editable' => ''}
-          Light Sabre grade 3
+      %section.row#interests.content-section
+        %h1 Interests
+        %dl
+          %dt{'wl-editable' => ''}
+            Force powers
+          %dd{'wl-editable' => ''}
+            Telekenisis
+            Psychic manipulation
+            Mytichlorian Regeneration
+          %dt{'wl-editable' => ''}
+            Weopon skills
+          %dd{'wl-editable' => ''}
+            Light Sabre grade 3
