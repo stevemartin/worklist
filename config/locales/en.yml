@@ -22,33 +22,48 @@
 en:
   hello: "Hello world"
   home:
-    title: "Worklist - ( The CV App )"
-    address: "The Shipyards, London"
-    contact_details: "@shipyard.co"
-    summary: "The greatest CV app ever. Does all the things, super easy to use, start editing traight away."
-    career_objectives: "To create the best online independent CV tools."
-    key_skills:
-      - "Fast!"
-      - "Shareable!"
-      - "Easy!"
-      - "Recruiter safe!"
-    employment_history:
-      -
-        employer: "Death Star Corp"
-        address: "Alderaan Asteroid Field, galaxy far, far away."
-        start_date: "1-1-2034234234 ..."
-        end_date: "Ongoing ..."
-        title: "Ion Cannon operator"
-        employer_description: "Galactic Empire"
-        job_description: "World Destroyer, my job was to aim and fire the cannon at worlds"
-        skills:
-          - "Good eyesight"
-          - "Steady aim"
-          - "Attention to detail"
-          - "A strong force ability"
-          - "Windows Vista certified"
-    qualifications:
-      -
-        title: "Sith"
-        grade: "Lord"
-        institute: "Galactic Academy"
+    user_id: "new_user"
+    user_profile:
+      title: "Worklist - ( The CV App )"
+      address: "The Shipyards, London"
+      contact_details: "@shipyard.co"
+      summary: "The greatest CV app ever. Does all the things, super easy to use, start editing straight away."
+      career_objectives: "To create the best online independent CV tools."
+      skills_attributes:
+        -
+          title: "Fast!"
+          key_skill: true
+        -
+          title: "Shareable!"
+          key_skill: true
+        - 
+          title: "Easy!"
+          key_skill: true
+        - 
+          title: "Recruiter safe!"
+          key_skill: true
+      jobs_attributes:
+        -
+          employer: "Death Star Corp"
+          address: "Alderaan Asteroid Field, galaxy far, far away."
+          start_date: "1-1-2034234234 ..."
+          end_date: "Ongoing ..."
+          title: "Ion Cannon operator"
+          employer_description: "Galactic Empire"
+          job_description: "World Destroyer, my job was to aim and fire the cannon at worlds"
+          skills_attributes:
+            - 
+              title: "Good eyesight"
+            - 
+              title: "Steady aim"
+            - 
+              title: "Attention to detail"
+            - 
+              title: "A strong force ability"
+            - 
+              title: "Windows Vista certified"
+      qualifications:
+        -
+          title: "Sith"
+          grade: "Lord"
+          institute: "Galactic Academy"

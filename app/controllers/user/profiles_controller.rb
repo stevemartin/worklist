@@ -67,7 +67,11 @@ class User::ProfilesController < ApplicationController
     end
 
     def set_user
-      @user = User.find(params[:user_id])
+      if params[:user_id] = "new_user"
+        @user = User.create
+      else
+        @user = User.find(params[:user_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
