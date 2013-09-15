@@ -5,12 +5,11 @@
     ['worklist.directives','worklist.services']);
 
   app.controller('EditCtrl', ['$scope','WorkList',function($scope, WorkList){
-      $scope.editing = false;
-
-      $scope.workList = new WorkList();
+      $scope.editing = true;
 
       $scope.saveWorkList = function() {
-	$scope.workList.$save();
+	console.log($scope.worklist);
+	//$scope.workList.$save();
       };
   }]);
 
