@@ -22,7 +22,6 @@
 en:
   hello: "Hello world"
   home:
-    user_id: "new_user"
     user_profile:
       title: "Worklist - ( The CV App )"
       address: "The Shipyards, London"

@@ -19,7 +19,12 @@
   app.controller('EditCtrl', ['$scope', 'WorkList',function($scope, WorkList){
     $scope.worklist = new WorkList( window.worklist_data );
     $scope.saveWorkList = function() {
-      $scope.worklist.$save();
+      if(typeof $scope.worklist.user_id === 'undefined'){
+        $scope.worklist.$save();
+      } else {
+        $scope.worklist.$update();
+      }
+
     };
   }]);
 

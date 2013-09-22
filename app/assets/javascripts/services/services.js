@@ -4,7 +4,11 @@
   var services = angular.module('worklist.services',['ngResource']);
 
   services.factory('WorkList', ['$resource', function( $resource ){
-    return $resource('/users/:user_id/profile',{user_id: '@user_id'});
+    // return $resource('/users/create_profile');
+    return $resource('/users/profile',{},
+                     {save:{'method':'POST'},
+                     update:{'method':'PUT'}}
+                     );
   }]);
 
 })();

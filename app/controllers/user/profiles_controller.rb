@@ -41,10 +41,16 @@ class User::ProfilesController < ApplicationController
   # PATCH/PUT /user/profiles/1
   # PATCH/PUT /user/profiles/1.json
   def update
+    @user.profile.destroy
+    @user_profile = @user.build_profile
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to @user_profile, notice: 'Profile was successfully updated.' }
-        format.json { head :no_content }
+        if request.xhr?
+          format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
+        else
+          format.html { redirect_to @user_profile, notice: 'Profile was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @user_profile.errors, status: :unprocessable_entity }
@@ -71,7 +77,7 @@ class User::ProfilesController < ApplicationController
 
     def set_user
       if params[:user_id] = "new_user"
-        @user = User.create
+        @user = DummyUser.create!
       else
         @user = User.find(params[:user_id])
       end

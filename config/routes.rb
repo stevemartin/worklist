@@ -2,6 +2,9 @@ Worklist::Application.routes.draw do
 
   devise_for :users
 
+  post 'users/profile' => 'user/profiles#create'
+  put 'users/profile' => 'user/profiles#update'
+
   resources :users do
     resource :profile, :controller => 'user/profiles'
   end
