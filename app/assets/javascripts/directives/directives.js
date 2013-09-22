@@ -56,4 +56,31 @@
       }
     };
   });
+
+
+  directives.directive('backdrop', function(){
+    return {
+      controller: function($scope){
+
+      },
+      link: function(scope, element,attrs) {
+        element.bind('click', function(){
+          element.addClass('is-hidden');
+        });
+      }
+    };
+  });
+
+  directives.directive('signUpForm', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      templateUrl: '/templates/signup.html',
+      link:function(scope, element,attrs, backdropCtrl){
+        scope.signUp = function(){
+          alert("boom");
+        };
+      }
+    };
+  });
 })();
