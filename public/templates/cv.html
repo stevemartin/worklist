@@ -7,20 +7,17 @@
         <input class="span" ng-model="worklist.user_profile.email" placeholder ="Email" />
       </section>
     </header>
-    <section id="summary">
+    <section id="summary" class="content-section">
       <h1>Summary</h1>
-      <textarea class="p" id="summary" ng-model="worklist.user_profile.summary" placeholder= "A summary of you"></textarea>
+      <textarea class="p" id="summary-input" ng-model="worklist.user_profile.summary" placeholder= "A summary of you"></textarea>
       <section id="career-objective">
         <h2> Career Objective</h2>
         <textarea class="p" id="career-objective" ng-model="worklist.user_profile.career_objectives"></textarea>
       </section>
       <section id="key-skills">
         <h2> Key Skills </h2>
-        <ul ng-repeat="skill in worklist.user_profile.skills_attributes">
-          <li>
-          <input ng-model="skill.title" />
-          <input type='hidden' ng-model="skill.key_skill" />
-          </li>
+        <ul>
+          <li ng-repeat="skill in worklist.user_profile.skills_attributes"><input ng-model="skill.title" /><input type='hidden' ng-model="skill.key_skill" /></li>
         </ul>
       </section>
     </section>
