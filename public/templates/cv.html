@@ -4,7 +4,7 @@
       <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" />
       <input class="h2" id="address" ng-model="worklist.user_profile.address" placeholder="Your address" />
       <section id="contact-details">
-        <input class="span" ng-model="worklist.user_profile.contact_details" placeholder ="Contact Details" />
+        <input class="span" ng-model="worklist.user_profile.email" placeholder ="Email" />
       </section>
     </header>
     <section id="summary">
@@ -34,7 +34,7 @@
           <input class="span job-end-date" ng-model="job.end_date" />
           <input class="h3 job-title" ng-model="job.title" />
           <textarea class="p employer-description" ng-model="job.employer_description"></textarea>
-          <textarea class="p job-description" ng-model="job.job_description"></textarea>
+          <textarea class="p job-description" ng-model="job.description"></textarea>
           <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
             <li>
               <input ng-model="skill.title" />
@@ -45,7 +45,7 @@
     </section>
     <section class="row content-section" id="education-history">
       <h1>Education History</h1>
-      <div ng-repeat="education in worklist.user_profile.qualifications">
+      <div ng-repeat="education in worklist.user_profile.qualifications_attributes">
         <section class="education">
           <input class="h3 qualification" ng-model="education.title" />
           <input class="span grade" ng-model="education.grade" />

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130915204440) do
+ActiveRecord::Schema.define(version: 20130922125754) do
 
   create_table "jobs", force: true do |t|
     t.string   "employer"
@@ -20,10 +20,11 @@ ActiveRecord::Schema.define(version: 20130915204440) do
     t.datetime "end_date"
     t.string   "title"
     t.string   "employer_description"
-    t.text     "job_description"
+    t.text     "description"
     t.integer  "profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "address"
   end
 
   add_index "jobs", ["address_id"], name: "index_jobs_on_address_id"
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20130915204440) do
     t.string   "middle_names"
     t.string   "last_name"
     t.datetime "date_of_birth"
-    t.string   "email_address"
+    t.string   "email"
     t.string   "website"
     t.string   "landline_phone"
     t.string   "mobile_phone"
@@ -44,7 +45,25 @@ ActiveRecord::Schema.define(version: 20130915204440) do
     t.text     "personal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "title"
+    t.string   "address"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "summary"
+    t.string   "career_objectives"
+    t.string   "qualifications"
   end
+
+  create_table "qualifications", force: true do |t|
+    t.string   "title"
+    t.string   "grade"
+    t.string   "institute"
+    t.integer  "profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "qualifications", ["profile_id"], name: "index_qualifications_on_profile_id"
 
   create_table "skills", force: true do |t|
     t.string   "title"

@@ -3,6 +3,7 @@ class User::Profile < ActiveRecord::Base
   belongs_to :user
   has_many :skills
   has_many :jobs
+  has_many :qualifications
 
-  accepts_nested_attributes_for :skills, :jobs, allow_destroy: true
+  accepts_nested_attributes_for :skills, :jobs, :qualifications, allow_destroy: true
 end

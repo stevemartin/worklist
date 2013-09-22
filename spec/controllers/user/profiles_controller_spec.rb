@@ -53,6 +53,13 @@ describe User::ProfilesController do
         assigns(:user_profile).should be_persisted
       end
 
+      context 'when its an ajax request' do
+        it 'returns the cv data as json' do
+          xhr :post, :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
+          response.body.should == {:user_id => nil, :user_profile => valid_attributes}.to_json
+        end
+      end
+
       it "redirects to the created user_profile" do
         post :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
         response.should redirect_to(User::Profile.last)

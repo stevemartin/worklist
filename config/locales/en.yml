@@ -26,7 +26,7 @@ en:
     user_profile:
       title: "Worklist - ( The CV App )"
       address: "The Shipyards, London"
-      contact_details: "@shipyard.co"
+      email: "test@shipyard.co"
       summary: "The greatest CV app ever. Does all the things, super easy to use, start editing straight away."
       career_objectives: "To create the best online independent CV tools."
       skills_attributes:
@@ -50,7 +50,7 @@ en:
           end_date: "Ongoing ..."
           title: "Ion Cannon operator"
           employer_description: "Galactic Empire"
-          job_description: "World Destroyer, my job was to aim and fire the cannon at worlds"
+          description: "World Destroyer, my job was to aim and fire the cannon at worlds"
           skills_attributes:
             - 
               title: "Good eyesight"
@@ -62,7 +62,7 @@ en:
               title: "A strong force ability"
             - 
               title: "Windows Vista certified"
-      qualifications:
+      qualifications_attributes:
         -
           title: "Sith"
           grade: "Lord"

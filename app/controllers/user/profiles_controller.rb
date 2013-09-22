@@ -21,13 +21,16 @@ class User::ProfilesController < ApplicationController
   # POST /user/profiles
   # POST /user/profiles.json
   def create
-    # @user_profile = @user.build_profile(params[:user_profile])
     @user_profile = @user.build_profile(user_profile_params)
 
     respond_to do |format|
       if @user_profile.save
-        format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user_profile }
+        if request.xhr?
+          format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
+        else
+          format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
+          format.json { render json: user_profile_params }
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @user_profile.errors, status: :unprocessable_entity }
@@ -76,9 +79,20 @@ class User::ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:first_name, :middle_names, :last_name, :date_of_birth, :email_address, :website, :landline_phone, :mobile_phone, :description, :education, :work_history, :personal, jobs_attributes: [:id, :employer, :address_id, :start_date, :end_date, :title, :employer_description, :job_description,
-      skills_attributes:[:id, :title, :description, :skill_id, :key_skill]],
-      skills_attributes:[:id, :title, :description, :skill_id, :key_skill])
+      params.require(:user_profile).permit(:title, :email, :address, :summary, 
+                                           :career_objectives,
+                                           :first_name, :middle_names, :last_name, 
+                                           :date_of_birth, :email_address, :website, 
+                                           :landline_phone, :mobile_phone, :description, 
+                                           :education, :work_history, :personal,
+                                           qualifications_attributes:[:id, :title, :grade, :institute],
+                                           jobs_attributes: [:id, :employer, :address, 
+                                                             :address_id, :start_date, 
+                                                             :end_date, :title, 
+                                                             :employer_description, :description,
+                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill]],
+                                           skills_attributes:[:id, :title, :description, :skill_id, :key_skill]
+                                          )
     end
     
 end
