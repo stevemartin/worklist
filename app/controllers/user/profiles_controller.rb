@@ -26,7 +26,7 @@ class User::ProfilesController < ApplicationController
     respond_to do |format|
       if @user_profile.save
         if request.xhr?
-          format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
+          format.json { render json: {user_id: @user.id, user_profile: merge_url_into_params } }
         else
           format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
           format.json { render json: user_profile_params }
@@ -83,9 +83,13 @@ class User::ProfilesController < ApplicationController
       end
     end
 
+    def merge_url_into_params
+      user_profile_params.merge!(:url => @user_profile.url)
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:title, :email, :address, :summary, 
+      params.require(:user_profile).permit(:url, :title, :email, :address, :summary, 
                                            :career_objectives,
                                            :first_name, :middle_names, :last_name, 
                                            :date_of_birth, :email_address, :website, 
