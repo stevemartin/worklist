@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :profile, :class => 'User::Profile' do
+    url '1'
     first_name "MyString"
     middle_names "MyString"
     last_name "MyString"

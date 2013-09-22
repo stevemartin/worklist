@@ -4,6 +4,7 @@ Worklist::Application.routes.draw do
 
   post 'users/profile' => 'user/profiles#create'
   put 'users/profile' => 'user/profiles#update'
+  get 'me/:url' => 'cvs#show'
 
   resources :users do
     resource :profile, :controller => 'user/profiles'
