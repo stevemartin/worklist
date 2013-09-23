@@ -2,6 +2,10 @@ Worklist::Application.routes.draw do
 
   devise_for :users
 
+  post 'users/profile' => 'user/profiles#create'
+  put 'users/profile' => 'user/profiles#update'
+  get 'me/:url' => 'cvs#show'
+
   resources :users do
     resource :profile, :controller => 'user/profiles'
   end
@@ -32,6 +36,7 @@ Worklist::Application.routes.draw do
   #     end
   #   end
 
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
@@ -45,7 +50,7 @@ Worklist::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

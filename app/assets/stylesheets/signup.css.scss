@@ -1,0 +1,38 @@
+@import 'mixins';
+
+#signup{
+  position: fixed;
+  top: 50%;
+  left:50%;
+  z-index: 100;
+  background: #000;
+  @include width(500);
+  @include margin(-250, left);
+  @include height(400);
+  @include margin(-200, top);
+  text-align: center;
+  color:#FFF;
+  @include animation(1s, 0, ease-in, forwards, slide-down);
+
+  a{
+    color:#FFF;
+    background:none;
+  }
+
+  input{
+    background: #FFF;
+    border: 1px solid #CCC;
+  }
+
+  h2{
+    @include font-size(18);
+  }
+
+}
+
+.backdrop{
+  background: rgba(0,0,0,.3);
+  position: fixed;
+  top: 0; right: 0; left: 0; bottom:0;
+  z-index: 99;
+}

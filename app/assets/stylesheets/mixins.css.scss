@@ -31,45 +31,24 @@ $em: $font-size * 1;
 }
 
 @mixin margin( $amount, $direction:all ){
-    @if $direction == top{
-        margin-top: ems($amount);
-    } @else if $direction == bottom{
-        margin-bottom: ems($amount);
-    } @else if $direction == left{
-        margin-left: ems($amount);
-    } @else if $direction == right{
-        margin-right: ems($amount);
-    } @else if $direction == vertical {
-        margin:  ems($amount) 0;
-    } @else if $direction == horizontal {
-        margin: 0 ems($amount);
-    } @else if $direction == auto {
-        margin: ems($amount) auto;
-    } @else {
-        margin: ems($amount);
-    }
+  @if $direction != all{
+    margin-#{$direction}: ems($amount);
+  } @else {
+    margin: ems($amount);
+  }
 }
 
 @mixin padding( $amount, $direction:all ){
-    @if $direction == top{
-        padding-top: ems($amount);
-    } @else if $direction == bottom{
-        padding-bottom: ems($amount);
-    } @else if $direction == left{
-        padding-left: ems($amount);
-    } @else if $direction == right{
-        padding-right: ems($amount);
-    } @else if $direction == vertical {
-        padding:  ems($amount) 0;
-    } @else if $direction == horizontal {
-        padding: 0 ems($amount);
-    } @else {
-        padding: ems($amount);
-    }
+  @if $direction != all{
+    padding-#{$direction}: ems($amount);
+  } @else {
+    padding: ems($amount);
+  }
 }
 
-@mixin width($width, $type, $ems: true){
+@mixin width($width, $type:default, $ems: true){
   $output: '';
+
   @if $ems == false {
     $output: $width;
   } @else{
@@ -86,12 +65,67 @@ $em: $font-size * 1;
 
 }
 
-@mixin height( $amount, $type:all) {
-    @if $type == min{
-        min-height: px-to-ems($amount);
-    } @else if $type == max {
-        max-height: px-to-ems($amount);
-    } @else {
-        height: px-to-ems($amount);
-    }
+@mixin height( $height, $type:all, $ems: true) {
+  $output: '';
+
+  @if $ems == false {
+    $output: $height;
+  } @else{
+    $output: ems($height);
+  }
+
+  @if $type == min{
+      min-height: $output;
+  } @else if $type == max {
+      max-height: $output;
+  } @else {
+      height: $output;
+  }
+}
+
+@mixin animation($duration, $delay, $timingfunc, $direction, $name){
+  -webkit-animation: $name $duration $timingfunc $delay 1 $direction;
+  -moz-animation: $name $duration $timingfunc $delay 1;
+  -ms-animation: $name $duration $timingfunc $delay 1;
+  -o-animation: $name $duration $timingfunc $delay 1;
+  animation: $name $duration $timingfunc $delay 1 $direction;
+
+  // -webkit-animation-fill-mode: $direction;
+  // -moz-animation-fill-mode: $direction;
+  // -ms-animation-fill-mode: $direction;
+  // -o-animation-fill-mode: $direction;
+  // animation-fill-mode: $direction;
+}
+
+@mixin animations($duration, $delay, $timingfunc, $direction, $names...){
+  //WeK
+  -webkit-animation-name: $names;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-timing-function: $timingfunc;
+  -webkit-animation-delay: $delay;
+  -webkit-animation-iteration-count: 1;
+  // Moz
+  -moz-animation-name: $names;
+  -moz-animation-duration: $duration;
+  -moz-animation-timing-function: $timingfunc;
+  -moz-animation-delay: $delay;
+  -moz-animation-iteration-count: 1;
+  // Ope
+  -o-animation-name: $names;
+  -o-animation-duration: $duration;
+  -o-animation-timing-function: $timingfunc;
+  -o-animation-delay: $delay;
+  -o-animation-iteration-count: 1;
+  //MS
+  -ms-animation-name: $names;
+  -ms-animation-duration: $duration;
+  -ms-animation-timing-function: $timingfunc;
+  -ms-animation-delay: $delay;
+  -ms-animation-iteration-count: 1;
+
+  animation-name: $names;
+  animation-duration: $duration;
+  animation-timing-function: $timingfunc;
+  animation-delay: $delay;
+  animation-iteration-count: 1;
 }

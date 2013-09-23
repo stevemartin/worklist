@@ -1,0 +1,14 @@
+<section class="job">
+  <input class="h2 employer" ng-model="job.employer" />
+  <input class="h4 employer-address" ng-model="job.address" />
+  <input class="span job-start-date" ng-model="job.start_date" />
+  <input class="span job-end-date" ng-model="job.end_date" />
+  <input class="h3 job-title" ng-model="job.title" />
+  <textarea class="p employer-description" ng-model="job.employer_description"></textarea>
+  <textarea class="p job-description" ng-model="job.description"></textarea>
+  <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
+    <li>
+      <input ng-model="skill.title" />
+    </li>
+  </ul>
+</section>

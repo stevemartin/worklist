@@ -1,2 +1,5 @@
-= render :partial => 'cv'
-= render :partial => 'account_bar'
+= content_for :injectables do
+  var worklist_data = #{ raw(t('home').to_json) }
+
+%div{'ng-view' => ''}
+= render :partial => 'home/progressive/account_bar'

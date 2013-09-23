@@ -1,12 +1,6 @@
 class User::ProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:new]
-
-  # GET /user/profiles
-  # GET /user/profiles.json
-  # def index
-  #   @user_profiles = User::Profile.all
-  # end
+  before_action :set_user, only: [:new, :create]
 
   # GET /user/profiles/1
   # GET /user/profiles/1.json
@@ -15,7 +9,9 @@ class User::ProfilesController < ApplicationController
 
   # GET /user/profiles/new
   def new
-    @profile = @user.build_profile
+    @user_profile = @user.build_profile
+    @jobs = @user_profile.jobs
+    @skills = @user_profile.skills
   end
 
   # GET /user/profiles/1/edit
@@ -29,8 +25,12 @@ class User::ProfilesController < ApplicationController
 
     respond_to do |format|
       if @user_profile.save
-        format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user_profile }
+        if request.xhr?
+          format.json { render json: {user_id: @user.id, user_profile: merge_url_into_params } }
+        else
+          format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
+          format.json { render json: user_profile_params }
+        end
       else
         format.html { render action: 'new' }
         format.json { render json: @user_profile.errors, status: :unprocessable_entity }
@@ -41,10 +41,16 @@ class User::ProfilesController < ApplicationController
   # PATCH/PUT /user/profiles/1
   # PATCH/PUT /user/profiles/1.json
   def update
+    @user.profile.destroy
+    @user_profile = @user.build_profile
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to @user_profile, notice: 'Profile was successfully updated.' }
-        format.json { head :no_content }
+        if request.xhr?
+          format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
+        else
+          format.html { redirect_to @user_profile, notice: 'Profile was successfully updated.' }
+          format.json { head :no_content }
+        end
       else
         format.html { render action: 'edit' }
         format.json { render json: @user_profile.errors, status: :unprocessable_entity }
@@ -57,7 +63,7 @@ class User::ProfilesController < ApplicationController
   def destroy
     @user_profile.destroy
     respond_to do |format|
-      format.html { redirect_to user_profiles_url }
+      format.html { redirect_to user_profile_url }
       format.json { head :no_content }
     end
   end
@@ -70,11 +76,33 @@ class User::ProfilesController < ApplicationController
     end
 
     def set_user
-      @user = User.find(params[:user_id])
+      if params[:user_id] = "new_user"
+        @user = DummyUser.create!
+      else
+        @user = User.find(params[:user_id])
+      end
+    end
+
+    def merge_url_into_params
+      user_profile_params.merge!(:url => @user_profile.url)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:first_name, :middle_names, :last_name, :date_of_birth, :email_address, :website, :landline_phone, :mobile_phone, :description, :education, :work_history, :personal)
+      params.require(:user_profile).permit(:url, :title, :email, :address, :summary, 
+                                           :career_objectives,
+                                           :first_name, :middle_names, :last_name, 
+                                           :date_of_birth, :email_address, :website, 
+                                           :landline_phone, :mobile_phone, :description, 
+                                           :education, :work_history, :personal,
+                                           qualifications_attributes:[:id, :title, :grade, :institute],
+                                           jobs_attributes: [:id, :employer, :address, 
+                                                             :address_id, :start_date, 
+                                                             :end_date, :title, 
+                                                             :employer_description, :description,
+                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill]],
+                                           skills_attributes:[:id, :title, :description, :skill_id, :key_skill]
+                                          )
     end
+    
 end

@@ -1,19 +1,86 @@
-'use strict';
+(function(){
+  'use strict';
 
-var directives = angular.module('worklistApp.directives');
+  var directives = angular.module('worklist.directives',[]);
 
-directives.directive('wl-editable', function(){
-  return {
-    link: function(scope, element,attrs ){
-      var _this = element[0];
+  directives.directive('wlEditable', function(){
+    return {
+      scope:{
+        defaultText: '@'
+      },
 
-      _this.contentEditable = !$scope.editable;
+      link: function(scope, element, attrs){
+        var _this = element[0],
+            editing = false;
+        element.addClass('is-editable');
+        _this.contentEditable = editing;
 
-      _this.on('click', toggleEditable);
+        element.bind('click', function(event){
+          _this.contentEditable = !editing;
+          element.addClass('is-editing');
 
-      function toggleEditable(){
-        $scope.editable != $scope.editable;
+          scope.$apply(function(){
+            //@TODO: this needs to be less hacky
+            scope.$parent.$parent.editing = true;
+          });
+        });
+
+        element.bind('blur', function(event){
+          _this.contentEditable = false;
+          element.removeClass('is-editing');
+
+          if(!element.text().length){
+            element.text( attrs.defaultText );
+          }
+        });
       }
-    }
-  };
-});
+    };
+  });
+
+  directives.directive('jobHistory', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      templateUrl: '/templates/job.html',
+      link: function(scope, element, attrs){
+      }
+    };
+  });
+
+  directives.directive('educationHistory', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      templateUrl: '/templates/education.html',
+      link: function(scope, element, attrs){
+      }
+    };
+  });
+
+
+  directives.directive('backdrop', function(){
+    return {
+      controller: function($scope){
+
+      },
+      link: function(scope, element,attrs) {
+        element.bind('click', function(){
+          element.addClass('is-hidden');
+        });
+      }
+    };
+  });
+
+  directives.directive('signUpForm', function(){
+    return {
+      replace: true,
+      restrict: 'E',
+      templateUrl: '/templates/signup.html',
+      link:function(scope, element,attrs, backdropCtrl){
+        scope.signUp = function(){
+          alert("boom");
+        };
+      }
+    };
+  });
+})();

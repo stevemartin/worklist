@@ -10,7 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require turbolinks
-//= require_tree .
 //= require angular
+//= require angular-bootstrap
+//= require angular-resource
+//= require main
 //= require directives/directives
+//= require services/services
+//= require controllers/controllers

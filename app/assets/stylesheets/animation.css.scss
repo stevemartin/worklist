@@ -1,0 +1,20 @@
+@import 'mixins';
+
+
+@-webkit-keyframes slide-down{
+  from:{ margin-top:-100%;}
+  to:{margin-top:0;}
+}
+@-moz-keyframes slide-down{
+
+}
+@-o-keyframes slide-down{
+
+}
+@-ms-keyframes slide-down{
+
+}
+@keyframes slide-down{
+  from:{ margin-top:-100%;}
+  to:{margin-top:0;}
+}
