@@ -36,6 +36,7 @@ Worklist::Application.routes.draw do
   #     end
   #   end
 
+
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
@@ -49,7 +50,7 @@ Worklist::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

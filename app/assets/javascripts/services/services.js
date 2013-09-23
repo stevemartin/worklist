@@ -11,4 +11,8 @@
                      );
   }]);
 
+
+  services.factory('User', ['$resource', function( $resource){
+    return $resource('/users/sign_up');
+  }]);
 })();
