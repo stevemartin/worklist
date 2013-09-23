@@ -78,7 +78,7 @@
       templateUrl: '/templates/signup.html',
       link:function(scope, element,attrs, backdropCtrl){
         scope.signUp = function(){
-          alert("boom");
+          scope.worklist.$update();
         };
       }
     };
