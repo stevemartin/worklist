@@ -17,7 +17,15 @@
   }]);
 
   app.controller('EditCtrl', ['$scope', 'WorkList',function($scope, WorkList){
-    $scope.worklist = new WorkList( window.worklist_data );
+
+    var determineUrlState = function() {
+      var url = $scope.worklist.url
+      if(typeof url === 'undefined'){
+        $scope.worklist = new WorkList( window.worklist_data );
+      } else {
+        $scope.worklist = retrieveWorklist( url );
+      }
+    }
 
     console.log( $scope.worklist );
     $scope.saveWorkList = function() {

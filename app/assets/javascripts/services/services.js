@@ -3,12 +3,22 @@
 
   var services = angular.module('worklist.services',['ngResource']);
 
-  services.factory('WorkList', ['$resource', function( $resource ){
+  services.factory('WorkList', ['$resource', function( $resource, type ){
     // return $resource('/users/create_profile');
-    return $resource('/users/profile',{},
-                     {save:{'method':'POST'},
-                     update:{'method':'PUT'}}
-                     );
+    if( type == 'init' ) {
+      return $resource('/users/profile',{},
+                       {save:{'method':'POST'},
+                       update:{'method':'PUT'}}
+                       );
+    } else if( type == 'url' ) {
+      return $resource('/me/:url',{},
+                       {
+                            get:{'method':'GET'},
+                           save:{'method':'POST'},
+                         update:{'method':'PUT'}
+                       }
+                       );
+    }
   }]);
 
 
