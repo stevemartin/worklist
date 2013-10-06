@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('worklist',
-    ['worklist.directives','worklist.services']);
+    ['ngCookies', 'worklist.directives','worklist.services']);
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -16,23 +16,48 @@
   app.controller('AppCtrl', ['$scope','WorkList',function($scope, WorkList){
   }]);
 
-  app.controller('EditCtrl', ['$scope', 'WorkList',function($scope, WorkList){
+  app.controller('EditCtrl', ['$scope', '$cookieStore', 'MyWorkList', 'WorkList',function($scope, $cookieStore, MyWorkList, WorkList){
+
+    // $scope.worklist = new WorkList( window.worklist_data );
 
     var determineUrlState = function() {
-      var url = $scope.worklist.url
+      var url = $cookieStore.get("url")
+
+      console.log( "CookieUrl: " + url )
+
       if(typeof url === 'undefined'){
-        $scope.worklist = new WorkList( window.worklist_data );
+
+        if( typeof window.worklist_data.user_profile.url !== 'undefined'){
+
+          console.log( "Setting Url Cookie: " + url )
+          $cookieStore.put("url", window.worklist_data.user_profile.url)
+          return $scope.worklist;
+
+        } else {
+
+          console.log( "Getting default worklist: " + url )
+          return new WorkList( window.worklist_data );
+
+        }
       } else {
-        $scope.worklist = retrieveWorklist( url );
+
+          console.log( "Getting MY worklist: " + url )
+        return MyWorkList.get({url:url});
+
       }
     }
+    $scope.worklist = determineUrlState();
 
     console.log( $scope.worklist );
     $scope.saveWorkList = function() {
       if(typeof $scope.worklist.user_id === 'undefined'){
-        $scope.worklist.$save();
+        $scope.worklist.$save(function(data){
+          $cookieStore.put("url", data.user_profile.url)
+        });
       } else {
-        $scope.worklist.$update();
+        $scope.worklist.$update(function(data){
+          $cookieStore.put("url", data.user_profile.url)
+        });
       }
 
     };

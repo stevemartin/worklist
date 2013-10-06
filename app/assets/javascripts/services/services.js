@@ -3,14 +3,7 @@
 
   var services = angular.module('worklist.services',['ngResource']);
 
-  services.factory('WorkList', ['$resource', function( $resource, type ){
-    // return $resource('/users/create_profile');
-    if( type == 'init' ) {
-      return $resource('/users/profile',{},
-                       {save:{'method':'POST'},
-                       update:{'method':'PUT'}}
-                       );
-    } else if( type == 'url' ) {
+  services.factory('MyWorkList', ['$resource', function( $resource, type ){
       return $resource('/me/:url',{},
                        {
                             get:{'method':'GET'},
@@ -18,7 +11,18 @@
                          update:{'method':'PUT'}
                        }
                        );
-    }
+  }]);
+
+  services.factory('WorkList', ['$resource', function( $resource, type ){
+    // return $resource('/users/create_profile');
+      function setUrlCookie(){
+        console.log("Setting url cookie!!!!");
+      }
+      return $resource('/users/profile',{},
+                       {save:{'method':'POST', callback:'setUrlCookie'},
+                       update:{'method':'PUT', callback:'setUrlCookie'}}
+                       );
+
   }]);
 
 
