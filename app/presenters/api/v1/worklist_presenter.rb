@@ -1,17 +1,22 @@
-class Api::V1::WorklistPresenter
-  attr_reader :user_profile
+module Api
+  module V1
+    class WorklistPresenter
 
-  def initialize user_profile
-    @user_profile = user_profile
-  end
+      attr_reader :user_profile
 
-  def as_json a = nil
-    attributes.to_json
-  end
+      def initialize user_profile
+        @user_profile = user_profile
+      end
 
-  alias_method :to_json, :as_json
+      def as_json a = nil
+        attributes.to_json
+      end
 
-  def attributes
-    { user_profile: UserProfilePresenter.new( @user_profile ).attributes }
+      alias_method :to_json, :as_json
+
+      def attributes
+        { user_profile: UserProfilePresenter.new( @user_profile ).attributes }
+      end
+    end
   end
 end
