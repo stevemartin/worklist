@@ -76,11 +76,22 @@
       replace: true,
       restrict: 'E',
       templateUrl: '/templates/signup.html',
-      link:function(scope, element,attrs, backdropCtrl){
+      link:function(scope, element,attrs){
         scope.signUp = function(){
           scope.worklist.$update();
         };
       }
     };
   });
+
+  // directives.directive('addSection', function(){
+  //   return {
+  //     replace: false,
+  //     templateUrl: '/templates/add-section.html',
+  //     link: function(scope, element, attrs){
+  //       console.log( attrs );
+  //       // scope.addSection()
+  //     }
+  //   }
+  // });
 })();

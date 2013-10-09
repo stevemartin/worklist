@@ -1,18 +1,18 @@
 <section class="job">
   <div class="job-header">
-    <input class="h2 employer" ng-model="job.employer" />
-    <input class="h4 employer-address" ng-model="job.address" />
-    <input class="h3 job-title" ng-model="job.title" />
+    <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
+    <input class="h4 employer-address" ng-model="job.address" placeholder="Employer's address"/>
+    <input class="h3 job-title" ng-model="job.title" placeholder="Your job title"/>
     <div class="job-duration">
-      <input class="span job-start-date" ng-model="job.start_date" />
-      <input class="span job-end-date" ng-model="job.end_date" />
+      <input class="span job-start-date" ng-model="job.start_date" placeholder="Start Date"/>
+      <input class="span job-end-date" ng-model="job.end_date" placeholder="End Date"/>
     </div>
   </div>
-  <textarea class="p employer-description" ng-model="job.employer_description"></textarea>
-  <textarea class="p job-description" ng-model="job.description"></textarea>
+  <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
+  <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
   <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
     <li>
-      <input ng-model="skill.title" />
+      <input ng-model="skill.title" placeholder="Job specific skill"/>
     </li>
   </ul>
 </section>
