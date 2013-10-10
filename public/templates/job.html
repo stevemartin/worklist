@@ -1,4 +1,5 @@
 <section class="job">
+  <a ng-click="removeSection('job',$index)" ng-show="$index > 0">Remove</a>
   <div class="job-header">
     <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
     <input class="h4 employer-address" ng-model="job.address" placeholder="Employer's address"/>

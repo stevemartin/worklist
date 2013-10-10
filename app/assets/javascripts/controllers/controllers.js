@@ -23,7 +23,13 @@
       //get the first object
       var sectionArr = $scope.worklist.user_profile[section + 's_attributes'],
           sectionObj = angular.copy( sectionArr[0]);
+
       sectionArr.push( sectionObj );
+    };
+
+    $scope.removeSection = function(section, index){
+      var sectionArr = $scope.worklist.user_profile[section + 's_attributes'];
+        sectionArr.splice( index, 1 );
     };
 
     function determineUrlState() {
