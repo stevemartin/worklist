@@ -15,7 +15,6 @@
 
   services.factory('WorkList', ['$resource', function( $resource ){
     // return $resource('/users/create_profile');
-      function setUrlCookie(WorkList){
       return $resource('/users/profile',{},
                        {save:{'method':'POST', callback:'setUrlCookie'},
                        update:{'method':'PUT', callback:'setUrlCookie'}}
