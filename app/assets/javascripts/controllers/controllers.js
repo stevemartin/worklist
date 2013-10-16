@@ -57,9 +57,7 @@
           $cookieStore.put("url", data.user_profile.url);
         });
       } else {
-        $scope.worklist.$update(function(data){
-          $cookieStore.put("url", data.user_profile.url);
-        });
+        $scope.worklist.$update();
       }
 
     };
