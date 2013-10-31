@@ -14,6 +14,7 @@ module Api
 
       def attributes
         {
+          id: @job.id,
           address:@job.address,
           description:@job.description,
           employer: @job.employer,

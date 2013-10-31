@@ -9,6 +9,7 @@ module Api
 
       def attributes
         {
+          id: @skill.id,
           key_skill: @skill.key_skill,
           title: @skill.title
         }
