@@ -1,0 +1,8 @@
+@mixin transparent-bg($val, $opacity){
+  //@TODO: add IE BG transparency img
+  background-color: rgba($val,$val,$val, $opacity );
+}
+
+@mixin bg-shadow($size, $spread, $colour){
+  box-shadow: $size $size $spread $colour;
+}

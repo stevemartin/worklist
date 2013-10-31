@@ -1,0 +1,11 @@
+@function ems($px){
+  @return #{$px/$em}em;
+}
+
+@function equal-width( $itemCount:4, $width: 100% ){
+  @return $width/ $itemCount;
+}
+
+@function line-height-ratio($font-size, $line-height){
+  @return $line-height / $font-size;
+}

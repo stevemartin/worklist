@@ -68,4 +68,8 @@
     }
   }]);
 
+  app.controller('navbar', ['$scope', function($scope){
+    scope.showOnStart = false;
+  }]);
+
 })();
