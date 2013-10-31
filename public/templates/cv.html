@@ -2,6 +2,10 @@
 <div class="container col-md-8 col-md-offset-2 wrapper">
   <form name="worklistform">
     <header class="row">
+      <div class="section-helper">
+        <a href="#">Close</a>
+        <p>Put your contact details here, you can choose to hide or show them when you share your workli.st link.</p>
+      </div>
       <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" required/>
       <input class="h2" id="address" ng-model="worklist.user_profile.address" placeholder="Your address" />
       <section id="contact-details">
@@ -9,13 +13,25 @@
       </section>
     </header>
     <section id="summary" class="content-section">
+      <div class="section-helper">
+        <a href="#">Close</a>
+        <p>The summary section is a brief overview of your career so far. It's your elevator pitch. Tell the world about yourself in under 300 words.</p>
+      </div>
       <h1>Summary</h1>
       <textarea class="p" id="summary-input" ng-model="worklist.user_profile.summary" placeholder= "A summary of you"></textarea>
       <section id="career-objective">
+        <div class="section-helper">
+          <a href="#">Close</a>
+          <p>Where are you heading? What do want to achieve in your career? Give us a brief overview of your plans for career domination.</p>
+        </div>
         <h2> Career Objective</h2>
         <textarea class="p" id="career-objective" ng-model="worklist.user_profile.career_objectives" placeholder="What do you want to achieve in your career?"></textarea>
       </section>
       <section id="key-skills">
+        <div class="section-helper">
+          <a href="#">Close</a>
+          <p>Skills pay bills. List your top skills here and keep include ones that will catch the eye of your hirer.</p>
+        </div>
         <h2> Key Skills </h2>
         <ul>
           <li ng-repeat="skill in worklist.user_profile.skills_attributes"><input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" /></li>
@@ -23,6 +39,10 @@
       </section>
     </section>
     <section id="job-history" class="content-section">
+      <div class="section-helper">
+        <a href="#">Close</a>
+        <p>Here's where you share your work history. We'd recommend starting with your most recent job and working back. </p>
+      </div>
       <h1>Employment History</h1>
       <div ng-repeat="job in worklist.user_profile.jobs_attributes">
         <job-history job="{{job}}"></job-history>
@@ -30,6 +50,10 @@
       <button class="button" ng-click="addSection('job')">Add Job</button>
     </section>
     <section class="row content-section" id="education-history">
+      <div class="section-helper">
+        <a href="#">Close</a>
+        <p>Education isn't for everyone, but we've all been through the system. Let your new employer know how far you went.</p>
+      </div>
       <h1>Education History</h1>
       <div ng-repeat="education in worklist.user_profile.qualifications_attributes">
         <education-history education="{{education}}"></education-history>

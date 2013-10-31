@@ -6,7 +6,7 @@
   margin-bottom: ems(50);
   text-align:center; border: 1px solid #ccc;
   border-radius: ems(3);
-  overflow: hidden;
+  overflow: visible;
 }
 
 input, textarea{
@@ -19,6 +19,9 @@ input, textarea{
   resize:none;
 }
 
+section{
+  position: relative;
+}
 
 header{
   .h1{
@@ -50,7 +53,7 @@ header{
   float:left;
   text-align:left;
   @include padding(20);
-
+  position: relative;
   h1{
     @include font-size(24);
     color:$text-light;
@@ -124,5 +127,24 @@ header{
   &:hover{
     border: 1px dashed #DDD;
     background:#F4F4F4;
+  }
+}
+
+/*-----------------------*\
+  SECTION HELPER
+\*-----------------------*/
+.section-helper{
+  display:none;
+  @include transparent-bg(0, .5);
+  color:#FFF;
+  @include padding(10);
+  position: absolute;
+
+  top: -20px;
+  right:0;
+  @include width(500, max);
+
+  a{
+    color: #FFF;
   }
 }

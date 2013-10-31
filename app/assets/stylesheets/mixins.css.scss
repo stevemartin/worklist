@@ -1,89 +1,13 @@
-// App Colours
-$cv-colour: #F5F5F5;
-$text: #444;
-$text-light: #888;
-$light-text: #EEE;
-$light-border: #BBB;
-$section-border: 1px solid $light-border;
-// Important numbers
-$line: 20;
-$column: 100% / 18;
-$font-size: 13;
-$em: $font-size * 1;
-
-//converts a px value to ems
-// @param $px - value in pixels
-// @return em
-@function ems($px){
-  @return #{$px/$em}em;
-}
-
-@function equal-width( $itemCount:4, $width: 100% ){
-  @return $width/ $itemCount;
-}
-
-@function line-height-ratio($font-size, $line-height){
-  @return $line-height / $font-size;
-}
+@import 'variables';
+@import 'functions/main';
+@import 'mixins/_layout';
+@import 'mixins/_colour';
+@import 'mixins/_shapes';
 
 @mixin font-size($size: $em){
   font-size: ems($size);
 }
 
-@mixin margin( $amount, $direction:all ){
-  @if $direction == all{
-    margin: ems($amount);
-  } @else if $direction == auto{
-    margin: ems($amount) auto;
-  } @else {
-    margin-#{$direction}: ems($amount);
-  }
-}
-
-@mixin padding( $amount, $direction:all ){
-  @if $direction != all{
-    padding-#{$direction}: ems($amount);
-  } @else {
-    padding: ems($amount);
-  }
-}
-
-@mixin width($width, $type:default, $ems: true){
-  $output: '';
-
-  @if $ems == false {
-    $output: $width;
-  } @else{
-    $output: ems($width);
-  }
-
-  @if $type == min{
-    min-width: $output;
-  }@else if $type == max{
-    max-width: $output;
-  }@else {
-    width: $output;
-  }
-
-}
-
-@mixin height( $height, $type:all, $ems: true) {
-  $output: '';
-
-  @if $ems == false {
-    $output: $height;
-  } @else{
-    $output: ems($height);
-  }
-
-  @if $type == min{
-      min-height: $output;
-  } @else if $type == max {
-      max-height: $output;
-  } @else {
-      height: $output;
-  }
-}
 
 @mixin animation($duration, $delay, $timingfunc, $direction, $name){
   -webkit-animation: $name $duration $timingfunc $delay 1 $direction;

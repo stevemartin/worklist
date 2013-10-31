@@ -17,7 +17,7 @@
   }]);
 
   app.controller('EditCtrl', ['$scope', '$cookieStore','MyWorkList', 'WorkList', function( $scope,$cookieStore, MyWorkList, WorkList ){
-
+    $scope.showSignUp = false;
     // $scope.worklist = new WorkList( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
@@ -55,12 +55,17 @@
       if(typeof $scope.worklist.user_id === 'undefined'){
         $scope.worklist.$save(function(data){
           $cookieStore.put("url", data.user_profile.url);
+          $scope.showSignUp = true;
         });
       } else {
         $scope.worklist.$update();
       }
 
     };
+
+    $scope.closeSignUp = function(){
+      $scope.showSignUp = false;
+    }
   }]);
 
 })();
