@@ -13,6 +13,7 @@
 //= require angular
 //= require angular-bootstrap
 //= require angular-resource
+//= require angular-cookies
 //= require main
 //= require directives/directives
 //= require services/services

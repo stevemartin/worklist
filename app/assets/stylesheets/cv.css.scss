@@ -81,6 +81,43 @@ header{
   }
 }
 
+
+#job-history{
+  .job-header{
+    width: 100%;
+    clear:both;
+    float:left;
+    position: relative;
+    .employer{
+      float:left;
+    }
+    .employer-address{
+      float:left;
+      clear:left;
+      font-size: ems(14);
+      font-weight: 100;
+      width: 30%;
+    }
+    .job-title{
+      position: absolute;
+      right: ems(10);
+      text-align: right;
+    }
+    .job-duration{
+      position: absolute;
+      right: ems(10);
+      top: ems(40);
+      input{
+	font-size: ems(12);
+	width: ems(80);
+      }
+    }
+  }
+  .employer-description, .job-description{
+    width: 100%;
+  }
+}
+
 .is-editable{
   border: 1px solid transparent;
 

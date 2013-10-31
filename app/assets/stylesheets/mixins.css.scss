@@ -31,10 +31,12 @@ $em: $font-size * 1;
 }
 
 @mixin margin( $amount, $direction:all ){
-  @if $direction != all{
-    margin-#{$direction}: ems($amount);
-  } @else {
+  @if $direction == all{
     margin: ems($amount);
+  } @else if $direction == auto{
+    margin: ems($amount) auto;
+  } @else {
+    margin-#{$direction}: ems($amount);
   }
 }
 

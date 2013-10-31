@@ -89,20 +89,20 @@ class User::ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:url, :title, :email, :address, :summary, 
+      params.require(:user_profile).permit(:url, :title, :email, :address, :summary,
                                            :career_objectives,
-                                           :first_name, :middle_names, :last_name, 
-                                           :date_of_birth, :email_address, :website, 
-                                           :landline_phone, :mobile_phone, :description, 
+                                           :first_name, :middle_names, :last_name,
+                                           :date_of_birth, :email_address, :website,
+                                           :landline_phone, :mobile_phone, :description,
                                            :education, :work_history, :personal,
                                            qualifications_attributes:[:id, :title, :grade, :institute],
-                                           jobs_attributes: [:id, :employer, :address, 
-                                                             :address_id, :start_date, 
-                                                             :end_date, :title, 
+                                           jobs_attributes: [:id, :employer, :address,
+                                                             :address_id, :start_date,
+                                                             :end_date, :title,
                                                              :employer_description, :description,
                                                              skills_attributes:[:id, :title, :description, :skill_id, :key_skill]],
                                            skills_attributes:[:id, :title, :description, :skill_id, :key_skill]
                                           )
     end
-    
+
 end

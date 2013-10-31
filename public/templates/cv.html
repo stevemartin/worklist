@@ -1,11 +1,11 @@
 <sign-up-form></sign-up-form>
 <div class="container col-md-8 col-md-offset-2 wrapper">
-  <form name="new_worklist">
+  <form name="worklistform">
     <header class="row">
-      <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" />
+      <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" required/>
       <input class="h2" id="address" ng-model="worklist.user_profile.address" placeholder="Your address" />
       <section id="contact-details">
-        <input class="span" ng-model="worklist.user_profile.email" placeholder ="Email" />
+	<input class="span" ng-model="worklist.user_profile.email" placeholder ="Email" required/>
       </section>
     </header>
     <section id="summary" class="content-section">
@@ -13,43 +13,28 @@
       <textarea class="p" id="summary-input" ng-model="worklist.user_profile.summary" placeholder= "A summary of you"></textarea>
       <section id="career-objective">
         <h2> Career Objective</h2>
-        <textarea class="p" id="career-objective" ng-model="worklist.user_profile.career_objectives"></textarea>
+        <textarea class="p" id="career-objective" ng-model="worklist.user_profile.career_objectives" placeholder="What do you want to achieve in your career?"></textarea>
       </section>
       <section id="key-skills">
         <h2> Key Skills </h2>
         <ul>
-          <li ng-repeat="skill in worklist.user_profile.skills_attributes"><input ng-model="skill.title" /><input type='hidden' ng-model="skill.key_skill" /></li>
+          <li ng-repeat="skill in worklist.user_profile.skills_attributes"><input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" /></li>
         </ul>
       </section>
     </section>
     <section id="job-history" class="content-section">
       <h1>Employment History</h1>
       <div ng-repeat="job in worklist.user_profile.jobs_attributes">
-        <section class="job">
-          <input class="h2 employer" ng-model="job.employer" />
-          <input class="h4 employer-address" ng-model="job.address" />
-          <input class="span job-start-date" ng-model="job.start_date" />
-          <input class="span job-end-date" ng-model="job.end_date" />
-          <input class="h3 job-title" ng-model="job.title" />
-          <textarea class="p employer-description" ng-model="job.employer_description"></textarea>
-          <textarea class="p job-description" ng-model="job.description"></textarea>
-          <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
-            <li>
-              <input ng-model="skill.title" />
-            </li>
-          </ul>
-        </section>
+        <job-history job="{{job}}"></job-history>
       </div>
+      <button class="button" ng-click="addSection('job')">Add Job</button>
     </section>
     <section class="row content-section" id="education-history">
       <h1>Education History</h1>
       <div ng-repeat="education in worklist.user_profile.qualifications_attributes">
-        <section class="education">
-          <input class="h3 qualification" ng-model="education.title" />
-          <input class="span grade" ng-model="education.grade" />
-          <input class="span institute" ng-model="education.institute" />
-        </section>
+        <education-history education="{{education}}"></education-history>
       </div>
+      <button class="button" ng-click="addSection('qualification')">Add Education</button>
     </section>
     <section id="skills" class="row content-section">
     </section>
@@ -63,7 +48,7 @@
     <div class="navbar-header" role="navigation">
       <a class="navbar-brand" href="/">workli.st</a>
     </div>
-    <button ng-click="saveWorkList()">Save</button>
+    <button ng-click="saveWorkList()" ng-disabled="worklistform.$invalid">Save</button>
   </nav>
 </section>
-<div class="backdrop" backdrop></div>
+<div class="backdrop is-hidden" backdrop></div>
