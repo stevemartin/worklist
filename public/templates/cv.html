@@ -67,12 +67,12 @@
   </form>
 </div>
 
-<section class="row" id="#account-bar">
-  <nav class="navbar-fixed-bottom navbar navbar-default" ng-controller="navbar" ng-hide="showOnStart">
-    <div class="navbar-header" role="navigation">
-      <a class="navbar-brand" href="/">workli.st</a>
-    </div>
-    <button ng-click="saveWorkList()" ng-disabled="worklistform.$invalid">Save</button>
-  </nav>
-</section>
 <div class="backdrop is-hidden" backdrop></div>
+<section class="row" id="#account-bar">
+    <nav class="navbar-fixed-bottom navbar navbar-default">
+        <div class="navbar-header" role="navigation">
+            <a class="navbar-brand" href="/">workli.st</a>
+        </div>
+        <button ng-click="saveWorkList()" ng-disabled="worklistform.$invalid">Save</button>
+    </nav>
+</section>
