@@ -21,7 +21,8 @@ module Api
           skills_attributes: skills_attributes,
           summary: @profile.summary,
           title: @profile.title,
-          url: @profile.url
+          url: @profile.url,
+          url_key: @profile.url_key
         }
       end
 

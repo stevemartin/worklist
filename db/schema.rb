@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130922160629) do
     t.string   "career_objectives"
     t.string   "qualifications"
     t.string   "url"
+    t.string   "url_key"
   end
 
   create_table "qualifications", force: true do |t|
