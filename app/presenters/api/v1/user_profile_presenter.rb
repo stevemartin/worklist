@@ -6,12 +6,14 @@ module Api
         @profile = profile
       end
 
-      def as_json
+      def as_json a = nil
         attributes.to_json
       end
 
       def attributes
-        { address: @profile.address,
+        {
+          id: @profile.id,
+          address: @profile.address,
           career_objectives: @profile.career_objectives,
           email: @profile.email,
           jobs_attributes: jobs_attributes,
