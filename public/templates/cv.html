@@ -1,4 +1,4 @@
-<sign-up-form></sign-up-form>
+
 <div class="container col-md-8 col-md-offset-2 wrapper">
   <form name="worklistform">
     <header class="row">
@@ -6,7 +6,7 @@
         <a href="#">Close</a>
         <p>Put your contact details here, you can choose to hide or show them when you share your workli.st link.</p>
       </div>
-      <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" required/>
+      <input class="h1" id="title" ng-model="worklist.user_profile.title" placeholder="Your name" required autofocus=""/>
       <input class="h2" id="address" ng-model="worklist.user_profile.address" placeholder="Your address" />
       <section id="contact-details">
 	<input class="span" ng-model="worklist.user_profile.email" placeholder ="Email" required/>
@@ -73,6 +73,10 @@
         <div class="navbar-header" role="navigation">
             <a class="navbar-brand" href="/">workli.st</a>
         </div>
-        <button ng-click="saveWorkList()" ng-disabled="worklistform.$invalid">Save</button>
+        <button ng-click="saveWorkList()">Save</button>
+        <button ng-click="showSignInForm()">Sign In</button>
+        <button ng-click="deleteWorkList()">Delete</button>
     </nav>
 </section>
+<sign-up-form></sign-up-form>
+<sign-in-form></sign-in-form>

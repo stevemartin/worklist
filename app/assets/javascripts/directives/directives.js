@@ -71,7 +71,7 @@
     };
   });
 
-  directives.directive('signUpForm', ['$http', '$window', function($http, $window){
+  directives.directive('signUpForm', ['$http', '$window','PreSignup', function($http, $window, PreSignup){
     return {
       replace: true,
       restrict: 'E',
@@ -98,6 +98,32 @@
     };
   }]);
 
+
+ directives.directive('signInForm', ['$http', '$window', function($http, $window){
+    return {
+      replace: true,
+      restrict: 'E',
+      templateUrl: '/templates/signin.html',
+      link:function(scope, element,attrs){
+
+        scope.signIn = function(){
+          var sign_in_params = {
+            user:{
+              email: scope.user.email,
+              password: scope.user.password
+            }
+          }
+
+          $http.post('/users/sign_in', sign_in_params).success( function(){
+            scope.signedIn = true;
+            scope.showSignIn = false;
+            //populate the scope with their data
+
+          });
+        };
+      }
+    };
+  }]);
   // directives.directive('addSection', function(){
   //   return {
   //     replace: false,
