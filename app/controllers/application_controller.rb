@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def valid_url_key cv, cv_params
+    p "URL KEY: #{cv_params}"
+    cv.url_key == cv_params[:url_key]
+  end
+
   def verified_request?
     super || form_authenticity_token == request.headers['X_XSRF_TOKEN']
   end

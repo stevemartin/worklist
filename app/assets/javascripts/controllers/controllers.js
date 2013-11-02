@@ -13,12 +13,12 @@
     .otherwise({ redirectTo: '/'});
   }]);
 
-  app.controller('AppCtrl', ['$scope','WorkList',function($scope, WorkList){
+  app.controller('AppCtrl', ['$scope','PreSignup',function($scope, PreSignup){
   }]);
 
-  app.controller('EditCtrl', ['$scope', '$cookieStore','MyWorkList', 'WorkList', function( $scope,$cookieStore, MyWorkList, WorkList ){
+  app.controller('EditCtrl', ['$scope', '$cookieStore','WorkList', 'PreSignup', function( $scope,$cookieStore, WorkList, PreSignup ){
     $scope.showSignUp = false;
-    // $scope.worklist = new WorkList( window.worklist_data );
+    // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
       var sectionArr = $scope.worklist.user_profile[section + 's_attributes'],
@@ -34,30 +34,37 @@
 
     function determineUrlState() {
       var url = $cookieStore.get("url");
+      console.log("URL: " + url );
 
       if(typeof url === 'undefined'){
 
-        if( typeof window.worklist_data.user_profile.url !== 'undefined'){
-          $cookieStore.put("url", window.worklist_data.user_profile.url);
-          return $scope.worklist;
-        } else {
-          return new WorkList( window.worklist_data );
-        }
+        console.log("New presign up worklist");
+        return new PreSignup( window.worklist_data );
+
       } else {
-        return MyWorkList.get({url:url});
+
+        console.log("Get existing worklist");
+        return WorkList.get({url:url});
+
       }
     }
 
-    //we're either returning a new resource or a promise (MyWorkList.get)
+    //we're either returning a new resource or a promise (WorkList.get)
     $scope.worklist = determineUrlState();
 
     $scope.saveWorkList = function() {
-      if(typeof $scope.worklist.user_id === 'undefined'){
+      console.log("WL", $scope.worklist)
+      console.log("WL", $scope.worklist)
+      if(typeof $scope.worklist.user_profile.url === 'undefined'){
         $scope.worklist.$save(function(data){
+          console.log("CREATE")
           $cookieStore.put("url", data.user_profile.url);
+          $cookieStore.put("url_key", data.user_profile.url_key);
           $scope.showSignUp = true;
         });
       } else {
+        console.log("UPDATE")
+        $scope.worklist.url_key = $cookieStore.get("url_key");
         $scope.worklist.$update();
       }
 

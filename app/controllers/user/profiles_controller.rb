@@ -42,7 +42,7 @@ class User::ProfilesController < ApplicationController
   # PATCH/PUT /user/profiles/1.json
   def update
     respond_to do |format|
-      if @user_profile.update(user_profile_params)
+      if @user_profile.update(user_profile_params) && valid_url_key( @user_profile, user_profile_params )
         if request.xhr?
           format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
         else
@@ -83,7 +83,7 @@ class User::ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
-      params.require(:user_profile).permit(:id, :url, :title, :email, :address, :summary,
+      params.require(:user_profile).permit(:id, :url, :url_key, :title, :email, :address, :summary,
                                            :career_objectives,
                                            :first_name, :middle_names, :last_name,
                                            :date_of_birth, :email_address, :website,

@@ -71,18 +71,27 @@
     };
   });
 
-  directives.directive('signUpForm', function(){
+  directives.directive('signUpForm', ['$http', function($http){
     return {
       replace: true,
       restrict: 'E',
       templateUrl: '/templates/signup.html',
       link:function(scope, element,attrs){
         scope.signUp = function(){
-          scope.worklist.$update();
+
+          var sign_up_params = {
+            user:{
+              email: scope.worklist.user_profile.email,
+              password: scope.worklist.user_profile.password,
+              password_confirmation: scope.confirm
+            }
+          }
+
+          $http.post('/users', sign_up_params);
         };
       }
     };
-  });
+  }]);
 
   // directives.directive('addSection', function(){
   //   return {

@@ -11,6 +11,8 @@ class User::Profile < ActiveRecord::Base
   private
   def generate_url
     self.url = self.id.to_s(36)
+    self.url_key = SecureRandom.uuid.to_s
+    p "New url key is: #{self.url_key}"
     save
   end
 end

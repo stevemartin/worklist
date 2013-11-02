@@ -1,4 +1,4 @@
-<section id="signup" ng-show="showSignUp">
+<section id="signup" ng-show="showSignUp" >
     <a ng-click="closeSignUp()">Close</a>
   <h1>Your WorkList has been saved</h1>
   <p>You can view your WorkList for the next 30 days using the URL below</p>
@@ -18,6 +18,6 @@
       <label for="signup-password">Confirm your password</label>
       <input type="password" ng-model="confirm" required/>
     </div>
-    <button type="submit" ng-disabled="signup.$invalid || worklist.user_profile.password != confirm" ng-click="signUp()">Sign Up</button>
+  <button ng-disabled="signup.$invalid || worklist.user_profile.password != confirm" ng-click="signUp()">Sign Up</button>
   </form>
 </section>
