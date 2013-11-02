@@ -78,7 +78,7 @@
       templateUrl: '/templates/signup.html',
       link:function(scope, element,attrs){
         scope.signUp = function(){
-
+          element.html('<h1>Submitting your details</h1>');
           var sign_up_params = {
             user:{
               email: scope.worklist.user_profile.email,
@@ -87,7 +87,9 @@
             }
           }
 
-          $http.post('/users', sign_up_params);
+          $http.post('/users', sign_up_params).success( function(){
+            scope.showSignUp = false;
+          });
         };
       }
     };
