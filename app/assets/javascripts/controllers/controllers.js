@@ -13,10 +13,10 @@
     .otherwise({ redirectTo: '/'});
   }]);
 
-  app.controller('AppCtrl', ['$scope','PreSignup',function($scope, PreSignup){
+  app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
   }]);
 
-  app.controller('EditCtrl', ['$scope', '$cookieStore','WorkList', 'PreSignup', function( $scope,$cookieStore, WorkList, PreSignup ){
+  app.controller('EditCtrl', ['$scope','WorkList', 'PreSignup','Cookie', function( $scope, WorkList, PreSignup, Cookie ){
     $scope.showSignUp = false;
     // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
@@ -33,7 +33,7 @@
     };
 
     function determineUrlState() {
-      var url = $cookieStore.get("url");
+      var url = Cookie.getItem("url");
       console.log("URL: " + url );
 
       if(typeof url === 'undefined'){
@@ -57,14 +57,12 @@
       console.log("WL", $scope.worklist)
       if(typeof $scope.worklist.user_profile.url === 'undefined'){
         $scope.worklist.$save(function(data){
-          console.log("CREATE")
-          $cookieStore.put("url", data.user_profile.url);
-          $cookieStore.put("url_key", data.user_profile.url_key);
+          Cookie.setItem('url',data.user_profile.url, Cookie.defaultExpiry, '/');
+          Cookie.setItem('url_key',data.user_profile.url_key, Cookie.defaultExpiry, '/' );
           $scope.showSignUp = true;
         });
       } else {
-        console.log("UPDATE")
-        $scope.worklist.url_key = $cookieStore.get("url_key");
+        $scope.worklist.url_key = Cookie.getItem("url_key");
         $scope.worklist.$update();
       }
 
