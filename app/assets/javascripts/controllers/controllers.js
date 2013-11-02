@@ -34,18 +34,12 @@
 
     function determineUrlState() {
       var url = Cookie.getItem("url");
-      console.log("URL: " + url );
 
-      if(typeof url === 'undefined'){
-
-        console.log("New presign up worklist");
+      if(typeof url === 'undefined' || url === null ){
         return new PreSignup( window.worklist_data );
 
       } else {
-
-        console.log("Get existing worklist");
         return WorkList.get({url:url});
-
       }
     }
 
@@ -53,8 +47,6 @@
     $scope.worklist = determineUrlState();
 
     $scope.saveWorkList = function() {
-      console.log("WL", $scope.worklist)
-      console.log("WL", $scope.worklist)
       if(typeof $scope.worklist.user_profile.url === 'undefined'){
         $scope.worklist.$save(function(data){
           Cookie.setItem('url',data.user_profile.url, Cookie.defaultExpiry, '/');
@@ -65,7 +57,6 @@
         $scope.worklist.url_key = Cookie.getItem("url_key");
         $scope.worklist.$update();
       }
-
     };
 
     $scope.closeSignUp = function(){

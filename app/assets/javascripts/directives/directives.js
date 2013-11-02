@@ -71,14 +71,15 @@
     };
   });
 
-  directives.directive('signUpForm', ['$http', function($http){
+  directives.directive('signUpForm', ['$http', '$window', function($http, $window){
     return {
       replace: true,
       restrict: 'E',
       templateUrl: '/templates/signup.html',
       link:function(scope, element,attrs){
-        scope.signUp = function(){
 
+        scope.signUp = function(){
+          element.html('<h1>Submitting your details</h1>');
           var sign_up_params = {
             user:{
               email: scope.worklist.user_profile.email,
@@ -87,7 +88,11 @@
             }
           }
 
-          $http.post('/users', sign_up_params);
+          $http.post('/users', sign_up_params).success( function(){
+            scope.showSignUp = false;
+          }).error(function(){
+            element.html('<h1>Unable to sign up at this time, try again later</h1>')
+          });
         };
       }
     };
