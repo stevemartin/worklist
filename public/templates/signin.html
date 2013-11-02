@@ -1,0 +1,15 @@
+<section id="signin" ng-show="showSignIn" >
+    <a ng-click="close()">Close</a>
+    <h1>Sign In</h1>
+    <form name="signin">
+        <div class="input">
+            <label for="signin-email">Email</label>
+            <input type="email" ng-model="user.email" id="signin-email" required/>
+        </div>
+        <div class="input">
+            <label for="signin-password">Password</label>
+            <input type="password" ng-model="user.password" required ng-minlength="8" id="signin-password"/>
+        </div>
+        <button ng-disabled="signin.$invalid" ng-click="signIn()">Sign In</button>
+    </form>
+</section>

@@ -1,24 +1,15 @@
 <section id="signup" ng-show="showSignUp" >
-    <a ng-click="closeSignUp()">Close</a>
-  <h1>Your WorkList has been saved</h1>
-  <p>You can view your WorkList for the next 30 days using the URL below</p>
-  <a href="/me/{{worklist.user_profile.url}}" target="_blank" >http://workli.st/me/{{ worklist.user_profile.url }}</a>
-  <h2>Want your WorkList to last longer than 30 days?</h2>
-  <p>Sign up and we'll keep your worklist for as long as you need it.</p>
-  <form name="signup">
-    <div class="input">
-      <label for="signup-email">Email</label>
-      <input type="email" ng-model="worklist.user_profile.email" id="signup-email" required/>
+    <a ng-click="close()">Close</a>
+    <div ng-show="newSignup = false">
+      <h1>Your WorkList has been saved</h1>
+      <p>You can view your WorkList for the next 30 days using the URL below</p>
+      <a href="/me/{{worklist.user_profile.url}}" target="_blank" >http://workli.st/me/{{ worklist.user_profile.url }}</a>
+      <h2>Want your WorkList to last longer than 30 days?</h2>
+      <p>Sign up and we'll keep your worklist for as long as you need it.</p>
     </div>
-    <div class="input">
-        <p>Passwords should be a minimum of 8 characters</p>
-      <label for="signup-password">Password</label>
-      <input type="password" ng-model="worklist.user_profile.password" required ng-minlength="8"/>
+    <div ng-show="newSignup = true">
+        <h1>Signup for Worklist</h1>
+        <p>We'll create your worklist and give you a link to share</p>
     </div>
-    <div class="input">
-      <label for="signup-password">Confirm your password</label>
-      <input type="password" ng-model="confirm" required/>
-    </div>
-  <button ng-disabled="signup.$invalid || worklist.user_profile.password != confirm" ng-click="signUp()">Sign Up</button>
-  </form>
+  <ng-include src="'/templates/partials/signupform.html'"></ng-include>
 </section>

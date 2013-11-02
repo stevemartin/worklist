@@ -22,7 +22,7 @@
     $scope.addSection = function( section ){
       //get the first object
       var sectionArr = $scope.worklist.user_profile[section + 's_attributes'],
-          sectionObj = angular.copy( sectionArr[0]);
+          sectionObj = angular.copy( sectionArr[0] );
 
       sectionArr.push( sectionObj );
     };
@@ -59,13 +59,28 @@
       }
     };
 
-    $scope.closeSignUp = function(){
-      $scope.showSignUp = false;
+    $scope.close = function(){
+      $scope.showSignUp = $scope.showSignIn = false;
+
+    }
+
+    $scope.showSignUpForm = function(type) {
+      $scope.newSignUp = true;
+      $scope.showSignUp = true;
+      if( type === 'new'){
+        $scope.newSignUp = true;
+        //bosh the scope.worklist_data object
+      }
+
+    };
+
+    $scope.showSignInForm = function(){
+      $scope.showSignIn = true;
     }
   }]);
 
-  app.controller('navbar', ['$scope', function($scope){
-    $scope.showOnStart = false;
-  }]);
+//  app.controller('navbar', ['$scope', function($scope){
+    //set the user type to determine which buttons to show
+//  }]);
 
 })();
