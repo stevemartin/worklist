@@ -71,6 +71,8 @@ namespace :bundle do
   end
 end
 
+after 'bundle:install', 'deploy:assets:precompile'
+
 namespace :deploy do
   namespace :assets do
     task :precompile do
@@ -91,7 +93,7 @@ namespace :deploy do
   #   end
   # end
 
-  puma_ctrl = "pumactl -S #{shared_path}/tmp/sockets/puma.state -P #{shared_path}/tmp/pids/ "
+  puma_ctrl = "pumactl -S #{shared_path}/tmp/sockets/puma.state -P #{shared_path}/tmp/pids/"
   desc 'Start application'
   task :start do
     on roles(:app) do
@@ -114,7 +116,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # binding.pry
       within release_path do
-        execute :bundle, "exec #{puma_ctrl} restart -e production"
+        execute :bundle, "exec #{puma_ctrl} restart"
       end
     end
   end
@@ -123,10 +125,12 @@ namespace :deploy do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
       within release_path do
-        execute :rake, 'tmp:cache:clear'
+        # execute :rake, 'tmp:cache:clear'
       end
     end
   end
+
+  # after :restart, 'deploy:stop', 'deploy:start'
 
   after :finishing, 'deploy:cleanup'
 
