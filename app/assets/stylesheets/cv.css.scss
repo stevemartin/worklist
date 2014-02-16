@@ -48,6 +48,9 @@ header{
     margin: 0 auto;
     @include width(70%, all, false);
     color:$light-text;
+    input{
+      color:$light-text;
+    }
   }
 }
 

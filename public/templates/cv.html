@@ -47,7 +47,7 @@
       <div ng-repeat="job in worklist.user_profile.jobs_attributes">
         <job-history job="{{job}}"></job-history>
       </div>
-      <button class="button" ng-click="addSection('job')">Add Job</button>
+      <button class="btn btn-success" ng-click="addSection('job')">Add Job</button>
     </section>
     <section class="row content-section" id="education-history">
       <div class="section-helper">
@@ -58,7 +58,7 @@
       <div ng-repeat="education in worklist.user_profile.qualifications_attributes">
         <education-history education="{{education}}"></education-history>
       </div>
-      <button class="button" ng-click="addSection('qualification')">Add Education</button>
+      <button class="btn btn-success" ng-click="addSection('qualification')"><span class="glyphicon glyphicon-plus"></span>Add Education</button>
     </section>
     <section id="skills" class="row content-section">
     </section>
@@ -69,13 +69,15 @@
 
 <div class="backdrop is-hidden" backdrop></div>
 <section class="row" id="#account-bar">
-    <nav class="navbar-fixed-bottom navbar navbar-default">
+    <nav class="navbar-fixed-bottom navbar navbar-inverse">
         <div class="navbar-header" role="navigation">
             <a class="navbar-brand" href="/">workli.st</a>
         </div>
-        <button ng-click="saveWorkList()">Save</button>
-        <button ng-click="showSignInForm()">Sign In</button>
-        <button ng-click="deleteWorkList()">Delete</button>
+        <div class="btn-group navbar-btn float-right">
+          <button class="btn btn-primary " ng-click="saveWorkList()">Save</button>
+          <button class="btn btn-danger" ng-click="deleteWorkList()">Delete</button>
+        </div>
+        <button class="btn" ng-click="showSignInForm()">Sign In</button>
     </nav>
 </section>
 <sign-up-form></sign-up-form>
