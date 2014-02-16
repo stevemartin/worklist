@@ -24,7 +24,7 @@ set :bundle_roles, :all
 SSHKit.config.command_map[:rake] = "RAILS_ENV=production source \"/home/deploy/.rvm/environments/ruby-2.0.0-p247@worklist\" && rake"
 SSHKit.config.command_map[:bundle] = "RAILS_ENV=production source \"/home/deploy/.rvm/environments/ruby-2.0.0-p247@worklist\" && bundle"
 
-# after 'deploy:updated', 'db:migrate'
+after 'deploy:updated', 'db:migrate'
 
 namespace :db do
   task :write_config do
