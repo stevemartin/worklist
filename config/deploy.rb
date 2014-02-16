@@ -36,7 +36,7 @@ namespace :db do
   end
 
   task :migrate do
-    on roles(:db) do
+    on roles(:all) do
       within release_path do
         execute :rake, "db:migrate"
       end
@@ -44,7 +44,7 @@ namespace :db do
   end
 
   task :create do
-    on roles(:db) do
+    on roles(:all) do
       within release_path do
         execute :rake, "db:create"
       end
@@ -72,6 +72,25 @@ namespace :bundle do
 end
 
 namespace :deploy do
+  namespace :assets do
+    task :precompile do
+       on roles :all, :except => { :no_release => true } do
+          within release_path do
+            execute :rake, 'assets:precompile'
+          end
+       end
+    end
+  end
+
+  # before :backup_manifest, 'deploy:assets:create_manifest_json'
+  # task :create_manifest_json do
+  #   on roles :web do
+  #     within release_path do
+  #       execute :mkdir, release_path.join('assets_manifest_backup')
+  #     end
+  #   end
+  # end
+
   puma_ctrl = "pumactl -S #{shared_path}/tmp/sockets/puma.state -P #{shared_path}/tmp/pids/ "
   desc 'Start application'
   task :start do
