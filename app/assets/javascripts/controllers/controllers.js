@@ -2,13 +2,13 @@
   'use strict';
 
   var app = angular.module('worklist',
-    ['ngCookies', 'worklist.directives','worklist.services']);
+    ['ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal']);
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
     .when('/', {
       controller: 'EditCtrl',
-      templateUrl: '/templates/cv.html'
+      templateUrl: '/template/cv.html'
     })
     .otherwise({ redirectTo: '/'});
   }]);
@@ -16,7 +16,7 @@
   app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
   }]);
 
-  app.controller('EditCtrl', ['$scope','WorkList', 'PreSignup','Cookie', function( $scope, WorkList, PreSignup, Cookie ){
+  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', function( $scope, WorkList, $modal, PreSignup, Cookie ){
     $scope.showSignUp = false;
     // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
@@ -75,7 +75,15 @@
     };
 
     $scope.showSignInForm = function(){
-      $scope.showSignIn = true;
+      $modal.open({
+        templateUrl: 'signin.html',
+        controller: function signinModalCtrl($scope, $modalInstance){
+          $scope.closeModal = function close(){
+            $modalInstance.dismiss('cancel');
+          }
+        }
+      });
+      // $scope.showSignIn = true;
     }
   }]);
 

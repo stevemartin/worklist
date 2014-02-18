@@ -41,7 +41,7 @@
     return {
       replace: true,
       restrict: 'E',
-      templateUrl: '/templates/job.html',
+      templateUrl: '/template/job.html',
       link: function(scope, element, attrs){
       }
     };
@@ -51,7 +51,7 @@
     return {
       replace: true,
       restrict: 'E',
-      templateUrl: '/templates/education.html',
+      templateUrl: '/template/education.html',
       link: function(scope, element, attrs){
       }
     };
@@ -75,7 +75,7 @@
     return {
       replace: true,
       restrict: 'E',
-      templateUrl: '/templates/signup.html',
+      templateUrl: '/template/signup.html',
       link:function(scope, element,attrs){
 
         scope.signUp = function(){
@@ -103,7 +103,7 @@
     return {
       replace: true,
       restrict: 'E',
-      templateUrl: '/templates/signin.html',
+      templateUrl: '/template/signin.html',
       link:function(scope, element,attrs){
 
         scope.signIn = function(){
@@ -127,7 +127,7 @@
   // directives.directive('addSection', function(){
   //   return {
   //     replace: false,
-  //     templateUrl: '/templates/add-section.html',
+  //     templateUrl: '/template/add-section.html',
   //     link: function(scope, element, attrs){
   //       console.log( attrs );
   //       // scope.addSection()
