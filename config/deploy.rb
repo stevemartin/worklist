@@ -38,7 +38,7 @@ namespace :db do
   task :migrate do
     on roles(:all) do
       within release_path do
-        execute :rake, "db:migrate"
+        execute :rake, "db:migrate RAILS_ENV=production"
       end
     end
   end
@@ -46,7 +46,7 @@ namespace :db do
   task :create do
     on roles(:all) do
       within release_path do
-        execute :rake, "db:create"
+        execute :rake, "db:create RAILS_ENV=production"
       end
     end
   end

@@ -13,3 +13,12 @@ in seperate terminals or tmux windows respectively...
     guard
     karma start
     karma start karma-e2e.conf.js
+
+== Deploying
+cap production deploy
+cap production deploy:stop
+cap production deploy:start
+
+#### Note: migration cap tasks are currently hardcoded to production ( but you should never need to use them in dev anyway ).
+cap production db:create # shouldn't ever need this.
+cap production db:migrate
