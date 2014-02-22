@@ -16,6 +16,10 @@
 //= require angular-cookies
 //= require ui-bootstrap/src/modal/modal
 //= require ui-bootstrap/src/transition/transition
+//= require ui-bootstrap/src/popover/popover
+//= require ui-bootstrap/src/tooltip/tooltip
+//= require ui-bootstrap/src/position/position
+//= require ui-bootstrap/src/bindHtml/bindHtml
 //= require main
 //= require directives/directives
 //= require services/services

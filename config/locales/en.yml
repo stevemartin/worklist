@@ -23,11 +23,11 @@ en:
   hello: "Hello world"
   home:
     user_profile:
-      title: "Worklist - ( The CV App )"
-      address: "The Shipyards, London"
-      email: "test@shipyard.co"
-      summary: "The greatest CV app ever. Does all the things, super easy to use, start editing straight away."
-      career_objectives: "To create the best online independent CV tools."
+      title: "Workli.st"
+      address: "Your online CV/Resume "
+      email: "info@workli.st"
+      summary: "Worklists help you in your job hunt. They exist for 30 days (but can exist for longer) are always editable and are easily shared."
+      career_objectives: "Feel free to edit this Worklist and save. We'll give you your sharing link once it's saved"
       skills_attributes:
         -
           title: "Fast!"
@@ -43,13 +43,13 @@ en:
           key_skill: true
       jobs_attributes:
         -
-          employer: "Death Star Corp"
-          address: "Alderaan Asteroid Field, galaxy far, far away."
-          start_date: "1-1-2034234234 ..."
-          end_date: "Ongoing ..."
-          title: "Ion Cannon operator"
-          employer_description: "Galactic Empire"
-          description: "World Destroyer, my job was to aim and fire the cannon at worlds"
+          employer: "ACME Corp."
+          address: "Main Street, London"
+          start_date: "Jan 2013"
+          end_date: "Present"
+          title: "Administrator"
+          employer_description: "ACME Corp are the world's largest creator of Widgets."
+          description: "Overseeing the day to day activities of the administration team"
           skills_attributes:
             - 
               title: "Good eyesight"
@@ -57,12 +57,16 @@ en:
               title: "Steady aim"
             - 
               title: "Attention to detail"
-            - 
-              title: "A strong force ability"
-            - 
-              title: "Windows Vista certified"
       qualifications_attributes:
         -
-          title: "Sith"
-          grade: "Lord"
-          institute: "Galactic Academy"
+          title: "GCSE English"
+          grade: "A"
+          institute: "Grange Hill"
+        -
+          title: "GCSE Maths"
+          grade: "A"
+          institute: "Grange Hill"
+        -
+          title: "GCSE Science"
+          grade: "A"
+          institute: "Grange Hill"

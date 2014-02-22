@@ -1,17 +1,24 @@
-<section id="signup" ng-show="showSignUp" >
-    <a ng-click="close()">Close</a>
-    <div ng-show="!newSignup">
-      <h1>Your WorkList has been saved</h1>
-      <p>You can view your WorkList for the next 30 days using the URL below</p>
-      <a href="/me/{{worklist.user_profile.url}}" target="_blank" >http://workli.st/me/{{ worklist.user_profile.url }}</a>
-      <h2>Want your WorkList to last longer than 30 days?</h2>
-      <p>Sign up and we'll keep your worklist for as long as you need it.</p>
-    </div>
-    <!-- <div ng-show="newSignup">
-        <h1>Signup for Worklist</h1>
-        <p>We'll create your worklist and give you a link to share</p>
-    </div>
-  <ng-include src="'/templates/partials/signupform.html'"></ng-include> -->
-</section>
-
-
+<script type="text/ng-template" id="signup.html">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <h4 class="modal-title">Sign Up</h4>
+  </div>
+  <div class="modal-body">
+    <p>You can view your WorkList for the next 30 days using the URL below</p>
+    <a href="/{{worklist.user_profile.url}}" target="_blank" >http://workli.st/{{ worklist.user_profile.url }}</a>
+    <form name="signin" role="form">
+      <div class="form-group">
+          <label for="signin-email">Email</label>
+          <input type="email" ng-model="user.email" id="signin-email" required class="form-control"/>
+      </div>
+      <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input type="password" ng-model="user.password" required ng-minlength="8" id="signin-password" class="form-control"/>
+      </div>
+      
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="signin.$invalid" ng-click="signIn()">Sign In</button>
+  </div>
+</script>

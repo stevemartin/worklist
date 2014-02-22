@@ -2,5 +2,5 @@
   <input class="h3 qualification" ng-model="education.title" placeholder="Qualification earned" />
   <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
   <input class="span institute" ng-model="education.institute" placeholder="Name of Education Institute"/>
-  <a ng-click="removeSection('qualification',$index)" ng-show="$index > 0">Remove</a>
+  <a class="btn btn-danger btn-xs"ng-click="removeSection('qualification',$index)" ng-show="$index > 0">Remove</a>
 </section>

@@ -136,25 +136,11 @@ header{
 
   &:hover{
     border: 1px dashed #DDD;
-    background:#F4F4F4;
   }
 }
 
-/*-----------------------*\
-  SECTION HELPER
-\*-----------------------*/
-.section-helper{
-  display:none;
-  @include transparent-bg(0, .5);
-  color:#FFF;
-  @include padding(10);
-  position: absolute;
-
-  top: -20px;
-  right:0;
-  @include width(500, max);
-
-  a{
-    color: #FFF;
+input, textarea{
+  &:hover{
+    border: 1px dashed #CCC;
   }
 }

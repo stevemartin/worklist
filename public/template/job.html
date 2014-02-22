@@ -1,5 +1,5 @@
 <section class="job">
-  <a ng-click="removeSection('job',$index)" ng-show="$index > 0">Remove</a>
+  <a class="btn btn-danger btn-xs" ng-click="removeSection('job',$index)" ng-show="$index > 0" ng-init="jobIndex = $index">Remove</a>
   <div class="job-header">
     <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
     <input class="h4 employer-address" ng-model="job.address" placeholder="Employer's address"/>
@@ -14,6 +14,8 @@
   <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
     <li>
       <input ng-model="skill.title" placeholder="Job specific skill"/>
+      <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
     </li>
   </ul>
+  <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">Add Skill</a>
 </section>

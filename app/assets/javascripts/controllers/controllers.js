@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('worklist',
-    ['ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal']);
+    ['ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal','ui.bootstrap.popover']);
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -18,6 +18,7 @@
 
   app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', function( $scope, WorkList, $modal, PreSignup, Cookie ){
     $scope.showSignUp = false;
+    $scope.showSignIn = false;
     // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
@@ -47,11 +48,12 @@
     $scope.worklist = determineUrlState();
 
     $scope.saveWorkList = function() {
+
       if(typeof $scope.worklist.user_profile.url === 'undefined'){
         $scope.worklist.$save(function(data){
           Cookie.setItem('url',data.user_profile.url, Cookie.defaultExpiry, '/');
           Cookie.setItem('url_key',data.user_profile.url_key, Cookie.defaultExpiry, '/' );
-          $scope.showSignUp = true;
+          $scope.showSignUpForm();
         });
       } else {
         $scope.worklist.url_key = Cookie.getItem("url_key");
@@ -61,34 +63,47 @@
 
     $scope.close = function(){
       $scope.showSignUp = $scope.showSignIn = false;
+    }
 
+    $scope.removeJobSkill = function removeSkill(jobIndex,index){
+      $scope.worklist.user_profile.jobs_attributes[jobIndex].skills_attributes.splice(index,1);
+    };
+
+    $scope.addJobSkill = function addJobSkill(jobIndex){
+      $scope.worklist.user_profile.jobs_attributes[jobIndex].skills_attributes.push({});
+    }
+
+    $scope.addKeySkill = function addSkill(){
+      $scope.worklist.user_profile.skills_attributes.push({});
+    }
+
+    $scope.removeKeySkill = function remove(index){
+      $scope.worklist.user_profile.skills_attributes.splice(index,1);
     }
 
     $scope.showSignUpForm = function(type) {
-      $scope.newSignUp = true;
-      $scope.showSignUp = true;
-      if( type === 'new'){
-        $scope.newSignUp = true;
-        //bosh the scope.worklist_data object
-      }
+
+      $modal.open({
+        templateUrl: '/template/signup.html',
+        controller: function signupModalCtrl($scope, $modalInstance){
+          $scope.closeModal = function close(){
+            $modalInstance.dismiss('cancel');
+          }
+        }
+      });
 
     };
 
     $scope.showSignInForm = function(){
+      $scope.showSignIn = true;
       $modal.open({
-        templateUrl: 'signin.html',
+        templateUrl: '/template/signin.html',
         controller: function signinModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
             $modalInstance.dismiss('cancel');
           }
         }
       });
-      // $scope.showSignIn = true;
     }
   }]);
-
-//  app.controller('navbar', ['$scope', function($scope){
-    //set the user type to determine which buttons to show
-//  }]);
-
 })();
