@@ -19,6 +19,7 @@
   app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', function( $scope, WorkList, $modal, PreSignup, Cookie, User ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
+
     // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
@@ -91,6 +92,22 @@
     $scope.removeKeySkill = function remove(index){
       $scope.worklist.user_profile.skills_attributes.splice(index,1);
     }
+
+    $scope.actuallyDelete = function deleteWL(){
+      console.log("ACTUDEL");
+    }
+
+    $scope.deleteWorkList = function deleteWorklist(){
+      $modal.open({
+        scope: $scope,
+        templateUrl: '/template/delete.html',
+        controller: function signupModalCtrl($scope, $modalInstance){
+          $scope.closeModal = function close(){
+            $modalInstance.dismiss('cancel');
+          }
+        }
+      });
+    };
 
     $scope.showSignUpForm = function(type) {
       $scope.signUpModal = $modal.open({
