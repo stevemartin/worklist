@@ -94,7 +94,13 @@
     }
 
     $scope.actuallyDelete = function deleteWL(){
-      console.log("ACTUDEL");
+      //remove the cookie
+      Cookie.removeItem('url');
+      Cookie.removeItem('url_key');
+      //delete
+      $scope.worklist.$delete();
+      //reload the page
+      $window.location = '/';
     }
 
     $scope.deleteWorkList = function deleteWorklist(){
@@ -104,6 +110,11 @@
         controller: function signupModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
             $modalInstance.dismiss('cancel');
+          },
+
+          $scope.doDelete = function(){
+            $modalInstance.dismiss('cancel');
+            $scope.actuallyDelete();
           }
         }
       });
@@ -119,6 +130,10 @@
           }
         }
       });
+
+      modalInstance.result.then(function(){}, function(){
+        $window.location = '/';
+      })
 
     };
 
