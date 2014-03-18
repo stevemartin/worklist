@@ -1,3 +1,4 @@
+@javascript
 Feature: Inline homepage signup
   As an unregistered user
   I to use the product straight away

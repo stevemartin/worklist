@@ -1,5 +1,5 @@
 Given(/^I go to the homepage$/) do
-  visit root_url
+  visit '/'
 end
 
 When(/^I sign up$/) do

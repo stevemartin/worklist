@@ -53,8 +53,9 @@ group :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-cucumber'
-  gem 'database_cleaner'
-
+  gem 'database_cleaner', '< 1.1.0'
+  gem 'capybara-webkit'
+  gem 'selenium-webdriver'
 end
 
 group :test, :development do

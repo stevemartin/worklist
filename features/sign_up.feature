@@ -1,3 +1,4 @@
+@javascript
 Feature: Registration
   As an employable person
   I want to sign up
