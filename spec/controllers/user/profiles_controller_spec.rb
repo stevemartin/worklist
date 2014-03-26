@@ -57,7 +57,22 @@ describe User::ProfilesController do
         it 'returns the cv data as json' do
           xhr :post, :create, {:user_id => user_without_profile.id, :user_profile => valid_attributes}, valid_session
           JSON.parse( response.body ).should be_a(Hash)
-          # {"user_id"=>2, "user_profile"=>{"id"=>1, "address"=>nil, "career_objectives"=>nil, "email"=>nil, "jobs_attributes"=>{}, "qualifications_attributes"=>{}, "skills_attributes"=>{}, "summary"=>nil, "title"=>nil, "url"=>"1", "url_key"=>"c3387dd5-58ad-49cc-9ded-22b7f6cb603e"}}
+          # {
+          #   "user_id"=>2,
+          #   "user_profile"=>{
+          #     "id"=>1,
+          #     "address"=>nil,
+          #     "career_objectives"=>nil,
+          #     "email"=>nil,
+          #     "jobs_attributes"=>{},
+          #     "qualifications_attributes"=>{},
+          #     "skills_attributes"=>{},
+          #     "summary"=>nil,
+          #     "title"=>nil,
+          #     "url"=>"1",
+          #     "url_key"=>"c3387dd5-58ad-49cc-9ded-22b7f6cb603e"
+          #   }
+          # }
           # response.body.should == {:user_id => nil, :user_profile => valid_attributes}.to_json
         end
       end
