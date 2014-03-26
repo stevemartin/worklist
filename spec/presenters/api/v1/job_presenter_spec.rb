@@ -23,7 +23,7 @@ describe Api::V1::JobPresenter do
   subject{ described_class.new( job ) }
 
   context 'when a hash' do
-  subject{ described_class.new( job, skills:Hash ) }
+  subject{ described_class.new( job ) }
     it 'exposes the skills attributes as a hash' do
       subject.attributes[:skills_attributes].should == {1=>{:id=>1, :key_skill=>"key_skill", :title=>"title"}}
     end
@@ -35,11 +35,11 @@ describe Api::V1::JobPresenter do
 
   context 'when an array' do
     it 'exposes the skills attributes as an array' do
-      subject.attributes[:skills_attributes].should == [{:id=>1, :key_skill=>"key_skill", :title=>"title"}, {:id=>1, :key_skill=>"key_skill", :title=>"title"}]
+      subject.attributes(:array)[:skills_attributes].should == [{:id=>1, :key_skill=>"key_skill", :title=>"title"}, {:id=>1, :key_skill=>"key_skill", :title=>"title"}]
     end
 
     it 'exposes the skills attributes as an array' do
-      subject.attributes[:skills_attributes].should be_a Array
+      subject.attributes(:array)[:skills_attributes].should be_a Array
     end
 
   end

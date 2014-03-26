@@ -2,18 +2,18 @@ module Api
   module V1
     class JobPresenter
 
-      attr_accessor :job
+      attr_accessor :job, :output_type
 
-      def initialize job, options = {skills:Array}
-        @skills_type = options[:skills]
+      def initialize job
         @job = job
       end
 
-      def as_json
-        attributes
+      def as_json( array = false )
+        attributes(array)
       end
 
-      def attributes
+      def attributes( array = false )
+        @output_type = :array if array == :array
         {
           id: @job.id,
           address:@job.address,
@@ -21,7 +21,7 @@ module Api
           employer: @job.employer,
           employer_description: @job.employer_description,
           end_date: @job.end_date,
-          skills_attributes: ( @skills_type == Array ? skills_attribute_array : skills_attribute_hash ),
+          skills_attributes: ( @output_type == :array ? skills_attribute_array : skills_attribute_hash ),
           start_date: @job.start_date,
           title: @job.title
         }
