@@ -26,7 +26,7 @@ class User::ProfilesController < ApplicationController
     respond_to do |format|
       if @user_profile.save
         if request.xhr?
-          format.json { render json: {user_id: @user.id, user_profile: Api::V1::UserProfilePresenter.new( @user_profile ).attributes } }
+          format.json { render json: {user_id: @user.id, user_profile: Api::V1::UserProfilePresenter.new( @user_profile ).attributes(:array) } }
         else
           format.html { redirect_to @user_profile, notice: 'Profile was successfully created.' }
           format.json { render json: user_profile_params }
@@ -44,7 +44,7 @@ class User::ProfilesController < ApplicationController
     respond_to do |format|
       if @user_profile.update(user_profile_params) && valid_url_key( @user_profile, user_profile_params )
         if request.xhr?
-          format.json { render json: {user_id: @user.id, user_profile: user_profile_params } }
+          format.json { render json: {user_id: @user.id, user_profile: Api::V1::UserProfilePresenter.new( @user_profile ).attributes(:array) } }
         else
           format.html { redirect_to @user_profile, notice: 'Profile was successfully updated.' }
           format.json { head :no_content }

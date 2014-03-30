@@ -12,7 +12,7 @@ class User::Profile < ActiveRecord::Base
   def generate_url
     self.url = self.id.to_s(36)
     self.url_key = SecureRandom.uuid.to_s
-    p "New url key is: #{self.url_key}"
+    Rails.logger.info "New url key is: #{self.url_key}" if ENV['LOG_SENSITIVE'] == true
     save
   end
 end

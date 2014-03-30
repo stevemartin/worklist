@@ -17,9 +17,8 @@ describe User::ProfilesController do
 
   describe "GET show" do
     it "assigns the requested user_profile as @user_profile" do
-      profile = user_with_profile.profile
-      get :show, {:user_id => user_with_profile.id}, valid_session
-      assigns(:user_profile).should eq(profile)
+      xhr :get, :show, {:user_id => user_with_profile.id}, valid_session
+      response.should be_successful
     end
   end
 
@@ -34,7 +33,7 @@ describe User::ProfilesController do
 
   describe "GET edit" do
     it "assigns the requested user_profile as @user_profile" do
-      get :edit, {:user_id => user_with_profile.id}, valid_session
+      xhr :get, :edit, {:user_id => user_with_profile.id}, valid_session
       assigns(:user_profile).should eq(user_with_profile.profile)
     end
   end
@@ -156,11 +155,11 @@ describe User::ProfilesController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         User::Profile.any_instance.should_receive(:update).with({ "first_name" => "MyString" })
-        put :update, {:user_id => user_with_profile.id, :user_profile => { "first_name" => "MyString" }}, valid_session
+        xhr :put, :update, {:user_id => user_with_profile.id, :user_profile => { "first_name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested user_profile as @user_profile" do
-        put :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
+        xhr :put, :update, {:user_id => user_with_profile.id, :user_profile => valid_attributes}, valid_session
         assigns(:user_profile).should eq(user_with_profile.profile)
       end
 

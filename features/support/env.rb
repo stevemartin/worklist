@@ -11,8 +11,10 @@ require 'cucumber/rails'
 # prefer to use XPath just remove this line and adjust any selectors in your
 # steps to use the XPath syntax.
 Capybara.default_selector = :css
-if ENV['JAVASCRIPT_DRIVER'] == 'webkit'
-  Capybara.javascript_driver = :webkit
+Capybara.javascript_driver = :webkit
+
+if ENV['JAVASCRIPT_DRIVER'] == 'selenium'
+  Capybara.javascript_driver = :selenium
 end
 
 # By default, any exception happening in your Rails application will bubble up
@@ -38,6 +40,11 @@ begin
   DatabaseCleaner.strategy = :transaction
 rescue NameError
   raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+if ENV['BLACKBOX']
+  Capybara.run_server = false
+  Capybara.default_host = "personal-tracker.com"
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.

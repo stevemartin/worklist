@@ -1,16 +1,17 @@
 module Api
   module V1
     class UserProfilePresenter
-      attr_accessor :profile
+      attr_accessor :profile, :output_type
       def initialize profile
         @profile = profile
       end
 
-      def as_json a = nil
-        attributes.to_json
+      def as_json array = false
+        attributes(array).to_json
       end
 
-      def attributes
+      def attributes array = false
+        @output_type = :array if array == :array
         {
           id: @profile.id,
           address: @profile.address,
@@ -28,28 +29,31 @@ module Api
 
       private
       def jobs_attributes
-        attrs = {}
+        @output_type == :array ? attrs = [] : attrs = {}
         @profile.jobs.each do |job|
           presented_job = JobPresenter.new(job)
-          attrs[job.id] = presented_job.attributes
+          attrs << presented_job.attributes(:array) if @output_type == :array
+          attrs[job.id] = presented_job.attributes unless @output_type == :array
         end
         attrs
       end
 
       def qualifications_attributes
-        attrs = {}
+        @output_type == :array ? attrs = [] : attrs = {}
         @profile.qualifications.each do |qualification|
           presented_qualification = QualificationPresenter.new(qualification)
-          attrs[qualification.id] = presented_qualification.attributes
+          attrs << presented_qualification.attributes if @output_type == :array
+          attrs[qualification.id] = presented_qualification.attributes unless @output_type == :array
         end
         attrs
       end
 
       def skills_attributes
-        attrs = {}
+        @output_type == :array ? attrs = [] : attrs = {}
         @profile.skills.each do |skill|
           presented_skill = SkillPresenter.new(skill)
-          attrs[skill.id] = presented_skill.attributes
+          attrs << presented_skill.attributes if @output_type == :array
+          attrs[skill.id] = presented_skill.attributes unless @output_type == :array
         end
         attrs
       end

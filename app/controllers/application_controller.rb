@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def valid_url_key cv, cv_params
-    p "URL KEY: #{cv_params}"
+    Rails.logger.info( "URL KEY: #{cv_params}" ) if ENV['LOG_SENSITIVE'] == true
     cv.url_key == cv_params[:url_key]
   end
 
