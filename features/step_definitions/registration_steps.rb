@@ -14,11 +14,14 @@ Then(/^I should be logged in$/) do
 end
 
 When(/^I edit the homepage CV$/) do
-  editable = first('[wl-editable]')
+  editable = first('input#title')
   editable.click
-  fill_in editable['id'], :with => 'New text'
+  fill_in editable['id'], :with => 'Bugs Bunny'
 end
 
 Then(/^I should be able to save it and register$/) do
-    pending # express the regexp above with the code you wish you had
+  click_button "Save"
+  fill_in 'signin-email', :with => "bugs.bunny@testdomaintest.cam"
+  fill_in 'signin-password', :with => "SomecoolPass123"
+  click_button "Sign Up"
 end

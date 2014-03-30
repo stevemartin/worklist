@@ -4,6 +4,7 @@ Feature: Inline homepage signup
   I to use the product straight away
   So I can try it out without registering
 
+  @javascript
   Scenario: User edits homepage CV
     Given I go to the homepage
     When I edit the homepage CV
