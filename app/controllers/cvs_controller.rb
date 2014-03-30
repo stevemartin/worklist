@@ -3,7 +3,7 @@ class CvsController < ApplicationController
     @cv = User::Profile.find_by_url( params[:url] )
     respond_to do |format|
       if request.xhr?
-        format.json { render :json => Api::V1::WorklistPresenter.new(@cv) }
+        format.json { render :json => Api::V1::WorklistPresenter.new(@cv).attributes(:array) }
       else
         format.html { render }
       end
