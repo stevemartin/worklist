@@ -43,8 +43,7 @@ rescue NameError
 end
 
 if ENV['BLACKBOX']
-  Capybara.run_server = false
-  Capybara.default_host = "personal-tracker.com"
+  Capybara.default_host = "workli.st.com"
 end
 
 # You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
