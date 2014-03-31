@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: a3732e0dfbdcb254953de8935b5d2606a69e28c7
-  branch: 3.0.0
-  specs:
-    anjlab-bootstrap-rails (3.0.0.rc2)
-      railties (>= 3.0)
-      sass (>= 3.2)
-
-GIT
   remote: git://github.com/capistrano/bundler.git
   revision: 8c40862ef53de8d7706682f452f6ba76502864ad
   specs:
@@ -62,6 +53,8 @@ GEM
     bootstrap-glyphicons (0.0.1)
       railties (>= 3.0)
       sass (>= 3.2)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capistrano (3.0.1)
       i18n
@@ -290,8 +283,8 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
-  anjlab-bootstrap-rails!
   bootstrap-glyphicons
+  bootstrap-sass (~> 3.1.1)
   capistrano (~> 3.0.0)
   capistrano-bundler!
   capistrano-rails!
