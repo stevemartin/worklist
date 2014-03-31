@@ -10,10 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular
-//= require angular-bootstrap
-//= require angular-resource
-//= require angular-cookies
+//= require angular/angular
+//= require angular/angular-bootstrap
+//= require angular/angular-resource
+//= require angular/angular-cookies
 //= require ui-bootstrap/src/modal/modal
 //= require ui-bootstrap/src/transition/transition
 //= require ui-bootstrap/src/popover/popover

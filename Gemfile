@@ -15,6 +15,7 @@ gem 'sqlite3'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'haml'
 gem 'haml-rails'
 gem 'html2haml'
@@ -30,12 +31,17 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'bootstrap-sass', '~> 3.1.1'
+# gem 'bootstrap-sass', '~> 3.1.1'
 
-# gem 'anjlab-bootstrap-rails', :github => 'anjlab/bootstrap-rails', :branch => '3.0.0'
-
+# group :assets do
+# gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+#     :github => 'anjlab/bootstrap-rails',
+#     :branch => '3.0.0'
 gem 'bootstrap-glyphicons'
 gem 'angularjs-rails'
+# end
+# gem 'anjlab-bootstrap-rails', :github => 'anjlab/bootstrap-rails', :branch => '3.0.0'
+
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -71,7 +77,7 @@ end
 
 # Use Capistrano for deployment
 group :development do
-  gem 'capistrano', '~> 3.0.0'
+  gem 'capistrano', '~> 3.1.0'
   gem 'rvm1-capistrano3', require: false
   gem 'capistrano-rails', github: 'capistrano/rails'
   gem 'capistrano-rvm', github: 'capistrano/rvm'
