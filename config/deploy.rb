@@ -20,11 +20,11 @@ set :bundle_flags, '--deployment --quiet'
 set :bundle_without, %w{development test}.join(' ')
 set :bundle_binstubs, -> { shared_path.join('bin') }
 set :bundle_roles, :all
+set :bundle_bins, %w{}
 
 SSHKit.config.command_map[:rake] = "RAILS_ENV=production source \"/home/deploy/.rvm/environments/ruby-2.0.0-p247@worklist\" && rake"
 SSHKit.config.command_map[:bundle] = "RAILS_ENV=production source \"/home/deploy/.rvm/environments/ruby-2.0.0-p247@worklist\" && bundle"
 
-after 'deploy:updated', 'db:migrate'
 
 namespace :db do
   task :write_config do
@@ -60,18 +60,16 @@ namespace :db do
   end
 end
 
-before 'deploy:updated', 'bundle:install'
 namespace :bundle do
   task :install do
     on roles :all do
       within release_path do
-        execute :bundle, 'install'
+        execute :bundle, 'install --without test development'
       end
     end
   end
 end
 
-after 'bundle:install', 'deploy:assets:precompile'
 
 namespace :deploy do
   namespace :assets do
@@ -136,6 +134,9 @@ namespace :deploy do
 
 end
 
+after 'deploy:updated', 'db:migrate'
+before 'deploy:updated', 'bundle:install'
+after 'bundle:install', 'deploy:assets:precompile'
 
 # set :format, :pretty
 # set :log_level, :debug
