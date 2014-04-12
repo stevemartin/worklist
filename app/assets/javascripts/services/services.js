@@ -4,7 +4,7 @@
   var services = angular.module('worklist.services',['ngResource']);
 
   services.factory('WorkList', ['$resource', function( $resource ){
-    return $resource('/me/:url', {url:'@user_profile.url'},
+    return $resource('/:url', {url:'@user_profile.url'},
                      {
                        get:{'method':'GET'},
                        save:{'method':'POST'},
