@@ -16,7 +16,7 @@
   app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
   }]);
 
-  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', function( $scope, WorkList, $modal, PreSignup, Cookie ){
+  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', function( $scope, WorkList, $modal, PreSignup, Cookie, User ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
     // $scope.worklist = new PreSignup( window.worklist_data );
@@ -61,6 +61,17 @@
       }
     };
 
+    $scope.signUp = function signUp() {
+      //
+      $scope.user.password_confirmation = $scope.user.password;
+      var user = new User({user:$scope.user});
+      user.$save(function signupSuccess(){
+        $scope.signUpModal.close();
+      }, function(response){
+        $scope.sigupErrors = response.data.errors;
+      });
+    }
+
     $scope.close = function(){
       $scope.showSignUp = $scope.showSignIn = false;
     }
@@ -82,9 +93,9 @@
     }
 
     $scope.showSignUpForm = function(type) {
-
-      $modal.open({
+      $scope.signUpModal = $modal.open({
         templateUrl: '/template/signup.html',
+        scope: $scope,
         controller: function signupModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
             $modalInstance.dismiss('cancel');

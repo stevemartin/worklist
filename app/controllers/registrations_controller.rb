@@ -35,8 +35,15 @@ class RegistrationsController < Devise::RegistrationsController
         end
       end
     else
-      clean_up_passwords resource
-      respond_with resource
+      if request.xhr?
+        respond_to do |format|
+          format.json { render json: {errors:resource.errors }, status: :unprocessable_entity }
+          # format.js { render js: {errors:resource.errors, status: :unprocessable_entity } }
+        end
+      else
+        clean_up_passwords resource
+        respond_with resource
+      end
     end
   end
 

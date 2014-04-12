@@ -81,7 +81,7 @@
         <button class="btn" ng-click="showSignInForm()">Sign In</button>
     </nav>
 </section>
-<script type="text/ng-template" id="/template/signin.html">
+<script type="text/ng-template" id="/template/signin.html" ng-init="user = {email: worklist.user_profile.email }">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
     <h4 class="modal-title">Sign In</h4>
@@ -110,6 +110,13 @@
     <h4 class="modal-title">Sign Up</h4>
   </div>
   <div class="modal-body">
+  <div>
+      <div ng-repeat="(key, error) in sigupErrors">
+        <div ng-repeat="(errorIndex, errorMessage) in error">
+          <span>{{key + ' ' + errorMessage}}</span>
+        </div>
+      </div>
+    </div>
     <p>You can view your WorkList for the next 30 days using the URL below</p>
     <a href="/{{worklist.user_profile.url}}" target="_blank" >http://workli.st/{{ worklist.user_profile.url }}</a>
     <form name="signin" role="form">

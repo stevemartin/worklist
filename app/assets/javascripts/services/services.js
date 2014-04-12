@@ -26,7 +26,7 @@
 
 
   services.factory('User', ['$resource', function( $resource){
-    return $resource('/users/sign_up');
+    return $resource('/users');
   }]);
 
   services.factory('Cookie', function(){
