@@ -11,6 +11,7 @@ Worklist::Application.routes.draw do
   put 'users/profile' => 'user/profiles#update'
   get 'me/:url' => 'cvs#show'
   put 'me/:url' => 'cvs#update'
+  delete 'me/:url' => 'cvs#destroy'
 
   resources :users do
     resource :profile, :controller => 'user/profiles'
@@ -20,5 +21,6 @@ Worklist::Application.routes.draw do
 
   get '/:url' => 'cvs#show'
   get '/:url' => 'cvs#update'
+  delete '/:url/:url_key' => 'cvs#destroy'
 
 end

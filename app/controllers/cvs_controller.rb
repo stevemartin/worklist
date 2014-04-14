@@ -25,6 +25,17 @@ class CvsController < ApplicationController
     end
   end
 
+  def destroy
+    @cv = User::Profile.find_by_url_and_url_key( params[:url], params[:url_key] )
+    respond_to do |format|
+      if @cv && @cv.destroy
+        format.json { render json: { success: true } }
+      else
+        format.json { render json: { success: false } }
+      end
+    end
+  end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def cv_params
       params.require(:user_profile).permit(:id, :url, :url_key, :title, :email, :address, :summary,
