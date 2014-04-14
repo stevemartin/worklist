@@ -16,9 +16,10 @@
   app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
   }]);
 
-  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', function( $scope, WorkList, $modal, PreSignup, Cookie, User ){
+  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', '$window', function( $scope, WorkList, $modal, PreSignup, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
+
     // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
@@ -92,6 +93,33 @@
       $scope.worklist.user_profile.skills_attributes.splice(index,1);
     }
 
+    $scope.actuallyDelete = function deleteWL(){
+      //remove the cookie
+      Cookie.removeItem('url');
+      Cookie.removeItem('url_key');
+      //delete
+      $scope.worklist.$delete();
+      //reload the page
+      $window.location = '/';
+    }
+
+    $scope.deleteWorkList = function deleteWorklist(){
+      $modal.open({
+        scope: $scope,
+        templateUrl: '/template/delete.html',
+        controller: function signupModalCtrl($scope, $modalInstance){
+          $scope.closeModal = function close(){
+            $modalInstance.dismiss('cancel');
+          },
+
+          $scope.doDelete = function(){
+            $modalInstance.dismiss('cancel');
+            $scope.actuallyDelete();
+          }
+        }
+      });
+    };
+
     $scope.showSignUpForm = function(type) {
       $scope.signUpModal = $modal.open({
         templateUrl: '/template/signup.html',
@@ -102,6 +130,10 @@
           }
         }
       });
+
+      modalInstance.result.then(function(){}, function(){
+        $window.location = '/';
+      })
 
     };
 
