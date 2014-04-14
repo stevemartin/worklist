@@ -98,9 +98,11 @@
       Cookie.removeItem('url');
       Cookie.removeItem('url_key');
       //delete
-      $scope.worklist.$delete();
-      //reload the page
-      $window.location = '/';
+      $scope.worklist.$delete(function(){
+        //reload the page
+        $window.location = '/';  
+      });
+      
     }
 
     $scope.deleteWorkList = function deleteWorklist(){
@@ -131,7 +133,7 @@
         }
       });
 
-      modalInstance.result.then(function(){}, function(){
+      $scope.signUpModal.result.then(function(){}, function(){
         $window.location = '/';
       })
 
