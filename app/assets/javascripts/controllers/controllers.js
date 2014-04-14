@@ -16,7 +16,7 @@
   app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
   }]);
 
-  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', function( $scope, WorkList, $modal, PreSignup, Cookie, User ){
+  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', '$window', function( $scope, WorkList, $modal, PreSignup, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
 
