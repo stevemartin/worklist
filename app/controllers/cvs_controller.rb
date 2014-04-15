@@ -1,12 +1,16 @@
 class CvsController < ApplicationController
   def show
     @cv = User::Profile.find_by_url( params[:url] )
-    respond_to do |format|
-      if request.xhr?
-        format.json { render :json => Api::V1::WorklistPresenter.new(@cv).attributes(:array) }
-      else
-        format.html { render }
+    if @cv
+      respond_to do |format|
+        if request.xhr?
+          format.json { render :json => Api::V1::WorklistPresenter.new(@cv).attributes(:array) }
+        else
+          format.html { render }
+        end
       end
+    else
+      render :no_worklist
     end
   end
 
@@ -21,6 +25,17 @@ class CvsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @cv.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def destroy
+    @cv = User::Profile.find_by_url_and_url_key( params[:url], params[:url_key] )
+    respond_to do |format|
+      if @cv && @cv.destroy
+        format.json { render json: { success: true } }
+      else
+        format.json { render json: { success: false } }
       end
     end
   end
