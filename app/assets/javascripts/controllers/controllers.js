@@ -2,7 +2,7 @@
   'use strict';
 
   var app = angular.module('worklist',
-    ['ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal','ui.bootstrap.popover']);
+    ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal','ui.bootstrap.popover']);
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -13,84 +13,93 @@
     .otherwise({ redirectTo: '/'});
   }]);
 
-  app.controller('AppCtrl', ['$scope','PreSignup', 'Cookie', function($scope, PreSignup, Cookie){
-  }]);
-
-  app.controller('EditCtrl', ['$scope','WorkList', '$modal','PreSignup','Cookie', 'User', '$window', function( $scope, WorkList, $modal, PreSignup, Cookie, User, $window ){
+  app.controller('EditCtrl', ['$q','Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function($q, Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
 
-    // $scope.worklist = new PreSignup( window.worklist_data );
     $scope.addSection = function( section ){
       //get the first object
-      var sectionArr = $scope.worklist.user_profile[section + 's_attributes'],
+      var sectionArr = $scope.worklist[section + 's_attributes'],
           sectionObj = angular.copy( sectionArr[0] );
 
       sectionArr.push( sectionObj );
     };
 
     $scope.removeSection = function(section, index){
-      var sectionArr = $scope.worklist.user_profile[section + 's_attributes'];
+      var sectionArr = $scope.worklist[section + 's_attributes'];
         sectionArr.splice( index, 1 );
     };
 
-    function determineUrlState() {
+    function worklistSignature() {
+      return {url: Cookie.getItem("url"), url_key: Cookie.getItem("url_key")};
+    }
+
+    function fetchWorklist() {
       var url = Cookie.getItem("url");
+      var deferred = $q.defer();
+      var worklist = null;
 
-      if(typeof url === 'undefined' || url === null ){
-        return new PreSignup( window.worklist_data );
 
-      } else {
-        return WorkList.get({url:url});
-      }
+      $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
+        if(typeof url === 'undefined' || url === null ){
+          $scope.worklist = new PreAuth( window.worklist_data );
+        } else {
+          $scope.worklist = new PreAuth.get(worklistSignature());
+        }
+      });
+
+      Auth.currentUser().then(function(user){
+        $scope.worklist = new WorkList.get({url:url});
+      });
+
     }
 
     //we're either returning a new resource or a promise (WorkList.get)
-    $scope.worklist = determineUrlState();
+    fetchWorklist();
 
     $scope.saveWorkList = function() {
 
-      if(typeof $scope.worklist.user_profile.url === 'undefined'){
+      if(typeof $scope.worklist.worklist.url === 'undefined'){
         $scope.worklist.$save(function(data){
-          Cookie.setItem('url',data.user_profile.url, Cookie.defaultExpiry, '/');
-          Cookie.setItem('url_key',data.user_profile.url_key, Cookie.defaultExpiry, '/' );
           $scope.showSignUpForm();
         });
       } else {
-        $scope.worklist.url_key = Cookie.getItem("url_key");
-        $scope.worklist.$update();
+        $scope.worklist.$update(worklistSignature());
       }
     };
+
 
     $scope.signUp = function signUp() {
       //
       $scope.user.password_confirmation = $scope.user.password;
       var user = new User({user:$scope.user});
-      user.$save(function signupSuccess(){
+      Auth.register($scope.user).then(function(registeredUser){
+        $scope.linker = new WorkListLinker(worklistSignature());
+        $scope.linker.$link(worklistSignature());
         $scope.signUpModal.close();
-      }, function(response){
-        $scope.sigupErrors = response.data.errors;
+      }, function(errors){
+        $scope.sigupErrors = errors.data.errors;
       });
     }
 
-    $scope.close = function(){
+    $scope.close = function close(){
       $scope.showSignUp = $scope.showSignIn = false;
     }
 
     $scope.removeJobSkill = function removeSkill(jobIndex,index){
-      $scope.worklist.user_profile.jobs_attributes[jobIndex].skills_attributes.splice(index,1);
+      $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.splice(index,1);
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
-      $scope.worklist.user_profile.jobs_attributes[jobIndex].skills_attributes.push({});
+      $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
     }
 
     $scope.addKeySkill = function addSkill(){
-      $scope.worklist.user_profile.skills_attributes.push({});
+      $scope.worklist.worklist.skills_attributes.push({});
     }
 
     $scope.removeKeySkill = function remove(index){
-      $scope.worklist.user_profile.skills_attributes.splice(index,1);
+      $scope.worklist.worklist.skills_attributes.splice(index,1);
     }
 
     $scope.actuallyDelete = function deleteWL(){
@@ -100,9 +109,9 @@
       //delete
       $scope.worklist.$delete(function(){
         //reload the page
-        $window.location = '/';  
+        $window.location = '/';
       });
-      
+
     }
 
     $scope.deleteWorkList = function deleteWorklist(){

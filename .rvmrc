@@ -1,1 +1,1 @@
-rvm use --create 2.0@worklist
+rvm use --create 2.1.1@worklist

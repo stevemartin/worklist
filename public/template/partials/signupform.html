@@ -1,16 +1,16 @@
 <form name="signup">
     <div class="input">
         <label for="signup-email">Email</label>
-        <input type="email" ng-model="worklist.user_profile.email" id="signup-email" required/>
+        <input type="email" ng-model="worklist.email" id="signup-email" required/>
     </div>
     <div class="input">
         <p>Passwords should be a minimum of 8 characters</p>
         <label for="signup-password">Password</label>
-        <input type="password" ng-model="worklist.user_profile.password" required ng-minlength="8"/>
+        <input type="password" ng-model="worklist.password" required ng-minlength="8"/>
     </div>
     <div class="input">
         <label for="signup-password">Confirm your password</label>
         <input type="password" ng-model="confirm" required/>
     </div>
-    <button ng-disabled="signup.$invalid || worklist.user_profile.password != confirm" ng-click="signUp()">Sign Up</button>
+    <button ng-disabled="signup.$invalid || worklist.password != confirm" ng-click="signUp()">Sign Up</button>
 </form>

@@ -25,3 +25,8 @@ Then(/^I should be able to save it and register$/) do
   fill_in 'signin-password', :with => "SomecoolPass123"
   click_button "Sign Up"
 end
+
+Then(/^I should be logged in$/) do
+  binding.pry
+  page.should have_content "Sign out"
+end
