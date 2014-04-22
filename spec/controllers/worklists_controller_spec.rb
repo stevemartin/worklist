@@ -151,5 +151,4 @@ describe WorklistsController do
     JSON.parse response.body
   end
 
-
 end

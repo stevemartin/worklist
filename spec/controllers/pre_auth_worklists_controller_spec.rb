@@ -34,7 +34,7 @@ describe PreAuthWorklistsController do
 
       it "redirects to the created worklist" do
         post :create, {:worklist => valid_attributes, :format => :json}, valid_session
-        response.should render_template("show")
+        parsed_response.should have_key("worklist")
       end
     end
 
@@ -71,7 +71,7 @@ describe PreAuthWorklistsController do
       it "redirects to the worklist" do
         worklist = Worklist.create! valid_attributes
         put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
-        response.should render_template("show")
+        parsed_response.should have_key("worklist")
       end
     end
 
@@ -109,4 +109,9 @@ describe PreAuthWorklistsController do
 
     end
   end
+
+  def parsed_response
+    JSON.parse response.body
+  end
+
 end
