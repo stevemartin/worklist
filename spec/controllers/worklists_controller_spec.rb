@@ -24,18 +24,18 @@ describe WorklistsController do
 
   let(:valid_session) { {} }
 
-  let(:user) { double('user') }
+  let(:user) { double('user', worklist: worklist) }
+  let(:worklist) { Worklist.create! valid_attributes }
+
   before do
     allow_message_expectations_on_nil
-    user = double('user')
     request.env['warden'].stub(:authenticate! => user)
     controller.stub :current_user => user
   end
 
   describe "GET show" do
     it "assigns the requested worklist as @worklist" do
-      worklist = Worklist.create! valid_attributes
-      get :show, {:id => worklist.to_param, format: :json}, valid_session
+      get :show, {format: :json}, valid_session
       assigns(:worklist).should eq(worklist)
     end
   end
@@ -49,8 +49,7 @@ describe WorklistsController do
 
   describe "GET edit" do
     it "assigns the requested worklist as @worklist" do
-      worklist = Worklist.create! valid_attributes
-      get :edit, {:id => worklist.to_param, format: :json }, valid_session
+      get :edit, {format: :json}, valid_session
       assigns(:worklist).should eq(worklist)
     end
   end
@@ -71,7 +70,7 @@ describe WorklistsController do
 
       it "renders  the created worklist" do
         post :create, {:worklist => valid_attributes, format: :json}, valid_session
-        response.should render_template(:show)
+        parsed_response.should have_key("worklist")
       end
     end
 
@@ -101,28 +100,25 @@ describe WorklistsController do
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Worklist.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:id => worklist.to_param, :worklist => { "title" => "MyString" }, format: :json}, valid_session
+        put :update, {:worklist => { "title" => "MyString" }, format: :json}, valid_session
       end
 
       it "assigns the requested worklist as @worklist" do
-        worklist = Worklist.create! valid_attributes
-        put :update, {:id => worklist.to_param, :worklist => valid_attributes, format: :json}, valid_session
+        put :update, {:worklist => valid_attributes, format: :json}, valid_session
         assigns(:worklist).should eq(worklist)
       end
 
       it "redirects to the worklist" do
-        worklist = Worklist.create! valid_attributes
-        put :update, {:id => worklist.to_param, :worklist => valid_attributes, format: :json}, valid_session
-        response.should render_template(:show)
+        put :update, {:worklist => valid_attributes, format: :json}, valid_session
+        parsed_response.should have_key("worklist")
       end
     end
 
     describe "with invalid params" do
       it "assigns the worklist as @worklist" do
-        worklist = Worklist.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Worklist.any_instance.stub(:save).and_return(false)
-        put :update, {:id => worklist.to_param, :worklist => { "title" => "invalid value" }, format: :json}, valid_session
+        put :update, {:worklist => { "title" => "invalid value" }, format: :json}, valid_session
         assigns(:worklist).should eq(worklist)
       end
 
@@ -130,7 +126,7 @@ describe WorklistsController do
         worklist = Worklist.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Worklist.any_instance.stub(:save).and_return(false)
-        put :update, {:id => worklist.to_param, :worklist => { "title" => "invalid value" }, format: :json}, valid_session
+        put :update, {:worklist => { "title" => "invalid value" }, format: :json}, valid_session
         response.status.should eq(422)
       end
     end
@@ -140,15 +136,20 @@ describe WorklistsController do
     it "destroys the requested worklist" do
       worklist = Worklist.create! valid_attributes
       expect {
-        delete :destroy, {:id => worklist.to_param, format: :json}, valid_session
+        delete :destroy, {format: :json}, valid_session
       }.to change(Worklist, :count).by(-1)
     end
 
     it "returns success" do
       worklist = Worklist.create! valid_attributes
-      delete :destroy, {:id => worklist.to_param, format: :json}, valid_session
+      delete :destroy, {format: :json}, valid_session
       response.status.should eq(200)
     end
   end
+
+  def parsed_response
+    JSON.parse response.body
+  end
+
 
 end
