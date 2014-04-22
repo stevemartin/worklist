@@ -22,3 +22,52 @@ cap production deploy:start
 #### Note: migration cap tasks are currently hardcoded to production ( but you should never need to use them in dev anyway ).
 cap production db:create # shouldn't ever need this.
 cap production db:migrate
+
+== Testing
+For visual integratin tests:
+`JAVASCRIPT_DRIVER=selenium cucumber features`
+
+== API Reference
+                  Prefix Verb   URI Pattern                            Controller#Action
+                    root GET    /                                      landing#show
+                         GET    /:url(html, json)                      worklists#url
+
+                  Prefix Verb   URI Pattern                            Controller#Action
+        new_user_session GET    /users/sign_in(html, json)             devise/sessions#new
+            user_session POST   /users/sign_in(html, json)             devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(html, json)            devise/sessions#destroy
+           user_password POST   /users/password(html, json)            devise/passwords#create
+       new_user_password GET    /users/password/new(html, json)        devise/passwords#new
+      edit_user_password GET    /users/password/edit(html, json)       devise/passwords#edit
+                         PATCH  /users/password(html, json)            devise/passwords#update
+                         PUT    /users/password(html, json)            devise/passwords#update
+cancel_user_registration GET    /users/cancel(html, json)              devise/registrations#cancel
+       user_registration POST   /users(html, json)                     devise/registrations#create
+   new_user_registration GET    /users/sign_up(html, json)             devise/registrations#new
+  edit_user_registration GET    /users/edit(html, json)                devise/registrations#edit
+                         PATCH  /users(html, json)                     devise/registrations#update
+                         PUT    /users(html, json)                     devise/registrations#update
+                         DELETE /users(html, json)                     devise/registrations#destroy
+            current_user GET    /current_user(html, json)              worklists#show_current_user
+
+                  Prefix Verb   URI Pattern                            Controller#Action
+               worklists POST   /worklists(json)                       worklists#create
+           new_worklists GET    /worklists/new(json)                   worklists#new
+          edit_worklists GET    /worklists/edit(json)                  worklists#edit
+                         GET    /worklists(json)                       worklists#show
+                         PATCH  /worklists(json)                       worklists#update
+                         PUT    /worklists(json)                       worklists#update
+                         DELETE /worklists(json)                       worklists#destroy
+
+                  Prefix Verb   URI Pattern                            Controller#Action
+ edit_pre_auth_worklists GET    /pre_auth/:url/:url_key/edit(json)     pre_auth_worklists#edit
+      pre_auth_worklists GET    /pre_auth/:url/:url_key(json)          pre_auth_worklists#show
+                         PATCH  /pre_auth/:url/:url_key(json)          pre_auth_worklists#update
+                         PUT    /pre_auth/:url/:url_key(json)          pre_auth_worklists#update
+                         DELETE /pre_auth/:url/:url_key(json)          pre_auth_worklists#destroy
+            pre_auth_new GET    /pre_auth/new(json)                    pre_auth_worklists#new
+                pre_auth POST   /pre_auth(json)                        pre_auth_worklists#create
+
+                  Prefix Verb   URI Pattern                            Controller#Action
+                         POST   /link_worklist/:url/:url_key(json)     worklists#link_worklist
+
