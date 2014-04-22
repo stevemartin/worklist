@@ -3,8 +3,8 @@ require "spec_helper"
 describe WorklistsController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/worklists").should route_to("worklists#index")
+    it "routes to #url" do
+      get("/1").should route_to("worklists#url", :url => "1")
     end
 
     it "routes to #new" do
@@ -12,11 +12,11 @@ describe WorklistsController do
     end
 
     it "routes to #show" do
-      get("/worklists/1").should route_to("worklists#show", :id => "1")
+      get("/worklists").should route_to("worklists#show")
     end
 
     it "routes to #edit" do
-      get("/worklists/1/edit").should route_to("worklists#edit", :id => "1")
+      get("/worklists/edit").should route_to("worklists#edit")
     end
 
     it "routes to #create" do
@@ -24,11 +24,11 @@ describe WorklistsController do
     end
 
     it "routes to #update" do
-      put("/worklists/1").should route_to("worklists#update", :id => "1")
+      put("/worklists").should route_to("worklists#update")
     end
 
     it "routes to #destroy" do
-      delete("/worklists/1").should route_to("worklists#destroy", :id => "1")
+      delete("/worklists").should route_to("worklists#destroy")
     end
 
   end
