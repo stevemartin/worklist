@@ -9,9 +9,9 @@ When(/^I sign up$/) do
     click_button 'Sign up'
 end
 
-Then(/^I should be logged in$/) do
-  page.should have_content "Worklist"
-end
+# Then(/^I should be logged in$/) do
+#   page.should have_content "Worklist"
+# end
 
 When(/^I edit the homepage CV$/) do
   editable = first('input#title')
@@ -27,6 +27,6 @@ Then(/^I should be able to save it and register$/) do
 end
 
 Then(/^I should be logged in$/) do
-  binding.pry
+  # binding.pry
   page.should have_content "Sign out"
 end
