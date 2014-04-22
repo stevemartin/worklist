@@ -31,6 +31,7 @@ gem 'rails-assets-angular-cookies'
 gem 'rails-assets-angular-devise'
 gem 'rails-assets-angular-resource'
 gem 'rails-assets-angular-ui-bootstrap'
+gem 'rails-assets-angular-mocks'
 
 # Templating
 gem 'haml'

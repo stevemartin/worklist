@@ -184,6 +184,8 @@ GEM
       rails-assets-angular (= 1.2.16)
     rails-assets-angular-devise (0.2.1)
       rails-assets-angular (~> 1.2.0)
+    rails-assets-angular-mocks (1.2.16)
+      rails-assets-angular (= 1.2.16)
     rails-assets-angular-resource (1.2.16)
       rails-assets-angular (= 1.2.16)
     rails-assets-angular-route (1.2.16)
@@ -302,6 +304,7 @@ DEPENDENCIES
   rails-assets-angular-bootstrap
   rails-assets-angular-cookies
   rails-assets-angular-devise
+  rails-assets-angular-mocks
   rails-assets-angular-resource
   rails-assets-angular-route
   rails-assets-angular-ui-bootstrap
