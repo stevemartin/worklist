@@ -10,4 +10,5 @@ Feature: Inline homepage signup
     When I edit the homepage CV
     And I should be able to save it and register
     Then I should be logged in
+    And the worklist should be persisted when I reload the page
     And I should be able to sign out
