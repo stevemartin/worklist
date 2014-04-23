@@ -63,7 +63,7 @@
 
       if(typeof $scope.worklist.worklist.url === 'undefined'){
         $scope.worklist.$save(function(data){
-          $scope.showSignUpForm();
+          $scope.showSignUpForm(true);
         });
       } else {
         $scope.worklist.$update(worklistSignature());
@@ -76,8 +76,10 @@
       $scope.user.password_confirmation = $scope.user.password;
       var user = new User({user:$scope.user});
       Auth.register($scope.user).then(function(registeredUser){
-        $scope.linker = new WorkListLinker(worklistSignature());
-        $scope.linker.$link(worklistSignature());
+        if($scope.perform_link){
+          $scope.linker = new WorkListLinker(worklistSignature());
+          $scope.linker.$link(worklistSignature());
+        }
         $scope.signUpModal.close();
         $scope.showSignOut = true;
       }, function(errors){
@@ -134,7 +136,8 @@
       });
     };
 
-    $scope.showSignUpForm = function(type) {
+    $scope.showSignUpForm = function(linkBool) {
+      $scope.perform_link = linkBool;
       $scope.signUpModal = $modal.open({
         templateUrl: '/template/signup.html',
         scope: $scope,
