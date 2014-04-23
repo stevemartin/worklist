@@ -9,9 +9,9 @@ When(/^I sign up$/) do
     click_button 'Sign up'
 end
 
-Then(/^I should be logged in$/) do
-  page.should have_content "Worklist"
-end
+# Then(/^I should be logged in$/) do
+#   page.should have_content "Worklist"
+# end
 
 When(/^I edit the homepage CV$/) do
   editable = first('input#title')
@@ -24,4 +24,9 @@ Then(/^I should be able to save it and register$/) do
   fill_in 'signin-email', :with => "bugs.bunny@testdomaintest.cam"
   fill_in 'signin-password', :with => "SomecoolPass123"
   click_button "Sign Up"
+end
+
+Then(/^I should be logged in$/) do
+  # binding.pry
+  page.should have_content "Sign out"
 end

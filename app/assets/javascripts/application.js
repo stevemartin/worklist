@@ -10,17 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular/angular
-//= require angular/angular-bootstrap
-//= require angular/angular-resource
-//= require angular/angular-cookies
-//= require ui-bootstrap/src/modal/modal
-//= require ui-bootstrap/src/transition/transition
-//= require ui-bootstrap/src/popover/popover
-//= require ui-bootstrap/src/tooltip/tooltip
-//= require ui-bootstrap/src/position/position
-//= require ui-bootstrap/src/bindHtml/bindHtml
-//= require main
-//= require directives/directives
-//= require services/services
-//= require controllers/controllers
+//= require angular
+//= require ng-rails-csrf
+//= require angular-route
+//= require angular-resource
+//= require angular-cookies
+//= require angular-bootstrap
+//= require angular-devise
+
+//= require_tree .

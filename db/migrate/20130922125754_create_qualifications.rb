@@ -4,7 +4,7 @@ class CreateQualifications < ActiveRecord::Migration
       t.string :title
       t.string :grade
       t.string :institute
-      t.references :profile, index: true
+      t.references :worklist, index: true
 
       t.timestamps
     end

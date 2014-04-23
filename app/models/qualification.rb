@@ -1,3 +1,3 @@
 class Qualification < ActiveRecord::Base
-  belongs_to :profile
+  belongs_to :worklist
 end

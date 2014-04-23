@@ -71,7 +71,7 @@
     };
   });
 
-  directives.directive('signUpForm', ['$http', '$window','PreSignup', function($http, $window, PreSignup){
+  directives.directive('signUpForm', ['$http', '$window','PreAuth', function($http, $window, PreAuth){
     return {
       replace: true,
       restrict: 'E',
@@ -82,8 +82,8 @@
           element.html('<h1>Submitting your details</h1>');
           var sign_up_params = {
             user:{
-              email: scope.worklist.user_profile.email,
-              password: scope.worklist.user_profile.password,
+              email: scope.worklist.worklist.email,
+              password: scope.worklist.worklist.password,
               password_confirmation: scope.confirm
             }
           }

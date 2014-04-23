@@ -4,8 +4,9 @@ Feature: Inline homepage signup
   I to use the product straight away
   So I can try it out without registering
 
-  @javascript
+  @javascript @blackbox
   Scenario: User edits homepage CV
     Given I go to the homepage
     When I edit the homepage CV
-    Then I should be able to save it and register
+    And I should be able to save it and register
+    Then I should be logged in

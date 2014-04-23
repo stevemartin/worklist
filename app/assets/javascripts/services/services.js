@@ -1,24 +1,34 @@
 (function(){
   'use strict';
 
-  var services = angular.module('worklist.services',['ngResource']);
+  var services = angular.module('worklist.services',['ngResource', 'ng-rails-csrf']);
 
   services.factory('WorkList', ['$resource', function( $resource ){
-    return $resource('/:url/:url_key', {url:'@user_profile.url', url_key:'@user_profile.url_key'},
+    return $resource('/worklists.json', {url: '@worklist_data.url'},
                      {
-                       get:{'method':'GET'},
-                       save:{'method':'POST'},
-                       update:{'method':'PUT'},
-                       delete:{method: 'DELETE'}
+                       get:{'method':'GET', headers: {'Content-Type': 'application/json'}},
+                       link:{'method':'POST', headers: {'Content-Type': 'application/json'}},
+                       save:{'method':'POST', headers: {'Content-Type': 'application/json'}},
+                       update:{'method':'PUT', headers: {'Content-Type': 'application/json'}},
+                       delete:{method: 'DELETE', headers: {'Content-Type': 'application/json'}}
                      }
                     );
   }]);
 
-  services.factory('PreSignup', ['$resource', function( $resource ){
-    return $resource('/users/profile',{},
+  services.factory('WorkListLinker', ['$resource', function( $resource ){
+    return $resource('/link_worklist/:url/:url_key/.json', {url:'@worklist_data.url', url_key:'@worklist_data.url_key'},
                      {
-                       save:{'method':'POST'},
-                       update:{'method':'PUT'}
+                       link:{'method':'POST', headers: {'Content-Type': 'application/json'}}
+                     }
+                    );
+  }]);
+  services.factory('PreAuth', ['$resource', function( $resource ){
+    return $resource('/pre_auth/:url/:url_key/.json', {url:'@worklist_data.url', url_key:'@worklist_data.url_key'},
+                     {
+                       get:{'method':'GET', headers: {'Content-Type': 'application/json'}},
+                       save:{'method':'POST', headers: {'Content-Type': 'application/json'}},
+                       update:{'method':'PUT', headers: {'Content-Type': 'application/json'}},
+                       delete:{method: 'DELETE', headers: {'Content-Type': 'application/json'}}
                      }
                     );
 

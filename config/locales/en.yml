@@ -22,7 +22,7 @@
 en:
   hello: "Hello world"
   home:
-    user_profile:
+    worklist:
       title: "Workli.st"
       address: "Your online CV/Resume "
       email: "info@workli.st"
@@ -35,10 +35,10 @@ en:
         -
           title: "Shareable!"
           key_skill: true
-        - 
+        -
           title: "Easy!"
           key_skill: true
-        - 
+        -
           title: "Recruiter safe!"
           key_skill: true
       jobs_attributes:
@@ -51,11 +51,11 @@ en:
           employer_description: "ACME Corp are the world's largest creator of Widgets."
           description: "Overseeing the day to day activities of the administration team"
           skills_attributes:
-            - 
+            -
               title: "Good eyesight"
-            - 
+            -
               title: "Steady aim"
-            - 
+            -
               title: "Attention to detail"
       qualifications_attributes:
         -

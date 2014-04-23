@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130922160629) do
+ActiveRecord::Schema.define(version: 20140419182740) do
 
   create_table "jobs", force: true do |t|
     t.string   "employer"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20130922160629) do
     t.string   "title"
     t.string   "employer_description"
     t.text     "description"
-    t.integer  "profile_id"
+    t.integer  "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
@@ -29,43 +29,16 @@ ActiveRecord::Schema.define(version: 20130922160629) do
 
   add_index "jobs", ["address_id"], name: "index_jobs_on_address_id"
 
-  create_table "profiles", force: true do |t|
-    t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "middle_names"
-    t.string   "last_name"
-    t.datetime "date_of_birth"
-    t.string   "email"
-    t.string   "website"
-    t.string   "landline_phone"
-    t.string   "mobile_phone"
-    t.text     "description"
-    t.text     "education"
-    t.text     "work_history"
-    t.text     "personal"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "title"
-    t.string   "address"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "summary"
-    t.string   "career_objectives"
-    t.string   "qualifications"
-    t.string   "url"
-    t.string   "url_key"
-  end
-
   create_table "qualifications", force: true do |t|
     t.string   "title"
     t.string   "grade"
     t.string   "institute"
-    t.integer  "profile_id"
+    t.integer  "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "qualifications", ["profile_id"], name: "index_qualifications_on_profile_id"
+  add_index "qualifications", ["worklist_id"], name: "index_qualifications_on_worklist_id"
 
   create_table "skills", force: true do |t|
     t.string   "title"
@@ -73,7 +46,7 @@ ActiveRecord::Schema.define(version: 20130922160629) do
     t.integer  "skill_id"
     t.boolean  "key_skill"
     t.integer  "user_id"
-    t.integer  "profile_id"
+    t.integer  "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "job_id"
@@ -87,7 +60,7 @@ ActiveRecord::Schema.define(version: 20130922160629) do
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -98,5 +71,30 @@ ActiveRecord::Schema.define(version: 20130922160629) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "worklists", force: true do |t|
+    t.integer  "user_id"
+    t.string   "url"
+    t.string   "url_key"
+    t.string   "title"
+    t.string   "twitter"
+    t.string   "facebook"
+    t.string   "first_name"
+    t.string   "middle_names"
+    t.string   "last_name"
+    t.datetime "date_of_birth"
+    t.string   "email"
+    t.string   "email_address"
+    t.string   "address"
+    t.string   "career_objectives"
+    t.string   "website"
+    t.string   "landline_phone"
+    t.string   "mobile_phone"
+    t.text     "description"
+    t.string   "summary"
+    t.text     "personal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
