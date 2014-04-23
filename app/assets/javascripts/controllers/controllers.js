@@ -16,6 +16,7 @@
   app.controller('EditCtrl', ['$q','Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function($q, Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
+    $scope.showSignOut = false;
 
     $scope.addSection = function( section ){
       //get the first object
@@ -49,6 +50,7 @@
       });
 
       Auth.currentUser().then(function(user){
+        $scope.showSignOut = true;
         $scope.worklist = new WorkList.get({url:url});
       });
 
@@ -77,6 +79,7 @@
         $scope.linker = new WorkListLinker(worklistSignature());
         $scope.linker.$link(worklistSignature());
         $scope.signUpModal.close();
+        $scope.showSignOut = true;
       }, function(errors){
         $scope.sigupErrors = errors.data.errors;
       });
@@ -147,6 +150,13 @@
       })
 
     };
+
+    $scope.signOut = function signOut(){
+      Auth.logout().then(function(oldUser) {
+        $scope.showSignOut = false;
+      }, function(error) {
+      });
+    }
 
     $scope.showSignInForm = function(){
       $scope.showSignIn = true;

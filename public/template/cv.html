@@ -78,7 +78,8 @@
           <button class="btn btn-primary " ng-click="saveWorkList()">Save</button>
           <button class="btn btn-danger" ng-click="deleteWorkList()">Delete</button>
         </div>
-        <button class="btn" ng-click="showSignInForm()">Sign In</button>
+        <button class="btn" ng-show='showSignOut == false' ng-click="showSignInForm()">Sign In</button>
+        <button class="btn" ng-show='showSignOut' ng-click="signOut()">Sign Out</button>
     </nav>
 </section>
 <script type="text/ng-template" id="/template/signin.html" ng-init="user = {email: worklist.worklist.email }">

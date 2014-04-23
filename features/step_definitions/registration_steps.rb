@@ -20,6 +20,7 @@ When(/^I edit the homepage CV$/) do
 end
 
 Then(/^I should be able to save it and register$/) do
+  page.should_not have_content "Sign Out"
   click_button "Save"
   fill_in 'signin-email', :with => "bugs.bunny@testdomaintest.cam"
   fill_in 'signin-password', :with => "SomecoolPass123"
@@ -28,5 +29,12 @@ end
 
 Then(/^I should be logged in$/) do
   # binding.pry
-  page.should have_content "Sign out"
+  page.should have_content "Sign Out"
+  page.should_not have_content "Sign In"
+end
+
+Then(/^I should be able to sign out$/) do
+  click_button "Sign Out"
+  page.should_not have_content "Sign Out"
+  page.should have_content "Sign In"
 end
