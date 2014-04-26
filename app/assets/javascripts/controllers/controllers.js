@@ -16,6 +16,7 @@
   app.controller('EditCtrl', ['$q','Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function($q, Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
+    $scope.showSignOut = false;
 
     $scope.addSection = function( section ){
       //get the first object
@@ -49,6 +50,7 @@
       });
 
       Auth.currentUser().then(function(user){
+        $scope.showSignOut = true;
         $scope.worklist = new WorkList.get({url:url});
       });
 
@@ -61,7 +63,7 @@
 
       if(typeof $scope.worklist.worklist.url === 'undefined'){
         $scope.worklist.$save(function(data){
-          $scope.showSignUpForm();
+          $scope.showSignUpForm(true);
         });
       } else {
         $scope.worklist.$update(worklistSignature());
@@ -74,9 +76,12 @@
       $scope.user.password_confirmation = $scope.user.password;
       var user = new User({user:$scope.user});
       Auth.register($scope.user).then(function(registeredUser){
-        $scope.linker = new WorkListLinker(worklistSignature());
-        $scope.linker.$link(worklistSignature());
+        if($scope.perform_link){
+          $scope.linker = new WorkListLinker(worklistSignature());
+          $scope.linker.$link(worklistSignature());
+        }
         $scope.signUpModal.close();
+        $scope.showSignOut = true;
       }, function(errors){
         $scope.sigupErrors = errors.data.errors;
       });
@@ -131,7 +136,8 @@
       });
     };
 
-    $scope.showSignUpForm = function(type) {
+    $scope.showSignUpForm = function(linkBool) {
+      $scope.perform_link = linkBool;
       $scope.signUpModal = $modal.open({
         templateUrl: '/template/signup.html',
         scope: $scope,
@@ -147,6 +153,13 @@
       })
 
     };
+
+    $scope.signOut = function signOut(){
+      Auth.logout().then(function(oldUser) {
+        $scope.showSignOut = false;
+      }, function(error) {
+      });
+    }
 
     $scope.showSignInForm = function(){
       $scope.showSignIn = true;
