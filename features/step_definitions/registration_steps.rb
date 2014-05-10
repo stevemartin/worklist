@@ -14,10 +14,13 @@ end
 # end
 
 When(/^I edit the homepage CV$/) do
-  first('input').value.should eq("Workli.st")
-  editable = first('input#title')
-  editable.click
-  fill_in editable['id'], :with => 'Bugs Bunny'
+  title = find('input#title')
+  50.times do
+    sleep 0.1 if (title.value != "Workli.st")
+  end
+  title.value.should eq("Workli.st")
+  title.click
+  fill_in title['id'], :with => 'Bugs Bunny'
 end
 
 Then(/^I save it and register$/) do
@@ -42,7 +45,11 @@ end
 
 Then(/^the worklist should be persisted when I reload the page$/) do
   visit '/'
-  first('input').value.should eq("Bugs Bunny")
+  title = find('input#title')
+  50.times do
+     sleep 0.1 if (title.value != "Bugs Bunny")
+  end
+  title.value.should eq("Bugs Bunny")
 end
 
 Then(/^I should be able to sign out$/) do
