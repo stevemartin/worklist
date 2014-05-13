@@ -13,7 +13,7 @@
     .otherwise({ redirectTo: '/'});
   }]);
 
-  app.controller('EditCtrl', ['$q','Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function($q, Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
+  app.controller('EditCtrl', ['Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function( Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
     $scope.showSignOut = false;
@@ -35,13 +35,20 @@
       return {url: Cookie.getItem("url"), url_key: Cookie.getItem("url_key")};
     }
 
+    function hasWorklistSignature() {
+      if((Cookie.getItem("url") !== null) && (Cookie.getItem("url_key") !== null) ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
     function fetchWorklist() {
       var url = Cookie.getItem("url");
-      var deferred = $q.defer();
       var worklist = null;
 
 
-      $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
+      $scope.$on('devise:unauthorized', function(event, xhr) {
         if(typeof url === 'undefined' || url === null ){
           $scope.worklist = new PreAuth( window.worklist_data );
         } else {
@@ -63,7 +70,7 @@
 
       if(typeof $scope.worklist.worklist.url === 'undefined'){
         $scope.worklist.$save(function(data){
-          $scope.showSignUpForm(true);
+          $scope.showSignUpForm();
         });
       } else {
         $scope.worklist.$update(worklistSignature());
@@ -76,7 +83,7 @@
       $scope.user.password_confirmation = $scope.user.password;
       var user = new User({user:$scope.user});
       Auth.register($scope.user).then(function(registeredUser){
-        if($scope.perform_link){
+        if(hasWorklistSignature()){
           $scope.linker = new WorkListLinker(worklistSignature());
           $scope.linker.$link(worklistSignature());
         }
@@ -136,8 +143,7 @@
       });
     };
 
-    $scope.showSignUpForm = function(linkBool) {
-      $scope.perform_link = linkBool;
+    $scope.showSignUpForm = function() {
       $scope.signUpModal = $modal.open({
         templateUrl: '/template/signup.html',
         scope: $scope,

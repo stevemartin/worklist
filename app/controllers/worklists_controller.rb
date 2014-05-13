@@ -21,10 +21,12 @@ class WorklistsController < ApplicationController
 
   def link_worklist
     set_worklist_from_signature
+    Rails.logger.info("Linking worklist #{@worklist.id} to user #{current_user.id}")
     if @worklist
       @worklist.user = current_user
-      @worklist.save
+      @worklist.save!
     end
+    Rails.logger.info("Linked worklist #{@worklist.id} to user #{current_user.id}")
     respond_to do |format|
       format.json { render json: { success: true } }
     end
@@ -89,6 +91,7 @@ class WorklistsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_worklist
+      Rails.logger.info("Setting worklist for User: #{current_user.id}")
       @worklist = current_user.worklist
     end
 
@@ -109,4 +112,5 @@ class WorklistsController < ApplicationController
                                            skills_attributes:[:id, :title, :description, :skill_id, :key_skill]
                                           )
     end
+
 end

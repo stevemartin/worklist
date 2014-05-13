@@ -25,8 +25,19 @@ Feature: Inline homepage signup
     And I should see an empty worklist
 
   @wip
-  Scenario: User with existing worklist signs in
+  Scenario: Users signs up without creating worklist from homepage then signs in again
+    When I sign up
+    Then I should be logged in
+    And I should see an empty worklist
+    And I should be able to sign out
+    And when I sign in again I should see a notice telling me
+
+  Scenario: Site user with temporary worklist signs up
     Given I have a worklist already in the session
     When I register
     Then I see my existing worklist
 
+  @wip
+  Scenario: User attempts to sign in with invalid credentials
+    Given I attempt to sign in with invalid credentials
+    Then I should see a notice telling me that it failed

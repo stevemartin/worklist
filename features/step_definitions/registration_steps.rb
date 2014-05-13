@@ -38,7 +38,6 @@ Then(/^I save my changes/) do
 end
 
 Then(/^I should be logged in$/) do
-  # binding.pry
   page.should have_content "Sign Out"
   page.should_not have_content "Sign In"
 end
@@ -69,4 +68,12 @@ end
 
 Then(/^I see my existing worklist$/) do
   step "the worklist should be persisted when I reload the page"
+end
+
+Then(/^I should see an empty worklist$/) do
+  title = find('input#title')
+  50.times do
+    sleep 0.1 if (title.value != "Workli.st")
+  end
+  title.value.should eq("Workli.st")
 end

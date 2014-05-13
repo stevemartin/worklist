@@ -73,6 +73,16 @@ describe PreAuthWorklistsController do
         put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
         parsed_response.should have_key("worklist")
       end
+
+      context 'but belongs to existing user' do
+        it 'returns an error code' do
+          worklist = Worklist.create! valid_attributes
+          worklist.user_id = 1
+          worklist.save
+          put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        response.code.should eq("404")
+        end
+      end
     end
 
     describe "with invalid params" do

@@ -5,10 +5,12 @@ class ApplicationController < ActionController::Base
   respond_to :html, :json
 
   def set_worklist_from_signature
-    unless @worklist = Worklist.find_by_url_and_url_key(params[:url], params[:url_key])
+    @worklist = Worklist.find_by_url_and_url_key(params[:url].to_s, params[:url_key])
+    if !@worklist || @worklist.user_id.present?
       respond_to do |format|
-        format.json { render json: {error:'Invalid URL Signature - Worklist Not Found'}, status: :not_found  }
+        format.json { render json: {error:'Invalid URL Signature - Worklist not found or already owned'}, status: :not_found  }
       end
     end
   end
+
 end
