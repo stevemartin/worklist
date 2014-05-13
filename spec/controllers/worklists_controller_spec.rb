@@ -24,7 +24,7 @@ describe WorklistsController do
 
   let(:valid_session) { {} }
 
-  let(:user) { double('user', worklist: worklist) }
+  let(:user) { double('user', worklist: worklist, id:1) }
   let(:worklist) { Worklist.create! valid_attributes }
 
   before do
