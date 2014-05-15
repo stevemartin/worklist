@@ -24,7 +24,11 @@ Feature: Inline homepage signup
     Then I should be logged in
     And I should see an empty worklist
 
-  @wip
+  Scenario: Site user with temporary worklist signs up
+    Given I have a worklist already in the session
+    When I register
+    Then I see my existing worklist
+
   Scenario: Users signs up without creating worklist from homepage then signs in again
     When I sign up
     Then I should be logged in
@@ -32,10 +36,13 @@ Feature: Inline homepage signup
     And I should be able to sign out
     And when I sign in again I should see a notice telling me
 
-  Scenario: Site user with temporary worklist signs up
-    Given I have a worklist already in the session
-    When I register
-    Then I see my existing worklist
+  @wip
+  Scenario: User creates worklist then signs in again
+    When I edit the homepage CV
+    And I save it and register
+    Then I should be logged in
+    And I should be able to sign out
+    And when I sign in again I should see my worklist
 
   @wip
   Scenario: User attempts to sign in with invalid credentials

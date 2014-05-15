@@ -11,7 +11,6 @@
 // about supported directives.
 //
 //= require angular
-//= require ng-rails-csrf
 //= require angular-route
 //= require angular-resource
 //= require angular-cookies

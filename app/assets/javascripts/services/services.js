@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  var services = angular.module('worklist.services',['ngResource', 'ng-rails-csrf']);
+  var services = angular.module('worklist.services',['ngResource']);
 
   services.factory('WorkList', ['$resource', function( $resource ){
     return $resource('/worklists.json', {url: '@worklist_data.url'},
