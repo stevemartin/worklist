@@ -66,7 +66,7 @@
     //we're either returning a new resource or a promise (WorkList.get)
     fetchWorklist();
 
-    $scope.saveWorkList = function() {
+    $scope.saveWorkList = function saveWorkList() {
 
       if(typeof $scope.worklist.worklist.url === 'undefined'){
         $scope.worklist.$save(function(data){
@@ -77,6 +77,25 @@
       }
     };
 
+    $scope.signIn = function signIn(){
+      $scope.$on('devise:unauthorized', function(event, xhr, deferred) {
+        alert(xhr.data.error);
+      });
+      var sign_in_params = {
+        email: $scope.user.email,
+        password: $scope.user.password
+      }
+      Auth.login(sign_in_params).then(function(user) {
+      }).then(function(response){
+        $scope.signedIn = true;
+        $scope.showSignIn = false;
+        $scope.showSignOut = true;
+        $scope.signInModal.close();
+      }, function(error) {
+        console.log(error);
+        alert(error);
+      });
+    };
 
     $scope.signUp = function signUp() {
       //
@@ -169,14 +188,19 @@
 
     $scope.showSignInForm = function(){
       $scope.showSignIn = true;
-      $modal.open({
+      $scope.signInModal = $modal.open({
         templateUrl: '/template/signin.html',
+        scope: $scope,
         controller: function signinModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
             $modalInstance.dismiss('cancel');
           }
         }
       });
+
+      $scope.signInModal.result.then(function(){}, function(){
+        $window.location = '/';
+      })
     }
   }]);
 })();
