@@ -36,7 +36,6 @@ Feature: Inline homepage signup
     And I should be able to sign out
     And when I sign in again I should see a notice telling me
 
-  @wip
   Scenario: User creates worklist then signs in again
     When I edit the homepage CV
     And I save it and register
