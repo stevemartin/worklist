@@ -96,6 +96,11 @@ Then(/^when I sign in again I should see a notice telling me$/) do
   step 'I sign in'
 end
 
+Then(/^when I sign in again I should see the default$/) do
+  step 'I sign in'
+  step 'I should see an empty worklist'
+end
+
 Then(/^when I sign in again I should see my worklist$/) do
   step 'I sign in'
   title = find('input#title')
