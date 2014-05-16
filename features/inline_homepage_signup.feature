@@ -29,14 +29,14 @@ Feature: Inline homepage signup
     When I register
     Then I see my existing worklist
 
+  @current
   Scenario: Users signs up without creating worklist from homepage then signs in again
     When I sign up
     Then I should be logged in
     And I should see an empty worklist
     And I should be able to sign out
-    And when I sign in again I should see a notice telling me
+    And when I sign in again I should see the default
 
-  @wip
   Scenario: User creates worklist then signs in again
     When I edit the homepage CV
     And I save it and register

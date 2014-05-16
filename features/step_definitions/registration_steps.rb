@@ -81,7 +81,7 @@ Then(/^I should see an empty worklist$/) do
   title.value.should eq("Workli.st")
 end
 
-Then(/^when I sign in again I should see a notice telling me$/) do
+Then(/^I sign in$/) do
   click_button 'Sign In'
   fill_in 'signin-email', :with => "bugs.bunny@testdomaintest.cam"
   fill_in 'signin-password', :with => "SomecoolPass123"
@@ -92,8 +92,22 @@ Then(/^when I sign in again I should see a notice telling me$/) do
   page.should_not have_content "Sign In"
 end
 
+Then(/^when I sign in again I should see a notice telling me$/) do
+  step 'I sign in'
+end
+
+Then(/^when I sign in again I should see the default$/) do
+  step 'I sign in'
+  step 'I should see an empty worklist'
+end
+
 Then(/^when I sign in again I should see my worklist$/) do
-  pending # express the regexp above with the code you wish you had
+  step 'I sign in'
+  title = find('input#title')
+  50.times do
+     sleep 0.1 if (title.value != "Bugs Bunny")
+  end
+  title.value.should eq("Bugs Bunny")
 end
 
 Given(/^I attempt to sign in with invalid credentials$/) do

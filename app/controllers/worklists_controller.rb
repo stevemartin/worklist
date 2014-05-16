@@ -92,7 +92,10 @@ class WorklistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_worklist
       Rails.logger.info("Setting worklist for User: #{current_user.id}")
-      @worklist = current_user.worklist
+      if @worklist = current_user.worklist
+      else
+        @worklist = Worklist.new( t('home')[:worklist] )
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

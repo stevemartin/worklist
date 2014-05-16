@@ -2,7 +2,8 @@
   'use strict';
 
   var app = angular.module('worklist',
-    ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services','ui.bootstrap.modal','ui.bootstrap.popover']);
+    ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
+      'ui.bootstrap.modal','ui.bootstrap.popover']);
 
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
@@ -13,7 +14,10 @@
     .otherwise({ redirectTo: '/'});
   }]);
 
-  app.controller('EditCtrl', ['Auth','$scope','WorkList','WorkListLinker','$modal','PreAuth','Cookie','User','$window', function( Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth, Cookie, User, $window ){
+  app.controller('EditCtrl', ['Auth','$scope','WorkList','WorkListLinker','$modal',
+                 'PreAuth','Cookie','User','$window',
+                 function( Auth, $scope, WorkList, WorkListLinker, $modal, PreAuth,
+                          Cookie, User, $window ){
     $scope.showSignUp = false;
     $scope.showSignIn = false;
     $scope.showSignOut = false;
@@ -46,7 +50,6 @@
     function fetchWorklist() {
       var url = Cookie.getItem("url");
       var worklist = null;
-
 
       $scope.$on('devise:unauthorized', function(event, xhr) {
         if(typeof url === 'undefined' || url === null ){
@@ -91,6 +94,7 @@
         $scope.showSignIn = false;
         $scope.showSignOut = true;
         $scope.signInModal.close();
+        $window.location = '/';
       }, function(error) {
         console.log(error);
         alert(error);
