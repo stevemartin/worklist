@@ -27,7 +27,7 @@
           popover-trigger="mouseenter"
         > Key Skills </h2>
         <ul>
-          <li ng-repeat="skill in worklist.worklist.skills_attributes">
+          <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes">
             <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
             <a class="btn btn-danger btn-xs" ng-click="removeKeySkill($index)">-</a>
           </li>
@@ -41,7 +41,7 @@
         popover-trigger="mouseenter"
       >Employment History</h1>
       <div ng-repeat="job in worklist.worklist.jobs_attributes">
-        <job-history job="{{job}}"></job-history>
+        <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
       </div>
       <button class="btn btn-success" ng-click="addSection('job')">Add Job</button>
     </section>
@@ -52,7 +52,7 @@
       >Education History</h1>
       <div ng-repeat="education in worklist.worklist.qualifications_attributes">
         <!-- <education-history education="{{education}}"></education-history> -->
-        <section class="education">
+        <section ng-show='education._destroy == null' class="education">
   <input class="h3 qualification" ng-model="education.title" placeholder="Qualification earned" />
   <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
   <input class="span institute" ng-model="education.institute" placeholder="Name of Education Institute"/>

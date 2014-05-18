@@ -1,7 +1,7 @@
 @javascript @blackbox
 Feature: Inline homepage signup
   As an unregistered user
-  I to use the product straight away
+  I want to use my worklist straight away
   So I can try it out without registering
 
   Background:
