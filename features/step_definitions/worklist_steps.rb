@@ -1,6 +1,10 @@
 @username = 'bugs.bunny@testdomaintest.cam'
 @password =  "SomecoolPass123"
 
+Then(/^I should see the templates$/) do
+  first('header.row input#title').value.should == "Workli.st"
+end
+
 Given(/^I go to the homepage$/) do
   visit '/'
 end

@@ -24,14 +24,14 @@
 
     $scope.addSection = function( section ){
       //get the first object
-      var sectionArr = $scope.worklist[section + 's_attributes'],
+      var sectionArr = $scope.worklist.worklist[section + 's_attributes'],
           sectionObj = angular.copy( sectionArr[0] );
 
-      sectionArr.push( sectionObj );
+      sectionArr.push( {} );
     };
 
     $scope.removeSection = function(section, index){
-      var sectionArr = $scope.worklist[section + 's_attributes'];
+      var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
         sectionArr.splice( index, 1 );
     };
 
