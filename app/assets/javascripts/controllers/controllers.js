@@ -32,7 +32,15 @@
 
     $scope.removeSection = function(section, index){
       var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
+      if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[index].id === 'undefined'){
         sectionArr.splice( index, 1 );
+        // console.log( "REMOVED NON SAVED ITEM" )
+      } else {
+        // console.log("ID", sectionArr[index].id )
+        sectionArr[index]['_destroy'] = '1';
+        // console.log( "REMOVED SAVED ITEM" )
+      }
+      // console.log( sectionArr[index] )
     };
 
     function worklistSignature() {

@@ -1,4 +1,4 @@
-When(/^I add another secion and save it$/) do
+When(/^I add another section and save it$/) do
   click_button 'Add Job'
   all('section.job').count
   50.times do
@@ -12,5 +12,11 @@ end
 Then(/^I should see my new section in the rendered version$/) do
   click_link "View"
   page.should have_content 'Jimmy Joes'
-  # within(:xpath, all('section.job').last.path) { find('h2.employer').value.should == 'Jimmy Joes' }
+end
+
+Then(/^I should be able to remove it$/) do
+  within(:xpath, all('section.job').last.path) { first(:xpath, '//a[text()="Remove"]').click }
+  click_button "Save"
+  click_link "View"
+  page.should_not have_content 'Jimmy Joes'
 end
