@@ -29,11 +29,11 @@ gem 'bootstrap-glyphicons'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
-gem 'rails-assets-angular-bootstrap'
+gem 'rails-assets-angular-bootstrap', '0.10.0'
 gem 'rails-assets-angular-cookies'
 gem 'rails-assets-angular-devise'
 gem 'rails-assets-angular-resource'
-gem 'rails-assets-angular-ui-bootstrap'
+gem 'rails-assets-angular-ui-bootstrap', '0.10.0'
 gem 'rails-assets-angular-mocks'
 
 # Templating

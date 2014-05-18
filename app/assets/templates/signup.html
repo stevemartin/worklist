@@ -1,0 +1,28 @@
+<div class="modal-header" >
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+  <h4 class="modal-title">Sign Up</h4>
+</div>
+<div class="modal-body">
+  <div>
+    <div ng-repeat="(key, error) in sigupErrors">
+      <div ng-repeat="(errorIndex, errorMessage) in error">
+        <span>{{key + ' ' + errorMessage}}</span>
+      </div>
+    </div>
+  </div>
+  <p>You can view your WorkList for the next 30 days using the URL below</p>
+  <a href="/{{worklist.worklist.url}}" target="_blank" >http://workli.st/{{ worklist.worklist.url }}</a>
+  <form name="signup" role="form">
+    <div class="form-group">
+      <label for="signup-email">Email</label>
+      <input type="email" ng-model="user.email" id="signup-email" required class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="signup-password">Password</label>
+      <input type="password" ng-model="user.password" required ng-minlength="8" id="signup-password" class="form-control"/>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-disabled="signup.$invalid" ng-click="signUp()">Sign Up</button>
+</div>
