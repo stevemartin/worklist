@@ -27,7 +27,7 @@
           popover-trigger="mouseenter"
         > Key Skills </h2>
         <ul>
-          <li ng-repeat="skill in worklist.worklist.skills_attributes">
+          <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes">
             <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
             <a class="btn btn-danger btn-xs" ng-click="removeKeySkill($index)">-</a>
           </li>

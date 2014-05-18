@@ -4,7 +4,7 @@ When(/^I add another section and save it$/) do
   50.times do
     sleep 0.1 if ( all('section.job').count != 2)
   end
-  all('section.job').count.should eq 2
+  all('section.job').count.should eq( 2 )
   within(:xpath, all('section.job').last.path) { find('input.employer').set('Jimmy Joes') }
   click_button "Save"
 end

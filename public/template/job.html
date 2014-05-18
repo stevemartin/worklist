@@ -11,7 +11,7 @@
   </div>
   <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
   <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
-  <ul class="job-skills" ng-repeat="skill in job.skills_attributes">
+  <ul ng-show='skill._destroy == null' class="job-skills" ng-repeat="skill in job.skills_attributes">
     <li>
       <input ng-model="skill.title" placeholder="Job specific skill"/>
       <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
@@ -19,3 +19,4 @@
   </ul>
   <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">Add Skill</a>
 </section>
+

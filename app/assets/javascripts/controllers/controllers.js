@@ -31,17 +31,24 @@
     };
 
     $scope.removeSection = function(section, index){
-      var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
+      $scope.remover($scope.worklist.worklist, section, index);
+      // var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
+      // if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[index].id === 'undefined'){
+      //   sectionArr.splice( index, 1 );
+      // } else {
+      //   sectionArr[index]['_destroy'] = '1';
+      // }
+    };
+
+    $scope.remover = function(object, section, index) {
+      var sectionArr = object[section + 's_attributes'];
       if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[index].id === 'undefined'){
         sectionArr.splice( index, 1 );
-        // console.log( "REMOVED NON SAVED ITEM" )
       } else {
-        // console.log("ID", sectionArr[index].id )
         sectionArr[index]['_destroy'] = '1';
-        // console.log( "REMOVED SAVED ITEM" )
       }
-      // console.log( sectionArr[index] )
-    };
+      // console.log(sectionArr[index])
+    }
 
     function worklistSignature() {
       return {url: Cookie.getItem("url"), url_key: Cookie.getItem("url_key")};
@@ -130,7 +137,7 @@
     }
 
     $scope.removeJobSkill = function removeSkill(jobIndex,index){
-      $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.splice(index,1);
+      $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'skill', index);
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
@@ -142,7 +149,8 @@
     }
 
     $scope.removeKeySkill = function remove(index){
-      $scope.worklist.worklist.skills_attributes.splice(index,1);
+      $scope.remover($scope.worklist.worklist, 'skill', index);
+      // $scope.worklist.worklist.skills_attributes.splice(index,1);
     }
 
     $scope.actuallyDelete = function deleteWL(){
