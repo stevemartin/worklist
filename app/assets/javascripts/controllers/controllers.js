@@ -32,12 +32,6 @@
 
     $scope.removeSection = function(section, index){
       $scope.remover($scope.worklist.worklist, section, index);
-      // var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
-      // if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[index].id === 'undefined'){
-      //   sectionArr.splice( index, 1 );
-      // } else {
-      //   sectionArr[index]['_destroy'] = '1';
-      // }
     };
 
     $scope.remover = function(object, section, index) {
@@ -47,7 +41,6 @@
       } else {
         sectionArr[index]['_destroy'] = '1';
       }
-      // console.log(sectionArr[index])
     }
 
     function worklistSignature() {
@@ -150,7 +143,6 @@
 
     $scope.removeKeySkill = function remove(index){
       $scope.remover($scope.worklist.worklist, 'skill', index);
-      // $scope.worklist.worklist.skills_attributes.splice(index,1);
     }
 
     $scope.actuallyDelete = function deleteWL(){
