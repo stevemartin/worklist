@@ -41,7 +41,11 @@ end
 Then(/^I save my changes/) do
   page.should_not have_content "Sign Out"
   click_button "Save"
+  binding.pry
   find('.close').click
+  2.times do
+    sleep 0.5 if ( page.has_css? '.modal-dialog')
+  end
 end
 
 Then(/^I should be logged in$/) do
