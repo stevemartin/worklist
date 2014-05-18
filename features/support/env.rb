@@ -13,10 +13,17 @@ require 'cucumber/rails'
 Capybara.default_selector = :css
 Capybara.javascript_driver = :webkit
 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
 if ENV['JAVASCRIPT_DRIVER'] == 'selenium'
   Capybara.javascript_driver = :selenium
 end
 
+if ENV['JAVASCRIPT_DRIVER'] == 'chrome'
+  Capybara.javascript_driver = :chrome
+end
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will

@@ -29,7 +29,6 @@ Feature: Inline homepage signup
     When I register
     Then I see my existing worklist
 
-  @current
   Scenario: Users signs up without creating worklist from homepage then signs in again
     When I sign up
     Then I should be logged in

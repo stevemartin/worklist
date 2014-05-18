@@ -1,18 +1,43 @@
+#= depend_on_asset "cv.html"
+#= depend_on_asset "job.html"
+#= depend_on_asset "partials/signupform.html"
+#= depend_on_asset "modal/window.html"
+#= depend_on_asset "modal/backdrop.html"
+#= depend_on_asset "popover/popover.html"
+
 (function(){
   'use strict';
 
   var app = angular.module('worklist',
-    ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
+    [ 'Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
       'ui.bootstrap.modal','ui.bootstrap.popover']);
 
-  app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider
-    .when('/', {
-      controller: 'EditCtrl',
-      templateUrl: '/template/cv.html'
-    })
-    .otherwise({ redirectTo: '/'});
-  }]);
+      app.config(['$routeProvider', '$provide', function($routeProvider, $provide) {
+        $provide.decorator('modalWindowDirective', function($delegate) {
+          //we now get an array of all the datepickerDirectives,
+          //and use the first one
+          $delegate[0].templateUrl = '<%= asset_path("modal/window.html") %>';
+          return $delegate;
+        });
+        $provide.decorator('modalBackdropDirective', function($delegate) {
+          //we now get an array of all the datepickerDirectives,
+          //and use the first one
+          $delegate[0].templateUrl = '<%= asset_path("modal/backdrop.html") %>';
+          return $delegate;
+        });
+        $provide.decorator('popoverPopupDirective', function($delegate) {
+          //we now get an array of all the datepickerDirectives,
+          //and use the first one
+          $delegate[0].templateUrl = '<%= asset_path("popover/popover.html") %>';
+          return $delegate;
+        });
+        $routeProvider
+        .when('/', {
+          controller: 'EditCtrl',
+          templateUrl: '<%= asset_path("cv.html") %>'
+        })
+        .otherwise({ redirectTo: '/'});
+      }]);
 
   app.controller('EditCtrl', ['Auth','$scope','WorkList','WorkListLinker','$modal',
                  'PreAuth','Cookie','User','$window',
@@ -134,7 +159,12 @@
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
-      $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      if(typeof $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes === 'undefined') {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes = [];
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      } else {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      }
     }
 
     $scope.addKeySkill = function addSkill(){
@@ -160,7 +190,7 @@
     $scope.deleteWorkList = function deleteWorklist(){
       $modal.open({
         scope: $scope,
-        templateUrl: '/template/delete.html',
+        templateUrl: '<%= asset_path("delete.html") %>',
         controller: function signupModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
             $modalInstance.dismiss('cancel');
@@ -176,7 +206,7 @@
 
     $scope.showSignUpForm = function() {
       $scope.signUpModal = $modal.open({
-        templateUrl: '/template/signup.html',
+        templateUrl: '<%= asset_path("signup.html") %>',
         scope: $scope,
         controller: function signupModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
@@ -201,7 +231,7 @@
     $scope.showSignInForm = function(){
       $scope.showSignIn = true;
       $scope.signInModal = $modal.open({
-        templateUrl: '/template/signin.html',
+        templateUrl: '<%= asset_path("signin.html") %>',
         scope: $scope,
         controller: function signinModalCtrl($scope, $modalInstance){
           $scope.closeModal = function close(){
