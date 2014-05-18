@@ -159,7 +159,12 @@
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
-      $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      if(typeof $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes === 'undefined') {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes = [];
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      } else {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      }
     }
 
     $scope.addKeySkill = function addSkill(){
