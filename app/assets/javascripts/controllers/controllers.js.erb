@@ -4,30 +4,42 @@
 #= depend_on_asset "modal/window.html"
 #= depend_on_asset "modal/backdrop.html"
 #= depend_on_asset "popover/popover.html"
+#= depend_on_asset "datepicker/datepicker.html"
+#= depend_on_asset "datepicker/day.html"
+#= depend_on_asset "datepicker/month.html"
+#= depend_on_asset "datepicker/popup.html"
+#= depend_on_asset "datepicker/year.html"
 
 (function(){
   'use strict';
 
   var app = angular.module('worklist',
-    [ 'Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
-      'ui.bootstrap.modal','ui.bootstrap.popover']);
+    ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
+      'ui.bootstrap.modal','ui.bootstrap.popover', 'ui.bootstrap.datepicker']);
 
       app.config(['$routeProvider', '$provide', function($routeProvider, $provide) {
+        $provide.decorator('datepickerPopupWrapDirective', function($delegate) {
+          $delegate[0].templateUrl = '<%= asset_path("datepicker/popup.html") %>';
+
+          return $delegate;
+        });
+        $provide.decorator('datepickerDirective', function($delegate) {
+          $delegate[0].templateUrl = '<%= asset_path("datepicker/datepicker.html") %>';
+          $delegate[0].templateUrl = '<%= asset_path("datepicker/day.html") %>';
+          $delegate[0].templateUrl = '<%= asset_path("datepicker/month.html") %>';
+          $delegate[0].templateUrl = '<%= asset_path("datepicker/year.html") %>';
+
+          return $delegate;
+        });
         $provide.decorator('modalWindowDirective', function($delegate) {
-          //we now get an array of all the datepickerDirectives,
-          //and use the first one
           $delegate[0].templateUrl = '<%= asset_path("modal/window.html") %>';
           return $delegate;
         });
         $provide.decorator('modalBackdropDirective', function($delegate) {
-          //we now get an array of all the datepickerDirectives,
-          //and use the first one
           $delegate[0].templateUrl = '<%= asset_path("modal/backdrop.html") %>';
           return $delegate;
         });
         $provide.decorator('popoverPopupDirective', function($delegate) {
-          //we now get an array of all the datepickerDirectives,
-          //and use the first one
           $delegate[0].templateUrl = '<%= asset_path("popover/popover.html") %>';
           return $delegate;
         });
@@ -244,5 +256,16 @@
         $window.location = '/';
       })
     }
+
+    $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    $scope.format = $scope.formats[0];
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1
+    };
+
+    $scope.disabled = function(date, mode) {
+      return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
+    };
   }]);
 })();

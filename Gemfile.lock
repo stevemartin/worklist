@@ -303,13 +303,13 @@ DEPENDENCIES
   pg
   rails (= 4.1.0)
   rails-assets-angular
-  rails-assets-angular-bootstrap (= 0.10.0)
+  rails-assets-angular-bootstrap
   rails-assets-angular-cookies
   rails-assets-angular-devise
   rails-assets-angular-mocks
   rails-assets-angular-resource
   rails-assets-angular-route
-  rails-assets-angular-ui-bootstrap (= 0.10.0)
+  rails-assets-angular-ui-bootstrap
   rails-assets-bootstrap
   rspec-rails
   rvm1-capistrano3
