@@ -7,7 +7,7 @@ class WorklistsController < ApplicationController
       respond_to do |format|
           format.json { render :json => { worklist: WorklistPresenter.new(@worklist).attributes(:array) } }
           format.html { render :url }
-          format.pdf { render :pdf => :url, :layout => 'pdf_application' }
+          format.pdf { render :pdf => 'url', :layout => 'pdf_application' }
       end
     else
       render 'no_worklist'
