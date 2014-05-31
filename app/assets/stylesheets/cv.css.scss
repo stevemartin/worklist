@@ -119,10 +119,15 @@ header{
     .job-duration{
       position: absolute;
       right: ems(10);
-      top: ems(40);
+      top: ems(50);
+      width: ems(250);
+      .job-container{
+        float:left;
+        width: auto;
+        width: 50%;
+      }
       input{
-	font-size: ems(12);
-	width: ems(140);
+      	font-size: ems(12);
       }
     }
   }
