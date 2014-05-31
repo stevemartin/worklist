@@ -34,9 +34,9 @@
             %h4.employer-address
               = job.address
             %span.job-start-date
-              = job.start_date
+              = job.start_date.try(:to_date)
             %span.job-end-date
-              = job.end_date
+              = job.end_date.try(:to_date)
             %h3.job-title
               = job.title
             %p.employer-description
