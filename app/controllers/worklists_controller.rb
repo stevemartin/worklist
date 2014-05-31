@@ -5,8 +5,9 @@ class WorklistsController < ApplicationController
   def url
     if @worklist = Worklist.find_by_url(params[:url])
       respond_to do |format|
-          format.json { render :json => {worklist: WorklistPresenter.new(@worklist).attributes(:array) } }
+          format.json { render :json => { worklist: WorklistPresenter.new(@worklist).attributes(:array) } }
           format.html { render :url }
+          format.pdf { render :pdf => :url, :layout => 'pdf_application' }
       end
     else
       render 'no_worklist'
