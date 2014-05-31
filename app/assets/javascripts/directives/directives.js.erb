@@ -60,9 +60,6 @@
 
   directives.directive('backdrop', function(){
     return {
-      controller: function($scope){
-
-      },
       link: function(scope, element,attrs) {
         element.bind('click', function(){
           element.addClass('is-hidden');
@@ -70,5 +67,18 @@
       }
     };
   });
+
+
+  directives.directive('endDate', function(){
+    return {
+      require: '?ngModel',
+      link: function(scope, element, attrs, ngModel){
+        ngModel.$parsers.push(function(value){
+          return value === 'Present' ? +Date.now() : value;
+        });
+
+      }
+    };
+  })
 
 })();
