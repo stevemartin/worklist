@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html ng-app='worklist'>
+<head>
+  <title>Worklist</title>
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

@@ -25,6 +25,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bootstrap-glyphicons'
 
+gem 'wicked_pdf'
+
 # Bower assets
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-angular'
