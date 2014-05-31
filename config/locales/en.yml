@@ -45,7 +45,7 @@ en:
         -
           employer: "ACME Corp."
           address: "Main Street, London"
-          start_date: "01 January 2013"
+          start_date: "January 2013"
           end_date: "Present"
           title: "Administrator"
           employer_description: "ACME Corp are the world's largest creator of Widgets."

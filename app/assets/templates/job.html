@@ -5,13 +5,13 @@
     <input class="h4 employer-address" ng-model="job.address" placeholder="Employer's address"/>
     <input class="h3 job-title" ng-model="job.title" placeholder="Your job title"/>
     <div class="job-duration">
-      <div class="job-start">
+      <div class="job-start job-container">
         <label>Start date: </label>
         <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="job.start_date"
                is-open="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
                ng-required="true" current-text="Today" clear-text="Clear" close-text="Close" />
       </div>
-      <div class="job-end">
+      <div class="job-end job-container">
         <label>End date: </label>
         <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="job.end_date"
                is-open="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
