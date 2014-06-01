@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Worklist</title>
 
-#{ Rails.env.development? ? wicked_pdf_stylesheet_link_tag('pdf') : stylesheet_link_tag('pdf') }
+#{ Rails.env.development? ? wicked_pdf_stylesheet_link_tag('pdf') : wicked_pdf_stylesheet_link_tag('pdf') }
 </head>
 <body>
 = render :partial => 'url'
