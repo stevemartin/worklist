@@ -4,8 +4,6 @@
   background:$cv-colour;
   margin-top: ems(50);
   margin-bottom: ems(50);
-  text-align:center; border: 1px solid #ccc;
-  border-radius: ems(3);
   overflow: visible;
 }
 
@@ -26,6 +24,7 @@ input, textarea{
   }
 }
 
+section#contact-details { text-align: center; }
 
 header{
   .h1{
@@ -127,7 +126,7 @@ header{
         width: 50%;
       }
       input{
-        font-size: ems(12);
+font-size: ems(12);
       }
     }
   }
@@ -149,3 +148,5 @@ input, textarea{
     border: 1px dashed #CCC;
   }
 }
+
+// body, h1,h2,h3,h4,p,span { background-color: red; }
