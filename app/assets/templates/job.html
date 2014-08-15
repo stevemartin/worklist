@@ -1,32 +1,70 @@
-<section class="job">
-  <a class="btn btn-danger btn-xs" ng-click="removeSection('job',$index)" ng-show="$index > 0" ng-init="jobIndex = $index">Remove</a>
-  <div class="job-header">
-    <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
-    <input class="h4 employer-address" ng-model="job.address" placeholder="Employer's address"/>
-    <input class="h3 job-title" ng-model="job.title" placeholder="Your job title"/>
-    <div class="job-duration">
-      <div class="job-start job-container">
-        <label>Start date: </label>
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="job.start_date"
-               is-open="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
-               ng-required="true" current-text="Today" clear-text="Clear" close-text="Close" />
-      </div>
-      <div class="job-end job-container">
-        <label>End date: </label>
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="job.end_date"
-               is-open="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)"
-               ng-required="true" current-text="Today" clear-text="Clear" close-text="Close" end-date/>
+<section class="row job">
+  <div class='col-lg-12 col-md-12 col-sm-12'>
+
+    <div class="left row">
+      <div class='col-lg-12 col-md-12 col-sm-12'>
+        <a class="btn btn-danger btn-xs" ng-click="removeSection('job',$index)" ng-show="$index > 0" ng-init="jobIndex = $index">Remove</a>
       </div>
     </div>
+
+    <div class="row job-header">
+      <div class='col-lg-12 col-md-12 col-sm-12'>
+        <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
+      </div>
+    </div>
+
+    <div class="row job-details left">
+      <div class='col-lg-6 col-md-6 col-sm-6'>
+
+        <input class="h3 employer-address" ng-model="job.address" placeholder="Employer's address"/>
+        <input class="h4 job-title" ng-model="job.title" placeholder="Your job title"/>
+
+      </div>
+
+      <div class='col-lg-6 col-md-6 col-sm-6'>
+
+        <div class="form-group job-start">
+          <div class='col-lg-6 col-md-6 col-sm-6'>
+            <input type="text" id='started_date' class="form-control" datepicker-popup="{{format}}" ng-model="job.start_date"
+            is-open="false" datepicker-options="dateOptions" placeholder='Start date' date-disabled="disabled(date, mode)"
+            ng-required="true" current-text="Today" clear-text="Clear" close-text="Close" />
+          </div>
+          <label for='started_date' ><h4>Started</h4></label>
+        </div>
+
+        <div class="form-group job-end">
+          <div class='col-lg-6 col-md-6 col-sm-6'>
+            <input type="text" id='end_date' class="form-control" datepicker-popup="{{format}}" ng-model="job.end_date"
+            is-open="false" datepicker-options="dateOptions" placeholder='End date' date-disabled="disabled(date, mode)"
+            ng-required="true" current-text="Today" clear-text="Clear" close-text="Close" end-date/>
+          </div>
+          <label for='end_date' ><h4>Ended</h4></label>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row job-body">
+
+      <div class='col-lg-6 col-md-6 col-sm-6'>
+        <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
+        <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
+      </div>
+
+      <section class='left col-lg-6 col-md-6 col-sm-6'>
+        <h4>Job Skills</h4>
+        <ul>
+          <li ng-show='skill._destroy == null' class="left job-skills" ng-repeat="skill in job.skills_attributes">
+          <input ng-model="skill.title" placeholder="Job specific skill"/>
+          <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
+          </li>
+        </ul>
+        <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">+ Job Skill</a>
+      </section>
+
+    </div>
+
   </div>
-  <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
-  <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
-  <ul ng-show='skill._destroy == null' class="job-skills" ng-repeat="skill in job.skills_attributes">
-    <li>
-      <input ng-model="skill.title" placeholder="Job specific skill"/>
-      <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
-    </li>
-  </ul>
-  <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">Add Skill</a>
 </section>
 

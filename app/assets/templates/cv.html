@@ -1,72 +1,102 @@
 <a href="/{{worklist.worklist.url}}" class="btn" ng-show="worklist.worklist.url"><span class="glyphicon glyphicon-eye-open"></span>View</a>
 <a href="/{{worklist.worklist.url}}.pdf" class="btn" ng-show="worklist.worklist.url"><span class="glyphicon glyphicon-eye-open"></span>Pdf View</a>
-<div class="container col-md-8 col-md-offset-2 wrapper">
-  <form name="worklistform">
-    <header class="row">
-      <input class="h1" id="title" ng-model="worklist.worklist.title" placeholder="Your name" required autofocus=""/>
-      <input class="h2" id="address" ng-model="worklist.worklist.address" placeholder="Your address" />
-      <section id="contact-details">
-	<input class="span" ng-model="worklist.worklist.email" placeholder ="Email" required/>
-      </section>
-    </header>
-    <section id="summary" class="content-section">
-      <h1 class='pop-header'
-        popover="The summary section is a brief overview of your career so far. It's your elevator pitch. Tell the world about yourself in under 300 words."
-        popover-trigger="mouseenter"
-      >Summary</h1>
-      <textarea class="p" id="summary-input" ng-model="worklist.worklist.summary" placeholder= "A summary of you"></textarea>
-      <section id="career-objective">
-        <h2 class='pop-header'
-          popover="Where are you heading? What do want to achieve in your career? Give us a brief overview of your plans for career domination."
-          popover-trigger="mouseenter"
-        > Career Objective</h2>
-        <textarea class="p" id="career-objective" ng-model="worklist.worklist.career_objectives" placeholder="What do you want to achieve in your career?"></textarea>
-      </section>
-      <section id="key-skills">
-        <h2 class='pop-header'
-          popover="Skills pay bills. List your top skills here and keep include ones that will catch the eye of your hirer."
-          popover-trigger="mouseenter"
-        > Key Skills </h2>
-        <ul>
-          <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes">
-            <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
-            <a class="btn btn-danger btn-xs" ng-click="removeKeySkill($index)">-</a>
-          </li>
-        </ul>
-        <a class="btn btn-success btn-xs" ng-click="addKeySkill()">+ Key Skill</a>
-      </section>
-    </section>
-    <section id="job-history" class="content-section">
-      <h1 class='pop-header'
-        popover="Here's where you share your work history. We'd recommend starting with your most recent job and working back. "
-        popover-trigger="mouseenter"
-      >Employment History</h1>
-      <div ng-repeat="job in worklist.worklist.jobs_attributes">
-        <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
-      </div>
-      <button class="btn btn-success" ng-click="addSection('job')">Add Job</button>
-    </section>
-    <section class="row content-section" id="education-history">
-      <h1 class='pop-header'
-        popover="Education isn't for everyone, but we've all been through the system. Let your new employer know how far you went."
-        popover-trigger="mouseenter"
-      >Education History</h1>
-      <div ng-repeat="education in worklist.worklist.qualifications_attributes">
-        <!-- <education-history education="{{education}}"></education-history> -->
-        <section ng-show='education._destroy == null' class="education">
-  <input class="h3 qualification" ng-model="education.title" placeholder="Qualification earned" />
-  <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
-  <input class="span institute" ng-model="education.institute" placeholder="Name of Education Institute"/>
-  <a class="btn btn-danger btn-xs"ng-click="removeSection('qualification',$index)" ng-show="$index > 0">Remove</a>
-</section>
-      </div>
-      <button class="btn btn-success" ng-click="addSection('qualification')"><span class="glyphicon glyphicon-plus"></span>Add Education</button>
-    </section>
-    <section id="skills" class="row content-section">
-    </section>
-    <section id="interests" class="row content-section">
-    </section>
-  </form>
+<div class="container">
+  <div class='row'>
+
+    <!-- PAGE WRAPPER -->
+
+    <div class='col-lg-8 col-md-8 col-lg-offset-2 wrapper'>
+      <form class='form-horizontal' role='form' name="worklistform">
+        <header class="row">
+          <input class="h1" id="title" ng-model="worklist.worklist.title" placeholder="Your name" required autofocus=""/>
+          <input class="h2" id="address" ng-model="worklist.worklist.address" placeholder="Your address" />
+          <section id="contact-details">
+            <input class="span" ng-model="worklist.worklist.email" placeholder ="Email" required/>
+          </section>
+        </header>
+        <section id="summary" class="row">
+          <div class='col-lg-12 col-md-12'>
+          <h1 class='pop-header'
+            popover="The summary section is a brief overview of your career so far. It's your elevator pitch. Tell the world about yourself in under 300 words."
+            popover-trigger="mouseenter"
+            >Summary</h1>
+          <textarea class="p" id="summary-input" ng-model="worklist.worklist.summary" placeholder= "A summary of you"></textarea>
+          <div class='row'>
+          <section class='col-lg-6 col-md-6 col-sm-6' id="career-objective">
+            <h2 class='pop-header'
+              popover="Where are you heading? What do want to achieve in your career? Give us a brief overview of your plans for career domination."
+              popover-trigger="mouseenter"
+              > Career Objective</h2>
+            <textarea class="p" id="career-objective" ng-model="worklist.worklist.career_objectives" placeholder="What do you want to achieve in your career?"></textarea>
+          </section>
+          <section class='left col-lg-6 col-md-6 col-sm-6' id="key-skills">
+            <h2 class='pop-header'
+              popover="Skills pay bills. List your top skills here and keep include ones that will catch the eye of your hirer."
+              popover-trigger="mouseenter"
+              > Key Skills </h2>
+            <ul>
+              <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes">
+              <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
+              <a class="btn btn-danger btn-xs" ng-click="removeKeySkill($index)">-</a>
+              </li>
+            </ul>
+            <a class="btn btn-success btn-xs" ng-click="addKeySkill()">+ Key Skill</a>
+          </section>
+          </div>
+        </div>
+        </section>
+
+        <!-- EMPLOYEMENT SECTION -->
+
+        <section id="job-history" class="row">
+          <div class='col-lg-12 col-md-12'>
+          <h1 class='pop-header'
+            popover="Here's where you share your work history. We'd recommend starting with your most recent job and working back. "
+            popover-trigger="mouseenter"
+            >Employment History</h1>
+          <div ng-repeat="job in worklist.worklist.jobs_attributes">
+            <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
+          </div>
+          <div class='row left'>
+            <div class='col-lg-12 col-md-12'>
+              <button class="btn btn-success" ng-click="addSection('job')"><span class="glyphicon glyphicon-plus"></span>Add Job</button>
+            </div>
+          </div>
+          <div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+
+        <section class="row" id="education-history">
+          <div class='col-lg-12 col-md-12'>
+            <h1 class='pop-header'
+              popover="Education isn't for everyone, but we've all been through the system. Let your new employer know how far you went."
+              popover-trigger="mouseenter"
+              >Education History</h1>
+            <div class='left'>
+              <div ng-show='education._destroy == null' ng-repeat="education in worklist.worklist.qualifications_attributes">
+                <input class="h4 qualification" ng-model="education.title" placeholder="Qualification earned" />
+                <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
+                <input class="span institute" ng-model="education.institute" placeholder="Name of Education Institute"/>
+                <a class="btn btn-danger btn-xs"ng-click="removeSection('qualification',$index)" ng-show="$index > 0">Remove</a>
+              </div>
+              <button class="btn btn-success btn-xs" ng-click="addSection('qualification')"><span class="glyphicon glyphicon-plus"></span>Add Education</button>
+            </div>
+          </div>
+        </section>
+        <!-- <section id="skills" class="row"> -->
+        <!-- </section> -->
+        <!-- <section id="interests" class="row"> -->
+        <!-- </section> -->
+        <!-- <div class='row'> -->
+        <!--   <span>Copyright 2014</span> -->
+        <!-- </div> -->
+        <br/>
+
+      </form>
+    </div>
+  </div>
+  <br/>
 </div>
 
 <div class="backdrop is-hidden" backdrop></div>
