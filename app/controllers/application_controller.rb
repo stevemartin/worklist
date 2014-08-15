@@ -1,3 +1,4 @@
+# Main app controller
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -11,17 +12,25 @@ class ApplicationController < ActionController::Base
   end
 
   def set_worklist_from_signature
-    @worklist = Worklist.find_by_url_and_url_key(params[:url].to_s, params[:url_key])
-    if !@worklist || @worklist.user_id.present?
-      respond_to do |format|
-        format.json { render json: {error:'Invalid URL Signature - Worklist not found or already owned'}, status: :not_found  }
+    @worklist = find_worklist
+
+    respond_to do |format|
+      format.json do
+        render json: {
+          error: 'Invalid URL Signature - Worklist not found or already owned'
+        },
+        status: :not_found
       end
-    end
+    end if !@worklist || @worklist.user_id.present?
   end
 
   protected
+
+  def find_worklist
+    Worklist.find_by_url_and_url_key(params[:url].to_s, params[:url_key])
+  end
+
   def verified_request?
     super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
-
 end

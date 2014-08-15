@@ -66,4 +66,5 @@ group :development do
   gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano-bundler', github: 'capistrano/bundler'
   gem 'meta_request'
+  gem 'rubocop'
 end
