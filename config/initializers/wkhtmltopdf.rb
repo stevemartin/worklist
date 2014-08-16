@@ -1,6 +1,13 @@
+if Rails.env.development?
+  wkh_path =  '/usr/local/bin/wkhtmltopdf'
+else
+  wkh_path = '/usr/bin/wkhtmltopdf'
+end
+
 WickedPdf.config = {
-  :exe_path => '/usr/local/bin/wkhtmltopdf'
+  :exe_path => wkh_path
 }
+
 module WickedPdfHelper
   def wicked_pdf_stylesheet_link_tag(*sources)
     sources.collect { |source|
