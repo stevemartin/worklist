@@ -1,8 +1,4 @@
-if Rails.env.development?
-  wkh_path =  '/usr/local/bin/wkhtmltopdf'
-else
-  wkh_path = '/usr/bin/wkhtmltopdfx'
-end
+wkh_path =  '/usr/local/bin/wkhtmltopdf'
 
 WickedPdf.config = {
   :exe_path => wkh_path
