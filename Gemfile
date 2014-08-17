@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.0'
+gem 'rails', '4.1.4'
 gem 'unicorn'
 # Use sqlite3 as the database for Active Record
 
@@ -66,4 +66,5 @@ group :development do
   gem 'capistrano-rvm', github: 'capistrano/rvm'
   gem 'capistrano-bundler', github: 'capistrano/bundler'
   gem 'meta_request'
+  gem 'rubocop'
 end

@@ -1,5 +1,13 @@
 @import 'mixins';
 
+.left {
+  text-align: left;
+}
+
+.h1, .h2, .h3, .h4 {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 100;
+}
 .wrapper{
   background:$cv-colour;
   margin-top: ems(50);
@@ -24,6 +32,10 @@ input, textarea{
   section{
     position: relative;
   }
+}
+
+textarea {
+  width: 100%;
 }
 
 
@@ -59,8 +71,10 @@ header{
 }
 
 .content-section{
-  width: 100%;
-  float:left;
+  // margin: ems(3);
+  // background:#999;
+  // width: 100%;
+  // float:left;
   text-align:left;
   @include padding(20);
   position: relative;
@@ -75,27 +89,9 @@ header{
   }
 }
 
-#summary{
-
-  textarea{
-    width: 90%;
-    clear:both;
-    display: block;
-    @include margin(5, auto);
-  }
-  section{
-
-    @include width(50%, all, false);
-    float:left;
-    h2{
-      @include font-size(18);
-      color:$text-light;
-    }
-  }
-}
-
-
 #job-history{
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 100;
   .job-header{
     width: 100%;
     clear:both;
@@ -107,14 +103,10 @@ header{
     .employer-address{
       float:left;
       clear:left;
-      font-size: ems(14);
-      font-weight: 100;
-      width: 30%;
     }
     .job-title{
-      position: absolute;
-      right: ems(10);
-      text-align: right;
+      float:left;
+      clear:left;
     }
     .job-duration{
       position: absolute;

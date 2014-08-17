@@ -1,68 +1,82 @@
-.container.col-md-8.col-md-offset-2.wrapper
-  .cv
-    %header.row
-      %h1#title.h1
-        = @worklist.title
-      %h2#address.h2
-        = @worklist.address
-      %section#contact-details
-        = @worklist.email
-    %section#summary.content-section
-      %h1 Summary
-      %p#summary-input.p
-        = @worklist.summary
-      %section#career-objective
-        %h2 Career Objective
-        %p#career-objective.p
-          = @worklist.career_objectives
-      %section#key-skills
-        %h2 Key Skills
-        %ul
-          - @worklist.skills.each do |skill|
-            %li
-              %p
-                = skill.title
-              %p
-                = skill.description
-    %section#job-history.content-section
-      %h1 Employment History
-      %div
-        - @worklist.jobs.each do |job|
-          %section.job
-            %h2.employer
-              = job.employer
-            %span.employer-address
-              Addr: <b>#{ job.address }</b>
-            %br
-            %span.job-start-date
-              Start date: <b>#{ job.start_date.try(:to_date) }</b>
-            %span.job-end-date
-              End date: <b>#{ job.end_date.try(:to_date) || 'Current' }</b>
-            %p.employer-description
-              About: <span>#{ job.employer_description }</span>
-            %h4{ style: 'color: #888888;' }
-              Job details
-            #desc{ style: 'margin-left: 8px; background-color: #fffcfc; padding: 4px;'}
-              %h4.job-title
-                = job.title
-              %p.job-description
-                Description: #{ job.description }
-              %ul.job-skills
-                - job.skills.each do |skill|
-                  %li
-                    %p
-                      = skill.title
-    %section#education-history.row.content-section
-      %h1 Education History
-      %div
-        - @worklist.qualifications.each do |education|
-          %section.education
-            %h3.qualification
-              = education.title
-            %span.grade
-              = education.grade
-            %span.institute
-              = education.institute
-    %section#skills.row.content-section
-    %section#interests.row.content-section
+.container
+  .cv.row
+    .col-lg-8.col-md-8.col-lg-offset-2.col-md-offset-2.wrapper
+      %header.row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+          %h1#title.h1
+            = @worklist.title
+          %h2#address.h2
+            = @worklist.address
+          %section#contact-details
+            = @worklist.email
+
+      <!-- SUMMARY -->
+
+      %section#summary.row.content-section
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+          .row
+            .col-lg-12.col-md-12.col-sm-12.left
+              %h1 Summary
+              %p#summary-input.p
+                = @worklist.summary
+          .row
+            .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
+              %section#career-objective
+                %h2 Career Objective
+                %p#career-objective.p
+                  = @worklist.career_objectives
+            .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
+              %section#key-skills
+                %h2 Key Skills
+                %ul
+                  - @worklist.skills.each do |skill|
+                    %li
+                      %p
+                        = skill.title
+                      %p
+                        = skill.description
+
+      %section#job-history.content-section
+        %h1 Employment History
+        %div
+          - @worklist.jobs.each do |job|
+            %section.job
+              %h2.employer
+                = job.employer
+              %span.employer-address
+                Addr: <b>#{ job.address }</b>
+              %br
+              %span.job-start-date
+                Start date: <b>#{ job.start_date.try(:to_date) }</b>
+              %span.job-end-date
+                End date: <b>#{ job.end_date.try(:to_date) || 'Current' }</b>
+              %p.employer-description
+                About: <span>#{ job.employer_description }</span>
+              %h4{ style: 'color: #888888;' }
+                Job details
+              #desc{ style: 'margin-left: 8px; background-color: #fffcfc; padding: 4px;'}
+                %h4.job-title
+                  = job.title
+                %p.job-description
+                  Description: #{ job.description }
+                %ul.job-skills
+                  - job.skills.each do |skill|
+                    %li
+                      %p
+                        = skill.title
+
+      %section#education-history.row.content-section
+        .col-lg-12.col-md-12.col-sm-12.col-xs.12
+          %h1 Education History
+          %div
+            - @worklist.qualifications.each do |education|
+              %section.education
+                %h3.qualification
+                  = education.title
+                %span.grade
+                  = education.grade
+                %span.institute
+                  = education.institute
+      %section#skills.row.content-section
+      %section#interests.row.content-section
 
