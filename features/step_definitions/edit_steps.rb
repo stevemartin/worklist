@@ -1,5 +1,9 @@
 When(/^I add another section and save it$/) do
+  container = first('.container')
+  container.click
   click_button 'Add Job'
+  container = first('.container')
+  container.click
   all('section.job').count
   50.times do
     sleep 0.1 if ( all('section.job').count != 2)
