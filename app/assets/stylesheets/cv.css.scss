@@ -34,6 +34,10 @@ input, textarea{
   }
 }
 
+textarea {
+  width: 100%;
+}
+
 
 header{
   .h1{
@@ -84,26 +88,6 @@ header{
     }
   }
 }
-
-#summary{
-
-  textarea{
-    width: 90%;
-    clear:both;
-    display: block;
-    @include margin(5, auto);
-  }
-  section{
-
-    @include width(50%, all, false);
-    float:left;
-    h2{
-      @include font-size(18);
-      color:$text-light;
-    }
-  }
-}
-
 
 #job-history{
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
