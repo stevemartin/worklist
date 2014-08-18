@@ -24,10 +24,10 @@ en:
   home:
     worklist:
       title: "Workli.st"
-      address: "Your online CV/Resume "
+      address: "Your online CV/Resume"
       email: "info@workli.st"
-      summary: "Worklists help you in your job hunt. They exist for 30 days (but can exist for longer) are always editable and are easily shared."
-      career_objectives: "Feel free to edit this Worklist and save. We'll give you your sharing link once it's saved"
+      summary: "Worklist lets you create a free online cv to help you in your job hunt. It exists for 30 days (but can exist for longer if you sign up), is always editable and is easily shared via a unique url."
+      career_objectives: "Feel free to edit this Worklist and save it. We'll give you your sharing link once it's saved"
       skills_attributes:
         -
           title: "Fast!"
@@ -38,25 +38,22 @@ en:
         -
           title: "Easy!"
           key_skill: true
-        -
-          title: "Recruiter safe!"
-          key_skill: true
       jobs_attributes:
         -
-          employer: "ACME Corp."
-          address: "Main Street, London"
-          start_date: "January 2013"
+          employer: "You!"
+          address: "Number 1, Your Screen, workli.st"
+          start_date: "January 2014"
           end_date: "Present"
-          title: "Administrator"
-          employer_description: "ACME Corp are the world's largest creator of Widgets."
-          description: "Overseeing the day to day activities of the administration team"
+          title: "Your CV"
+          employer_description: "You're a great employee who needs an online CV today!"
+          description: "Providing you with the tools to get your CV online fast!"
           skills_attributes:
             -
-              title: "Good eyesight"
+              title: "Well presented"
             -
-              title: "Steady aim"
+              title: "Works in different browsers"
             -
-              title: "Attention to detail"
+              title: "Flexible UI"
       qualifications_attributes:
         -
           title: "GCSE English"
