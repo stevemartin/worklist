@@ -25,7 +25,7 @@ describe JobPresenter do
   context 'when a hash' do
   subject{ described_class.new( job ) }
     it 'exposes the skills attributes as a hash' do
-      subject.attributes[:skills_attributes].should == {1=>{:id=>1, :key_skill=>"key_skill", :title=>"title"}}
+      subject.attributes[:skills_attributes].should == {1=>{:id=>1, :key_skill=>"key_skill", :title=>"title", :display_order=>nil}}
     end
 
     it 'exposes the skills attributes as a hash' do
@@ -35,7 +35,7 @@ describe JobPresenter do
 
   context 'when an array' do
     it 'exposes the skills attributes as an array' do
-      subject.attributes(:array)[:skills_attributes].should == [{:id=>1, :key_skill=>"key_skill", :title=>"title"}, {:id=>1, :key_skill=>"key_skill", :title=>"title"}]
+      subject.attributes(:array)[:skills_attributes].should == [{:id=>1, :key_skill=>"key_skill", :title=>"title", :display_order=>nil}, {:id=>1, :key_skill=>"key_skill", :title=>"title", :display_order=>nil}]
     end
 
     it 'exposes the skills attributes as an array' do
