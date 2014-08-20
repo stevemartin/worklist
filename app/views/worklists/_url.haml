@@ -63,10 +63,21 @@
                     Job Description
                   .row
                     .col-lg-8.col-md-8.col-sm-8.col-xs-12.left
-                      %h2.job-title
-                        = job.title
-                      %p.job-description
-                        = job.description
+                      .row
+                        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                          %h2.job-title
+                            = job.title
+                          %p.job-description
+                            = job.description
+                      .row
+                        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                          %h2.italic Experience Gained
+                          %div.job-experiences
+                            - job.experiences.order(:display_order).each do |experience|
+                              %h3
+                                = experience.heading
+                              %p
+                                = experience.content
                     .col-lg-4.col-md-4.col-sm-4.col-xs-12.left
                       %h2.italic Skills Used/Aquired
                       %ul.job-skills
@@ -74,17 +85,6 @@
                           %li
                             = skill.title
                             = skill.description
-
-                .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
-              .row
-                .col-lg-12.col-md-12.col-sm-12.col-xs-12
-                  %h2.italic Experience Gained
-                  %div.job-experiences
-                    - job.experiences.order(:display_order).each do |experience|
-                      %h3
-                        = experience.heading
-                      %p
-                        = experience.content
 
       %section#education-history.row.content-section
         .col-lg-12.col-md-12.col-sm-12.col-xs.12
