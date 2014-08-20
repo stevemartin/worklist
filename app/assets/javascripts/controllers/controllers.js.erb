@@ -15,7 +15,7 @@
 
   var app = angular.module('worklist',
     ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
-      'ui.bootstrap.modal','ui.bootstrap.popover', 'ui.bootstrap.datepicker']);
+      'ui.bootstrap.modal','ui.bootstrap.popover', 'ui.bootstrap.datepicker', 'ui.sortable']);
 
       app.config(['$routeProvider', '$provide', function($routeProvider, $provide) {
         $provide.decorator('datepickerPopupWrapDirective', function($delegate) {
@@ -78,6 +78,23 @@
       } else {
         sectionArr[index]['_destroy'] = '1';
       }
+    }
+
+    $scope.sortableOptions = function sortableOptions(name){
+      var name = name;
+      return  {
+        stop: function(e, ui){
+          console.log($scope.worklist.worklist[name]);
+          var displayIndex = 0;
+          angular.forEach($scope.worklist.worklist[name], function(el){
+            el.display_order = displayIndex;
+            displayIndex++;
+          });
+        }
+      }
+    }
+
+    function assignDisplayOrder(e) {
     }
 
     function worklistSignature() {

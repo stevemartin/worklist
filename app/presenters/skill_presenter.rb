@@ -7,9 +7,10 @@ class SkillPresenter
 
   def attributes
     {
-      id: @skill.id,
-      key_skill: @skill.key_skill,
-      title: @skill.title
+      id: skill.id,
+      key_skill: skill.key_skill,
+      title: skill.title,
+      display_order: skill.display_order
     }
   end
 

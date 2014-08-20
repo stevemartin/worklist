@@ -28,6 +28,8 @@ gem 'bootstrap-glyphicons'
 gem 'wicked_pdf'
 
 # Bower assets
+gem 'rails-assets-jquery'
+gem 'rails-assets-jquery-ui'
 gem 'rails-assets-bootstrap'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-route'
@@ -36,6 +38,7 @@ gem 'rails-assets-angular-cookies'
 gem 'rails-assets-angular-devise'
 gem 'rails-assets-angular-resource'
 gem 'rails-assets-angular-ui-bootstrap'
+gem 'rails-assets-angular-ui-sortable'
 gem 'rails-assets-angular-mocks'
 
 # Templating

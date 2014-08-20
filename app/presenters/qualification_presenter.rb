@@ -15,7 +15,8 @@ class QualificationPresenter
       id:        qualification.id,
       grade:     qualification.grade,
       institute: qualification.institute,
-      title:     qualification.title
+      title:     qualification.title,
+      display_order: qualification.display_order
     }
   end
 end

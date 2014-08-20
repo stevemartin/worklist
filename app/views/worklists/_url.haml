@@ -29,7 +29,7 @@
               %section#key-skills
                 %h2 Key Skills
                 %ul
-                  - @worklist.skills.each do |skill|
+                  - @worklist.skills.order(:display_order).each do |skill|
                     %li
                       %p
                         = skill.title
@@ -39,7 +39,7 @@
       %section#job-history.content-section
         %h1 Employment History
         %div
-          - @worklist.jobs.each do |job|
+          - @worklist.jobs.order(:display_order).each do |job|
             %section.job
               %h2.employer
                 = job.employer
@@ -60,7 +60,7 @@
                 %p.job-description
                   Description: #{ job.description }
                 %ul.job-skills
-                  - job.skills.each do |skill|
+                  - job.skills.order(:display_order).each do |skill|
                     %li
                       %p
                         = skill.title
@@ -69,7 +69,7 @@
         .col-lg-12.col-md-12.col-sm-12.col-xs.12
           %h1 Education History
           %div
-            - @worklist.qualifications.each do |education|
+            - @worklist.qualifications.order(:display_order).each do |education|
               %section.education
                 %h3.qualification
                   = education.title

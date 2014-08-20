@@ -21,7 +21,8 @@ class JobPresenter
       end_date:               job.end_date,
       skills_attributes:      set_skills_attributes,
       start_date:             job.start_date,
-      title:                  job.title
+      title:                  job.title,
+      display_order:          job.display_order
     }
   end
 

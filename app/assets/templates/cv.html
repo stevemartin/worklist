@@ -46,12 +46,13 @@
                   popover="Skills pay bills. List your top skills here and keep include ones that will catch the eye of your hirer."
                   popover-trigger="mouseenter"
                   > Key Skills </h2>
-                <ul>
-                  <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes">
+                <ul ui-sortable='sortableOptions("skills_attributes")' ng-model='worklist.worklist.skills_attributes'>
+                  <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes | orderBy:'display_order'">
                   <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
                   <a class="btn btn-danger btn-xs" ng-click="removeKeySkill($index)">-</a>
                   </li>
                 </ul>
+
                 <a class="btn btn-success btn-xs" ng-click="addKeySkill()">+ Key Skill</a>
               </section>
             </div>
@@ -66,8 +67,10 @@
             popover="Here's where you share your work history. We'd recommend starting with your most recent job and working back. "
             popover-trigger="mouseenter"
             >Employment History</h1>
-          <div ng-repeat="job in worklist.worklist.jobs_attributes">
-            <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
+          <div ui-sortable='sortableOptions("jobs_attributes")' ng-model='worklist.worklist.jobs_attributes' class='job-sort'>
+            <div ng-repeat="job in worklist.worklist.jobs_attributes | orderBy:'display_order'">
+              <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
+            </div>
           </div>
           <div class='row left'>
             <div class='col-lg-12 col-md-12'>
@@ -85,8 +88,8 @@
               popover="Education isn't for everyone, but we've all been through the system. Let your new employer know how far you went."
               popover-trigger="mouseenter"
               >Education History</h1>
-            <div class='left'>
-              <div ng-show='education._destroy == null' ng-repeat="education in worklist.worklist.qualifications_attributes">
+            <div ui-sortable='sortableOptions("qualifications_attributes")' ng-model='worklist.worklist.qualifications_attributes' class='left'>
+              <div ng-show='education._destroy == null' ng-repeat="education in worklist.worklist.qualifications_attributes | orderBy:'display_order'">
                 <input class="h4 qualification" ng-model="education.title" placeholder="Qualification earned" />
                 <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
                 <input class="span institute" ng-model="education.institute" placeholder="Name of Education Institute"/>

@@ -51,13 +51,13 @@ class PreAuthWorklistsController < ApplicationController
                                            :date_of_birth, :email_address, :website,
                                            :landline_phone, :mobile_phone, :description,
                                            :education, :work_history, :personal, :_destroy,
-                                           qualifications_attributes:[:id, :title, :grade, :institute, :_destroy],
+                                           qualifications_attributes:[:id, :title, :grade, :institute, :display_order, :_destroy],
                                            jobs_attributes: [:id, :employer, :address,
                                                              :address_id, :start_date,
                                                              :end_date, :title,
-                                                             :employer_description, :description, :_destroy,
-                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :_destroy]],
-                                           skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :_destroy]
+                                                             :employer_description, :description, :display_order, :_destroy,
+                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy]],
+                                           skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy]
                                           )
     end
 end
