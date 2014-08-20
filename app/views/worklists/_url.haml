@@ -1,6 +1,6 @@
 .container
   .cv.row
-    .col-lg-8.col-md-8.col-lg-offset-2.col-md-offset-2.wrapper
+    .col-lg-12.col-md-8.wrapper
       %header.row
         .col-lg-12.col-md-12.col-sm-12.col-xs-12
           %h1#title.h1
@@ -20,50 +20,71 @@
               %p#summary-input.p
                 = @worklist.summary
           .row
-            .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
+            .col-lg-8.col-md-8.col-sm-8.col-xs-12.left
               %section#career-objective
                 %h2 Career Objective
                 %p#career-objective.p
                   = @worklist.career_objectives
-            .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
+            .col-lg-4.col-md-4.col-sm-4.col-xs-12.left
               %section#key-skills
                 %h2 Key Skills
                 %ul
                   - @worklist.skills.order(:display_order).each do |skill|
                     %li
-                      %p
-                        = skill.title
-                      %p
-                        = skill.description
+                      = skill.title
+                      = skill.description
 
-      %section#job-history.content-section
-        %h1 Employment History
-        %div
+      %section#job-history.row.content-section
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12
+          %h1 Employment History
           - @worklist.jobs.order(:display_order).each do |job|
             %section.job
-              %h2.employer
-                = job.employer
-              %span.employer-address
-                Addr: <b>#{ job.address }</b>
-              %br
-              %span.job-start-date
-                Start date: <b>#{ job.start_date.try(:to_date) }</b>
-              %span.job-end-date
-                End date: <b>#{ job.end_date.try(:to_date) || 'Current' }</b>
-              %p.employer-description
-                About: <span>#{ job.employer_description }</span>
-              %h4{ style: 'color: #888888;' }
-                Job details
-              #desc{ style: 'margin-left: 8px; background-color: #fffcfc; padding: 4px;'}
-                %h4.job-title
-                  = job.title
-                %p.job-description
-                  Description: #{ job.description }
-                %ul.job-skills
-                  - job.skills.order(:display_order).each do |skill|
-                    %li
+              -# .row
+              -#   .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              -#     %h3 Employers Details
+              .row
+                .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  .row
+                    .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                      %h2.employer
+                        = job.employer
+                      %p.employer-address.italic
+                        = job.address
+                      %span.job-start-date
+                        = job.start_date.try(:to_date)
+                        \-
+                      %span.job-end-date
+                        = job.end_date.try(:to_date) || 'Current'
+                      %p.employer-description
+                        = job.employer_description
+              .row
+                .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  %h2.italic
+                    Job Description
+                  .row
+                    .col-lg-8.col-md-8.col-sm-8.col-xs-12.left
+                      %h2.job-title
+                        = job.title
+                      %p.job-description
+                        = job.description
+                    .col-lg-4.col-md-4.col-sm-4.col-xs-12.left
+                      %h2.italic Skills Used/Aquired
+                      %ul.job-skills
+                        - job.skills.order(:display_order).each do |skill|
+                          %li
+                            = skill.title
+                            = skill.description
+
+                .col-lg-6.col-md-6.col-sm-6.col-xs-12.left
+              .row
+                .col-lg-12.col-md-12.col-sm-12.col-xs-12
+                  %h2.italic Experience Gained
+                  %div.job-experiences
+                    - job.experiences.order(:display_order).each do |experience|
+                      %h3
+                        = experience.heading
                       %p
-                        = skill.title
+                        = experience.content
 
       %section#education-history.row.content-section
         .col-lg-12.col-md-12.col-sm-12.col-xs.12

@@ -40,13 +40,17 @@ en:
           key_skill: true
       jobs_attributes:
         -
-          employer: "You!"
+          employer: "You"
           address: "Number 1, Your Screen, workli.st"
           start_date: "January 2014"
           end_date: "Present"
           title: "Your CV"
-          employer_description: "You're a great employee who needs an online CV today!"
+          employer_description: "You're a great employee who needs an online CV today"
           description: "Providing you with the tools to get your CV online fast!"
+          experiences_attributes:
+            -
+              heading: "Helped you get a job"
+              content: "Rendered well on an iPhone of an employer"
           skills_attributes:
             -
               title: "Well presented"

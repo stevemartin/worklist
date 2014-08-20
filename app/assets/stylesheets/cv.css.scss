@@ -1,13 +1,95 @@
 @import 'mixins';
+body{
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+@media (min-width: $screen-xs-min) {
+  #title {
+    @include font-size(36);
+  }
+  h1, .h1 {
+    @include font-size(18);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(16);
+  }
+  .span, .p, .li {
+    @include font-size(16);
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  #title {
+    @include font-size(45);
+  }
+  h1, .h1 {
+    @include font-size(20);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(15);
+  }
+  .span, .p, .li {
+    @include font-size(15);
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  #title {
+    @include font-size(60);
+  }
+  h1, .h1 {
+    @include font-size(45);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(20);
+  }
+  .span, .p, .li {
+    @include font-size(20);
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  #title {
+    @include font-size(60);
+  }
+  h1, .h1 {
+    @include font-size(45);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(20);
+  }
+  .span, .p, .li {
+    @include font-size(20);
+  }
+}
 
 .left {
   text-align: left;
 }
 
-.h1, .h2, .h3, .h4 {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 100;
-}
 .wrapper{
   background:$cv-colour;
   margin-top: ems(50);
@@ -41,7 +123,6 @@ textarea {
 
 header{
   .h1{
-    @include font-size(36);
     @include margin(5, auto);
     clear:both;
     display: block;
@@ -50,7 +131,6 @@ header{
   }
 
   .h2{
-    @include font-size(18);
     @include margin(5, auto);
     color:$text-light;
     text-align: center;
@@ -79,7 +159,6 @@ header{
   @include padding(20);
   position: relative;
   h1{
-    @include font-size(24);
     color:$text-light;
   }
   ul{
@@ -88,9 +167,11 @@ header{
     }
   }
 }
+.italic {
+  font-style: italic;
+}
 
 #job-history{
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-weight: 100;
   .job-header{
     width: 100%;
@@ -101,6 +182,7 @@ header{
       float:left;
     }
     .employer-address{
+      font-style: italic;
       float:left;
       clear:left;
     }
@@ -119,7 +201,6 @@ header{
         width: 50%;
       }
       input{
-        font-size: ems(12);
       }
     }
   }

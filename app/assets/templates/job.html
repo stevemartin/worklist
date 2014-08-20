@@ -9,15 +9,16 @@
 
     <div class="row job-header">
       <div class='col-lg-12 col-md-12 col-sm-12'>
-        <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
+        <h3>Employer Details</h3>
       </div>
     </div>
 
     <div class="row job-details left">
       <div class='col-lg-6 col-md-6 col-sm-6'>
 
-        <input class="h3 employer-address" ng-model="job.address" placeholder="Employer's address"/>
-        <input class="h4 job-title" ng-model="job.title" placeholder="Your job title"/>
+        <input class="h2 employer" ng-model="job.employer" placeholder="Employer's name"/>
+        <textarea rows='1' class="p italic employer-address" ng-model="job.address" placeholder="Employer's address"/>
+        <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
 
       </div>
 
@@ -47,21 +48,51 @@
 
     <div class="row job-body">
 
-      <div class='col-lg-6 col-md-6 col-sm-6'>
-        <textarea class="p employer-description" ng-model="job.employer_description" placeholder="Description of your employer"></textarea>
-        <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
-      </div>
+      <div class='col-lg-12 col-md-12 col-sm-12'>
+        <div class='row'>
+          <div class='col-lg-12 col-md-12 col-sm-12'>
+            <h3>Job Description</h3>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-lg-6 col-md-6 col-sm-6'>
+            <input class="h4 job-title" ng-model="job.title" placeholder="Your job title"/>
+            <textarea class="p job-description" ng-model="job.description" placeholder="Description of the job"></textarea>
+          </div>
 
-      <section class='left col-lg-6 col-md-6 col-sm-6'>
-        <h4>Job Skills</h4>
-        <ul>
-          <li ng-show='skill._destroy == null' class="left job-skills" ng-repeat="skill in job.skills_attributes">
-          <input ng-model="skill.title" placeholder="Job specific skill"/>
-          <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
-          </li>
-        </ul>
-        <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">+ Job Skill</a>
-      </section>
+          <section class='left col-lg-6 col-md-6 col-sm-6'>
+            <h4>Job Skills</h4>
+            <ul>
+              <li ng-show='skill._destroy == null' class="left job-skills" ng-repeat="skill in job.skills_attributes">
+              <input ng-model="skill.title" placeholder="Job specific skill"/>
+              <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
+              </li>
+            </ul>
+            <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">+ Job Skill</a>
+          </section>
+        </div>
+
+        <div class='row'>
+          <div class='col-lg-12 col-md-12 col-sm-12'>
+
+            <!-- Experience -->
+
+            <h4>Experience</h4>
+
+            <ul>
+              <li ng-show='experience._destroy == null' class="left job-experiences" ng-repeat="experience in job.experiences_attributes">
+              <input class='h3' ng-model="experience.heading" placeholder="Job experience"/>
+              <a class="btn btn-danger btn-xs" ng-click="removeJobExperience(jobIndex,$index)">-</a>
+              <br/>
+              <textarea rows='2' ng-model="experience.content" placeholder="Details of your work experience here"/>
+              </li>
+            </ul>
+            <a class="btn btn-success btn-xs" ng-click="addJobExperience(jobIndex)">+ Job Experience</a>
+            <hr>
+          </div>
+
+        </div>
+      </div>
 
     </div>
 
