@@ -6,6 +6,9 @@ body{
   #title {
     @include font-size(36);
   }
+  .employer {
+    @include font-size(24);
+  }
   h1, .h1 {
     @include font-size(18);
   }
@@ -26,6 +29,9 @@ body{
 @media (min-width: $screen-sm-min) {
   #title {
     @include font-size(45);
+  }
+  .employer {
+    @include font-size(36);
   }
   h1, .h1 {
     @include font-size(20);
@@ -48,6 +54,9 @@ body{
   #title {
     @include font-size(60);
   }
+  .employer {
+    @include font-size(38);
+  }
   h1, .h1 {
     @include font-size(45);
   }
@@ -68,6 +77,9 @@ body{
 @media (min-width: $screen-lg-min) {
   #title {
     @include font-size(60);
+  }
+  .employer {
+    @include font-size(38);
   }
   h1, .h1 {
     @include font-size(45);
