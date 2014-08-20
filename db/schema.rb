@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140818105441) do
+ActiveRecord::Schema.define(version: 20140820102956) do
+
+  create_table "experiences", force: true do |t|
+    t.string   "heading"
+    t.text     "content"
+    t.integer  "display_order"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "worklist_id"
+    t.integer  "job_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiences", ["job_id"], name: "index_experiences_on_job_id"
+  add_index "experiences", ["worklist_id"], name: "index_experiences_on_worklist_id"
 
   create_table "jobs", force: true do |t|
     t.string   "employer"

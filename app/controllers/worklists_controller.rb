@@ -107,13 +107,15 @@ class WorklistsController < ApplicationController
                                            :date_of_birth, :email_address, :website,
                                            :landline_phone, :mobile_phone, :description,
                                            :education, :work_history, :personal,
+                                           experiences_attributes:[:id, :heading, :content, :display_order, :_destroy],
                                            qualifications_attributes:[:id, :title, :grade, :institute, :display_order, :_destroy],
                                            jobs_attributes: [:id, :employer, :address,
                                                              :address_id, :start_date,
                                                              :end_date, :title,
                                                              :employer_description, :description,
                                                              :display_order, :_destroy,
-                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy]],
+                                                             skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy],
+                                                             experiences_attributes:[:id, :heading, :content, :display_order, :_destroy]],
                                            skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy]
                                           )
     end

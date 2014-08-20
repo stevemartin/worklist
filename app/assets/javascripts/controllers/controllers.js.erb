@@ -183,6 +183,7 @@
       $scope.showSignUp = $scope.showSignIn = false;
     }
 
+    // JOB SKILL
     $scope.removeJobSkill = function removeSkill(jobIndex,index){
       $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'skill', index);
     };
@@ -193,6 +194,20 @@
         $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
       } else {
         $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      }
+    }
+
+    // JOB EXPERIENCE
+    $scope.removeJobExperience = function removeExperience(jobIndex,index){
+      $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'experience', index);
+    };
+
+    $scope.addJobExperience = function addJobExperience(jobIndex){
+      if(typeof $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes === 'undefined') {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes = [];
+        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes.push({});
+      } else {
+        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes.push({});
       }
     }
 

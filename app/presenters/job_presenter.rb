@@ -20,6 +20,7 @@ class JobPresenter
       employer_description:   job.employer_description,
       end_date:               job.end_date,
       skills_attributes:      set_skills_attributes,
+      experiences_attributes: set_experiences_attributes,
       start_date:             job.start_date,
       title:                  job.title,
       display_order:          job.display_order
@@ -30,6 +31,10 @@ class JobPresenter
 
   def set_skills_attributes
     @output_type == :array ? skills_attribute_array : skills_attribute_hash
+  end
+
+  def set_experiences_attributes
+    @output_type == :array ? experiences_attribute_array : experiences_attribute_hash
   end
 
   def skills_attribute_hash
@@ -46,6 +51,24 @@ class JobPresenter
     @job.skills.each do |skill|
       presented_skill = SkillPresenter.new(skill)
       attrs << presented_skill.attributes
+    end
+    attrs
+  end
+
+  def experiences_attribute_hash
+    attrs = {}
+    @job.experiences.each do |experience|
+      presented_experience = ExperiencePresenter.new(experience)
+      attrs[experience.id] = presented_experience.attributes
+    end
+    attrs
+  end
+
+  def experiences_attribute_array
+    attrs = []
+    @job.experiences.each do |experience|
+      presented_experience = ExperiencePresenter.new(experience)
+      attrs << presented_experience.attributes
     end
     attrs
   end

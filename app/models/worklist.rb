@@ -1,11 +1,12 @@
 # This model is the core of the worklist system.
 class Worklist < ActiveRecord::Base
   belongs_to :user
-  has_many :skills, dependent: :destroy
-  has_many :jobs, dependent: :destroy
+  has_many :skills,         dependent: :destroy
+  has_many :experiences,    dependent: :destroy
+  has_many :jobs,           dependent: :destroy
   has_many :qualifications, dependent: :destroy
 
-  accepts_nested_attributes_for :skills, :jobs,
+  accepts_nested_attributes_for :experiences, :skills, :jobs,
                                 :qualifications, allow_destroy: true
 
   after_create :generate_url

@@ -19,6 +19,7 @@ class WorklistPresenter
       jobs_attributes:             jobs_attributes,
       qualifications_attributes:   qualifications_attributes,
       skills_attributes:           skills_attributes,
+      experiences_attributes:      experiences_attributes,
       summary:                     worklist.summary,
       title:                       worklist.title,
       url:                         worklist.url,
@@ -60,6 +61,16 @@ class WorklistPresenter
       presented_skill = SkillPresenter.new(skill)
       attrs << presented_skill.attributes          if output_type     == :array
       attrs[skill.id] = presented_skill.attributes unless output_type == :array
+    end
+    attrs
+  end
+
+  def experiences_attributes
+    output_type == :array ? attrs = [] : attrs = {}
+    worklist.experiences.each do |experience|
+      presented_experience = ExperiencePresenter.new(experience)
+      attrs << presented_experience.attributes               if     output_type == :array
+      attrs[experience.id] = presented_experience.attributes unless output_type == :array
     end
     attrs
   end
