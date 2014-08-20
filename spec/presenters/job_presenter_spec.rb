@@ -6,6 +6,10 @@ describe JobPresenter do
     OpenStruct.new(id:1,key_skill:"key_skill",title:"title")
   end
 
+  let(:experience) do
+    OpenStruct.new(id:1,heading:"experience",content:"content")
+  end
+
   let(:job) do
     OpenStruct.new(
           id: "@job.id",
@@ -15,6 +19,7 @@ describe JobPresenter do
           employer_description: "@job.employer_description",
           end_date: "@job.end_date",
           skills:[skill, skill],
+          experiences:[experience, experience],
           start_date: "@job.start_date",
           title: "@job.title"
     )

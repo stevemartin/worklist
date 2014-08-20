@@ -31,6 +31,7 @@ describe WorklistPresenter do
       "url_key"=>"s0M3-kEE",
 
       "skills" => skills_attributes,
+      "experiences" => experiences_attributes,
       "jobs" => jobs_attributes,
       "qualifications" => qualifications_attributes
      )
@@ -40,8 +41,12 @@ describe WorklistPresenter do
     [OpenStruct.new(:id => 1)]
   end
 
+  let(:experiences_attributes) do
+    [OpenStruct.new(:id => 1)]
+  end
+
   let(:jobs_attributes) do
-    [OpenStruct.new(:id => 1, skills:skills_attributes)]
+    [OpenStruct.new(:id => 1, skills:skills_attributes, experiences:experiences_attributes)]
   end
 
   let(:qualifications_attributes) do
@@ -50,15 +55,15 @@ describe WorklistPresenter do
   end
 
   it 'should output hash attributes by default' do
-    subject.attributes.should == {:id=>1, :address=>"1 The Whitehouse", :career_objectives=>"Farmer", :email=>"some@email.u.like.com", :jobs_attributes=>{1=>{:id=>1, :address=>nil, :description=>nil, :employer=>nil, :employer_description=>nil, :end_date=>nil, :skills_attributes=>{1=>{:id=>1, :key_skill=>nil, :title=>nil, :display_order => nil}}, :start_date=>nil, :title=>nil, :display_order=>nil}}, :qualifications_attributes=>{1=>{:id=>1, :grade=>nil, :institute=>nil, :title=>nil, :display_order=>nil}}, :skills_attributes=>{1=>{:id=>1, :key_skill=>nil, :title=>nil, :display_order => nil}}, :summary=>"A Lama Never Lies", :title=>"Mr", :url=>"pyjamalama.farmer", :url_key=>"s0M3-kEE"}
+    subject.attributes.should == {:id=>1, :address=>"1 The Whitehouse", :career_objectives=>"Farmer", :email=>"some@email.u.like.com", :jobs_attributes=>{1=>{:id=>1, :address=>nil, :description=>nil, :employer=>nil, :employer_description=>nil, :end_date=>nil, :skills_attributes=>{1=>{:id=>1, :key_skill=>nil, :title=>nil, :display_order=>nil}}, :experiences_attributes=>{1=>{:id=>1, :heading=>nil, :content=>nil, :display_order=>nil}}, :start_date=>nil, :title=>nil, :display_order=>nil}}, :qualifications_attributes=>{1=>{:id=>1, :grade=>nil, :institute=>nil, :title=>nil, :display_order=>nil}}, :skills_attributes=>{1=>{:id=>1, :key_skill=>nil, :title=>nil, :display_order=>nil}}, :experiences_attributes=>{1=>{:id=>1, :heading=>nil, :content=>nil, :display_order=>nil}}, :summary=>"A Lama Never Lies", :title=>"Mr", :url=>"pyjamalama.farmer", :url_key=>"s0M3-kEE"}
   end
 
   it 'should output array attributes when requested' do
-    subject.attributes(:array).should == {:id=>1, :address=>"1 The Whitehouse", :career_objectives=>"Farmer", :email=>"some@email.u.like.com", :jobs_attributes=>[{:id=>1, :address=>nil, :description=>nil, :employer=>nil, :employer_description=>nil, :end_date=>nil, :skills_attributes=>[{:id=>1, :key_skill=>nil, :title=>nil, :display_order => nil}], :start_date=>nil, :title=>nil, :display_order=>nil}], :qualifications_attributes=>[{:id=>1, :grade=>nil, :institute=>nil, :title=>nil, :display_order=>nil}], :skills_attributes=>[{:id=>1, :key_skill=>nil, :title=>nil, :display_order => nil}], :summary=>"A Lama Never Lies", :title=>"Mr", :url=>"pyjamalama.farmer", :url_key=>"s0M3-kEE"}
+    subject.attributes(:array).should == {:id=>1, :address=>"1 The Whitehouse", :career_objectives=>"Farmer", :email=>"some@email.u.like.com", :jobs_attributes=>[{:id=>1, :address=>nil, :description=>nil, :employer=>nil, :employer_description=>nil, :end_date=>nil, :skills_attributes=>[{:id=>1, :key_skill=>nil, :title=>nil, :display_order=>nil}], :experiences_attributes=>[{:id=>1, :heading=>nil, :content=>nil, :display_order=>nil}], :start_date=>nil, :title=>nil, :display_order=>nil}], :qualifications_attributes=>[{:id=>1, :grade=>nil, :institute=>nil, :title=>nil, :display_order=>nil}], :skills_attributes=>[{:id=>1, :key_skill=>nil, :title=>nil, :display_order=>nil}], :experiences_attributes=>[{:id=>1, :heading=>nil, :content=>nil, :display_order=>nil}], :summary=>"A Lama Never Lies", :title=>"Mr", :url=>"pyjamalama.farmer", :url_key=>"s0M3-kEE"}
   end
 
   it 'should output the JSON version of the array' do
-    JSON.parse( subject.as_json(:array) ).should == {"id"=>1, "address"=>"1 The Whitehouse", "career_objectives"=>"Farmer", "email"=>"some@email.u.like.com", "jobs_attributes"=>[{"id"=>1, "address"=>nil, "description"=>nil, "employer"=>nil, "employer_description"=>nil, "end_date"=>nil, "skills_attributes"=>[{"id"=>1, "key_skill"=>nil, "title"=>nil, "display_order" => nil}], "start_date"=>nil, "title"=>nil, "display_order"=>nil}], "qualifications_attributes"=>[{"id"=>1, "grade"=>nil, "institute"=>nil, "title"=>nil, "display_order"=>nil}], "skills_attributes"=>[{"id"=>1, "key_skill"=>nil, "title"=>nil, "display_order" => nil}], "summary"=>"A Lama Never Lies", "title"=>"Mr", "url"=>"pyjamalama.farmer", "url_key"=>"s0M3-kEE"}
+    JSON.parse( subject.as_json(:array) ).should == {"id"=>1, "address"=>"1 The Whitehouse", "career_objectives"=>"Farmer", "email"=>"some@email.u.like.com", "jobs_attributes"=>[{"id"=>1, "address"=>nil, "description"=>nil, "employer"=>nil, "employer_description"=>nil, "end_date"=>nil, "skills_attributes"=>[{"id"=>1, "key_skill"=>nil, "title"=>nil, "display_order"=>nil}], "experiences_attributes"=>[{"id"=>1, "heading"=>nil, "content"=>nil, "display_order"=>nil}], "start_date"=>nil, "title"=>nil, "display_order"=>nil}], "qualifications_attributes"=>[{"id"=>1, "grade"=>nil, "institute"=>nil, "title"=>nil, "display_order"=>nil}], "skills_attributes"=>[{"id"=>1, "key_skill"=>nil, "title"=>nil, "display_order"=>nil}], "experiences_attributes"=>[{"id"=>1, "heading"=>nil, "content"=>nil, "display_order"=>nil}], "summary"=>"A Lama Never Lies", "title"=>"Mr", "url"=>"pyjamalama.farmer", "url_key"=>"s0M3-kEE"}
   end
 
 end
