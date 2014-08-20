@@ -1,9 +1,115 @@
 @import 'mixins';
+body{
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+@media (min-width: $screen-xs-min) {
+  #title {
+    @include font-size(36);
+  }
+  .employer {
+    @include font-size(24);
+  }
+  h1, .h1 {
+    @include font-size(32);
+  }
+
+  h2, h3, h4, h5 {
+    @include font-size(18);
+  }
+  .h2, .h3, .h4, .h5 {
+    @include font-size(18);
+  }
+
+  p, span, li {
+    @include font-size(12);
+  }
+  .span, .p, .li {
+    @include font-size(12);
+  }
+}
+
+@media (min-width: $screen-sm-min) {
+  #title {
+    @include font-size(45);
+  }
+  .employer {
+    @include font-size(32);
+  }
+  h1, .h1 {
+    @include font-size(36);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(15);
+  }
+  .span, .p, .li {
+    @include font-size(15);
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  #title {
+    @include font-size(60);
+  }
+  .employer {
+    @include font-size(38);
+  }
+  h1, .h1 {
+    @include font-size(45);
+  }
+
+  h2, h3, h4, h5 {
+  }
+  .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(20);
+  }
+  .span, .p, .li {
+    @include font-size(20);
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  #title {
+    @include font-size(60);
+  }
+  .employer {
+    @include font-size(38);
+  }
+  h1, .h1 {
+    @include font-size(45);
+  }
+
+  h1, h2, h3, h4, h5 {
+  }
+  .h1, .h2, .h3, .h4, .h5 {
+  }
+
+  p, span, li {
+    @include font-size(20);
+  }
+  .span, .p, .li {
+    @include font-size(20);
+  }
+}
+
+.left {
+  text-align: left;
+}
 
 .wrapper{
   background:$cv-colour;
   margin-top: ems(50);
   margin-bottom: ems(50);
+  text-align:center; border: 1px solid #ccc;
+  border-radius: ems(3);
   overflow: visible;
 }
 
@@ -24,11 +130,13 @@ input, textarea{
   }
 }
 
-section#contact-details { text-align: center; }
+textarea {
+  width: 100%;
+}
+
 
 header{
   .h1{
-    @include font-size(36);
     @include margin(5, auto);
     clear:both;
     display: block;
@@ -37,7 +145,6 @@ header{
   }
 
   .h2{
-    @include font-size(18);
     @include margin(5, auto);
     color:$text-light;
     text-align: center;
@@ -58,13 +165,14 @@ header{
 }
 
 .content-section{
-  width: 100%;
-  float:left;
+  // margin: ems(3);
+  // background:#999;
+  // width: 100%;
+  // float:left;
   text-align:left;
   @include padding(20);
   position: relative;
   h1{
-    @include font-size(24);
     color:$text-light;
   }
   ul{
@@ -73,28 +181,12 @@ header{
     }
   }
 }
-
-#summary{
-
-  textarea{
-    width: 90%;
-    clear:both;
-    display: block;
-    @include margin(5, auto);
-  }
-  section{
-
-    @include width(50%, all, false);
-    float:left;
-    h2{
-      @include font-size(18);
-      color:$text-light;
-    }
-  }
+.italic {
+  font-style: italic;
 }
 
-
 #job-history{
+  font-weight: 100;
   .job-header{
     width: 100%;
     clear:both;
@@ -104,16 +196,13 @@ header{
       float:left;
     }
     .employer-address{
+      font-style: italic;
       float:left;
       clear:left;
-      font-size: ems(14);
-      font-weight: 100;
-      width: 30%;
     }
     .job-title{
-      position: absolute;
-      right: ems(10);
-      text-align: right;
+      float:left;
+      clear:left;
     }
     .job-duration{
       position: absolute;
@@ -126,7 +215,6 @@ header{
         width: 50%;
       }
       input{
-font-size: ems(12);
       }
     }
   }
@@ -134,19 +222,3 @@ font-size: ems(12);
     width: 100%;
   }
 }
-
-.is-editable{
-  border: 1px solid transparent;
-
-  &:hover{
-    border: 1px dashed #DDD;
-  }
-}
-
-input, textarea{
-  &:hover{
-    border: 1px dashed #CCC;
-  }
-}
-
-// body, h1,h2,h3,h4,p,span { background-color: red; }
