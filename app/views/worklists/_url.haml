@@ -51,10 +51,10 @@
                       %p.employer-address.italic
                         = job.address
                       %span.job-start-date
-                        = job.start_date.try(:to_date)
+                        = job.start_date.try(:strftime, "%b %d, %Y")
                         \-
                       %span.job-end-date
-                        = job.end_date.try(:to_date) || 'Current'
+                        = job.end_date.try(:strftime, "%b %d, %Y") || 'Current'
                       %p.employer-description
                         = job.employer_description
               .row
