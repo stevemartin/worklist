@@ -185,7 +185,7 @@
 
     // JOB SKILL
     $scope.removeJobSkill = function removeSkill(jobIndex,index){
-      $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'skill', index);
+      $scope.remover($scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex], 'skill', index);
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
@@ -199,7 +199,7 @@
 
     // JOB EXPERIENCE
     $scope.removeJobExperience = function removeExperience(jobIndex,index){
-      $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'experience', index);
+      $scope.remover($scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex], 'experience', index);
     };
 
     // display_order
@@ -212,7 +212,7 @@
       }
     }
 
-    $scope.sortByDisplayOrder = function sortByDisplayOrder(a,b){ return a > b }
+    $scope.sortByDisplayOrder = function sortByDisplayOrder(a,b){ return a.display_order > b.display_order }
 
     $scope.addKeySkill = function addSkill(){
       $scope.worklist.worklist.skills_attributes.push({});
