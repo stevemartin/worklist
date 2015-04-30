@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820102956) do
+ActiveRecord::Schema.define(version: 20150430101748) do
 
   create_table "experiences", force: true do |t|
     t.string   "heading"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 20140820102956) do
     t.string   "landline_phone"
     t.string   "mobile_phone"
     t.text     "description"
-    t.string   "summary"
+    t.text     "summary",           limit: 255
     t.text     "personal"
     t.datetime "created_at"
     t.datetime "updated_at"

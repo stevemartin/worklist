@@ -189,11 +189,11 @@
     };
 
     $scope.addJobSkill = function addJobSkill(jobIndex){
-      if(typeof $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes === 'undefined') {
-        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes = [];
-        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+      if(typeof $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].skills_attributes === 'undefined') {
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].skills_attributes = [];
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].skills_attributes.push({});
       } else {
-        $scope.worklist.worklist.jobs_attributes[jobIndex].skills_attributes.push({});
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].skills_attributes.push({});
       }
     }
 
@@ -202,14 +202,17 @@
       $scope.remover($scope.worklist.worklist.jobs_attributes[jobIndex], 'experience', index);
     };
 
+    // display_order
     $scope.addJobExperience = function addJobExperience(jobIndex){
-      if(typeof $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes === 'undefined') {
-        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes = [];
-        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes.push({});
+      if(typeof $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].experiences_attributes === 'undefined') {
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].experiences_attributes = [];
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].experiences_attributes.push({});
       } else {
-        $scope.worklist.worklist.jobs_attributes[jobIndex].experiences_attributes.push({});
+        $scope.worklist.worklist.jobs_attributes.sort($scope.sortByDisplayOrder)[jobIndex].experiences_attributes.push({});
       }
     }
+
+    $scope.sortByDisplayOrder = function sortByDisplayOrder(a,b){ return a > b }
 
     $scope.addKeySkill = function addSkill(){
       $scope.worklist.worklist.skills_attributes.push({});
