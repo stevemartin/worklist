@@ -65,10 +65,10 @@
             <ul>
               <li ng-show='skill._destroy == null' class="left job-skills" ng-repeat="skill in job.skills_attributes">
               <input ng-model="skill.title" placeholder="Job specific skill"/>
-              <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(jobIndex,$index)">-</a>
+              <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(job,skill)">-</a>
               </li>
             </ul>
-            <a class="btn btn-success btn-xs" ng-click="addJobSkill(jobIndex)">+ Job Skill</a>
+            <a class="btn btn-success btn-xs" ng-click="addJobSkill(job)">+ Job Skill</a>
           </section>
         </div>
 
@@ -82,12 +82,12 @@
             <ul>
               <li ng-show='experience._destroy == null' class="left job-experiences" ng-repeat="experience in job.experiences_attributes">
               <input class='h3' ng-model="experience.heading" placeholder="Job experience"/>
-              <a class="btn btn-danger btn-xs" ng-click="removeJobExperience(jobIndex,$index)">-</a>
+              <a class="btn btn-danger btn-xs" ng-click="removeJobExperience(job,experience)">-</a>
               <br/>
               <textarea rows='2' ng-model="experience.content" placeholder="Details of your work experience here"/>
               </li>
             </ul>
-            <a class="btn btn-success btn-xs" ng-click="addJobExperience(jobIndex)">+ Job Experience</a>
+            <a class="btn btn-success btn-xs" ng-click="addJobExperience(job)">+ Job Experience</a>
             <hr>
           </div>
 
