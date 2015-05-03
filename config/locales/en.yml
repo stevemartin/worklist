@@ -30,16 +30,20 @@ en:
       career_objectives: "Feel free to edit this Worklist and save it. We'll give you your sharing link once it's saved"
       skills_attributes:
         -
+          display_order: 0
           title: "Fast!"
           key_skill: true
         -
+          display_order: 1
           title: "Shareable!"
           key_skill: true
         -
+          display_order: 2
           title: "Easy!"
           key_skill: true
       jobs_attributes:
         -
+          display_order: 0
           employer: "You"
           address: "Number 1, Your Screen, workli.st"
           start_date: "January 2014"
@@ -49,25 +53,32 @@ en:
           description: "Providing you with the tools to get your CV online fast!"
           experiences_attributes:
             -
+              display_order: 0
               heading: "Helped you get a job"
               content: "Rendered well on an iPhone of an employer"
           skills_attributes:
             -
+              display_order: 0
               title: "Well presented"
             -
+              display_order: 1
               title: "Works in different browsers"
             -
+              display_order: 2
               title: "Flexible UI"
       qualifications_attributes:
         -
+          display_order: 0
           title: "GCSE English"
           grade: "A"
           institute: "Grange Hill"
         -
+          display_order: 1
           title: "GCSE Maths"
           grade: "A"
           institute: "Grange Hill"
         -
+          display_order: 2
           title: "GCSE Science"
           grade: "A"
           institute: "Grange Hill"
