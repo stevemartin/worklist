@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430101748) do
+ActiveRecord::Schema.define(version: 20150503163000) do
 
   create_table "experiences", force: true do |t|
     t.string   "heading"
     t.text     "content"
-    t.integer  "display_order"
+    t.integer  "display_order", default: 0
     t.datetime "start_date"
     t.datetime "end_date"
     t.integer  "worklist_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20150430101748) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address"
-    t.integer  "display_order"
+    t.integer  "display_order",        default: 0
   end
 
   add_index "jobs", ["address_id"], name: "index_jobs_on_address_id"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150430101748) do
     t.integer  "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "display_order"
+    t.integer  "display_order", default: 0
   end
 
   add_index "qualifications", ["worklist_id"], name: "index_qualifications_on_worklist_id"
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150430101748) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "job_id"
-    t.integer  "display_order"
+    t.integer  "display_order", default: 0
   end
 
   add_index "skills", ["skill_id"], name: "index_skills_on_skill_id"

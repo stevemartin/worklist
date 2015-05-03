@@ -31,7 +31,7 @@ class WorklistPresenter
 
   def jobs_attributes
     output_type == :array ? attrs = [] : attrs = {}
-    worklist.jobs.each do |job|
+    worklist.jobs.order(:display_order).each do |job|
       presented_job = JobPresenter.new(job)
       attrs << presented_job.attributes(:array) if output_type     == :array
       attrs[job.id] = presented_job.attributes  unless output_type == :array
@@ -42,22 +42,20 @@ class WorklistPresenter
   # not well tested
   def qualifications_attributes
     output_type == :array ? attrs = [] : attrs = {}
-    worklist.qualifications.each do |qualification|
+    worklist.qualifications.order(:display_order).each do |qualification|
       presented_qualification = QualificationPresenter.new(qualification)
-
       if output_type == :array
         attrs << presented_qualification.attributes
       else
         attrs[qualification.id] = presented_qualification.attributes
       end
-
     end
     attrs
   end
 
   def skills_attributes
     output_type == :array ? attrs = [] : attrs = {}
-    worklist.skills.each do |skill|
+    worklist.skills.order(:display_order).each do |skill|
       presented_skill = SkillPresenter.new(skill)
       attrs << presented_skill.attributes          if output_type     == :array
       attrs[skill.id] = presented_skill.attributes unless output_type == :array
@@ -67,7 +65,7 @@ class WorklistPresenter
 
   def experiences_attributes
     output_type == :array ? attrs = [] : attrs = {}
-    worklist.experiences.each do |experience|
+    worklist.experiences.order(:display_order).each do |experience|
       presented_experience = ExperiencePresenter.new(experience)
       attrs << presented_experience.attributes               if     output_type == :array
       attrs[experience.id] = presented_experience.attributes unless output_type == :array

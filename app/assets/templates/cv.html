@@ -54,10 +54,12 @@
                   popover="Skills pay bills. List your top skills here and keep include ones that will catch the eye of your hirer."
                   popover-trigger="mouseenter"
                   > Key Skills </h2>
-                <ul ui-sortable ng-model='worklist.worklist.skills_attributes'>
-                  <li ng-show='skill._destroy == null' ng-repeat="skill in worklist.worklist.skills_attributes | orderBy:'display_order'">
-                  <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
-                  <a class="btn btn-danger btn-xs" ng-click="removeKeySkill(skill)">-</a>
+                <ul ui-sortable='sortableSkillsOptions()'
+                  ng-model='worklist.worklist.skills_attributes'>
+                  <li ng-show='skill._destroy == null'
+                  ng-repeat="skill in worklist.worklist.skills_attributes | orderBy:'display_order'" >
+                    <input ng-model="skill.title" placeholder="Your Key Skills"/><input type='hidden' ng-model="skill.key_skill" />
+                    <a class="btn btn-danger btn-xs" ng-click="removeKeySkill(skill)">-</a>
                   </li>
                 </ul>
 
@@ -75,7 +77,7 @@
             popover="Here's where you share your work history. We'd recommend starting with your most recent job and working back. "
             popover-trigger="mouseenter"
             >Employment History</h1>
-          <div ui-sortable ng-model='worklist.worklist.jobs_attributes' class='job-sort'>
+          <div ui-sortable='sortableJobsOptions()' ng-model='worklist.worklist.jobs_attributes' class='job-sort'>
             <div ng-repeat="job in worklist.worklist.jobs_attributes | orderBy:'display_order'">
               <job-history ng-show='job._destroy == null' job="{{job}}"></job-history>
             </div>

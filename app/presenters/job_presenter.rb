@@ -39,7 +39,7 @@ class JobPresenter
 
   def skills_attribute_hash
     attrs = {}
-    @job.skills.each do |skill|
+    @job.skills.order(:display_order).each do |skill|
       presented_skill = SkillPresenter.new(skill)
       attrs[skill.id] = presented_skill.attributes
     end
@@ -48,7 +48,7 @@ class JobPresenter
 
   def skills_attribute_array
     attrs = []
-    @job.skills.each do |skill|
+    @job.skills.order(:display_order).each do |skill|
       presented_skill = SkillPresenter.new(skill)
       attrs << presented_skill.attributes
     end
@@ -57,7 +57,7 @@ class JobPresenter
 
   def experiences_attribute_hash
     attrs = {}
-    @job.experiences.each do |experience|
+    @job.experiences.order(:display_order).each do |experience|
       presented_experience = ExperiencePresenter.new(experience)
       attrs[experience.id] = presented_experience.attributes
     end
@@ -66,7 +66,7 @@ class JobPresenter
 
   def experiences_attribute_array
     attrs = []
-    @job.experiences.each do |experience|
+    @job.experiences.order(:display_order).each do |experience|
       presented_experience = ExperiencePresenter.new(experience)
       attrs << presented_experience.attributes
     end

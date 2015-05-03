@@ -64,22 +64,69 @@
       var sectionArr = $scope.worklist.worklist[section + 's_attributes'];
           // sectionObj = angular.copy( sectionArr[0] );
 
-      sectionArr.push( {} );
+      sectionArr.push( {display_order: sectionArr[sectionArr.length - 1] } );
     };
 
-    $scope.sortableOptions = function sortableOptions(name){
-      var name = name;
-      return  {
+    $scope.sortableJobsOptions = function sortableJobsOptions(){
+      return {
         stop: function(e, ui){
-          // console.log($scope.worklist.worklist[name]);
+          $scope.$broadcast('sortJobsEvent');
+        }
+      }
+    }
+
+    $scope.$on('sortJobsEvent', function(e){
+      var displayIndex = 0;
+      var jobs = $scope.worklist.worklist.jobs_attributes;
+      angular.forEach(jobs, function(el){
+        el.display_order = displayIndex;
+        displayIndex++;
+      });
+    });
+
+    $scope.sortableSkillsOptions = function sortableSkillsOptions(){
+      return {
+        stop: function(e, ui){
+          $scope.$broadcast('sortSkillsEvent');
+        }
+      }
+    }
+
+    $scope.$on('sortSkillsEvent', function(e){
+      var displayIndex = 0;
+      var skills = $scope.worklist.worklist.skills_attributes;
+      angular.forEach(skills, function(el){
+        el.display_order = displayIndex;
+        displayIndex++;
+      });
+    });
+
+    $scope.sortableOptions = function sortableOptions(items){
+      var myItems = items;
+      var that    = this;
+      return  {
+        update: function(e, ui){
+          // $scope.$broadcast('sortEvent', items);
+          return true;
+        },
+        stop: function(e, ui){
           var displayIndex = 0;
-          angular.forEach($scope.worklist.worklist[name], function(el){
+          angular.forEach(that.myItems, function(el){
             el.display_order = displayIndex;
             displayIndex++;
           });
         }
       }
     }
+
+    $scope.$on('sortEvent', function(e, items){
+      var displayIndex = 0;
+      debugger;
+      angular.forEach(items, function(el){
+        el.display_order = displayIndex;
+        displayIndex++;
+      });
+    });
 
     function assignDisplayOrder(e) {
     }
