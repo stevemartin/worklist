@@ -17,39 +17,39 @@
     ['Devise', 'ngRoute', 'ngCookies', 'worklist.directives','worklist.services',
       'ui.bootstrap.modal','ui.bootstrap.popover', 'ui.bootstrap.datepicker', 'ui.sortable']);
 
-      app.config(['$routeProvider', '$provide', function($routeProvider, $provide) {
-        $provide.decorator('datepickerPopupWrapDirective', function($delegate) {
-          $delegate[0].templateUrl = '<%= asset_path("datepicker/popup.html") %>';
+  app.config(['$routeProvider', '$provide', function($routeProvider, $provide) {
+    $provide.decorator('datepickerPopupWrapDirective', function($delegate) {
+      $delegate[0].templateUrl = '<%= asset_path("datepicker/popup.html") %>';
 
-          return $delegate;
-        });
-        $provide.decorator('datepickerDirective', function($delegate) {
-          $delegate[0].templateUrl = '<%= asset_path("datepicker/datepicker.html") %>';
-          $delegate[0].templateUrl = '<%= asset_path("datepicker/day.html") %>';
-          $delegate[0].templateUrl = '<%= asset_path("datepicker/month.html") %>';
-          $delegate[0].templateUrl = '<%= asset_path("datepicker/year.html") %>';
+      return $delegate;
+    });
+    $provide.decorator('datepickerDirective', function($delegate) {
+      $delegate[0].templateUrl = '<%= asset_path("datepicker/datepicker.html") %>';
+      $delegate[0].templateUrl = '<%= asset_path("datepicker/day.html") %>';
+      $delegate[0].templateUrl = '<%= asset_path("datepicker/month.html") %>';
+      $delegate[0].templateUrl = '<%= asset_path("datepicker/year.html") %>';
 
-          return $delegate;
-        });
-        $provide.decorator('modalWindowDirective', function($delegate) {
-          $delegate[0].templateUrl = '<%= asset_path("modal/window.html") %>';
-          return $delegate;
-        });
-        $provide.decorator('modalBackdropDirective', function($delegate) {
-          $delegate[0].templateUrl = '<%= asset_path("modal/backdrop.html") %>';
-          return $delegate;
-        });
-        $provide.decorator('popoverPopupDirective', function($delegate) {
-          $delegate[0].templateUrl = '<%= asset_path("popover/popover.html") %>';
-          return $delegate;
-        });
-        $routeProvider
-        .when('/', {
-          controller: 'EditCtrl',
-          templateUrl: '<%= asset_path("cv.html") %>'
-        })
-        .otherwise({ redirectTo: '/'});
-      }]);
+      return $delegate;
+    });
+    $provide.decorator('modalWindowDirective', function($delegate) {
+      $delegate[0].templateUrl = '<%= asset_path("modal/window.html") %>';
+      return $delegate;
+    });
+    $provide.decorator('modalBackdropDirective', function($delegate) {
+      $delegate[0].templateUrl = '<%= asset_path("modal/backdrop.html") %>';
+      return $delegate;
+    });
+    $provide.decorator('popoverPopupDirective', function($delegate) {
+      $delegate[0].templateUrl = '<%= asset_path("popover/popover.html") %>';
+      return $delegate;
+    });
+    $routeProvider
+    .when('/', {
+      controller: 'EditCtrl',
+      templateUrl: '<%= asset_path("cv.html") %>'
+    })
+    .otherwise({ redirectTo: '/'});
+  }]);
 
   app.controller('EditCtrl', ['Auth','$scope','WorkList','WorkListLinker','$modal',
                  'PreAuth','Cookie','User','$window',
@@ -74,7 +74,22 @@
         }
       }
     }
+    $scope.$on('sortJobsEvent', function(e){
+      var displayIndex = 0;
+      var jobs = $scope.worklist.worklist.jobs_attributes;
+      angular.forEach(jobs, function(el){
+        el.display_order = displayIndex;
+        displayIndex++;
+      });
+    });
 
+    $scope.sortableJobsOptions = function sortableJobsOptions(){
+      return {
+        stop: function(e, ui){
+          $scope.$broadcast('sortJobsEvent');
+        }
+      }
+    }
     $scope.$on('sortJobsEvent', function(e){
       var displayIndex = 0;
       var jobs = $scope.worklist.worklist.jobs_attributes;
@@ -91,7 +106,6 @@
         }
       }
     }
-
     $scope.$on('sortSkillsEvent', function(e){
       var displayIndex = 0;
       var skills = $scope.worklist.worklist.skills_attributes;
@@ -101,27 +115,42 @@
       });
     });
 
-    $scope.sortableOptions = function sortableOptions(items){
-      var myItems = items;
-      var that    = this;
-      return  {
-        update: function(e, ui){
-          // $scope.$broadcast('sortEvent', items);
-          return true;
-        },
+    $scope.sortableQualificationsOptions = function sortableJobSkillsOptions(){
+      return {
         stop: function(e, ui){
-          var displayIndex = 0;
-          angular.forEach(that.myItems, function(el){
-            el.display_order = displayIndex;
-            displayIndex++;
-          });
+          $scope.$broadcast('sortQualificationsEvent');
+        }
+      }
+    }
+    $scope.$on('sortQualificationsEvent', function(e){
+      var qualifications = $scope.worklist.worklist.qualifications_attributes;
+      $scope.setDisplayOrder(qualifications);
+    });
+
+    $scope.setDisplayOrder = function setDisplayOrder(items){
+      var displayIndex = 0;
+      var items = items
+      angular.forEach(items, function(el){
+        el.display_order = displayIndex;
+        displayIndex++;
+      });
+    }
+
+
+    // Works for nested records
+    $scope.sortableOptions = function sortableOptions(items){
+      return {
+        stop: function(e, ui){
+          $scope.$broadcast('sortEvent', [, items]);
         }
       }
     }
 
-    $scope.$on('sortEvent', function(e, items){
+    $scope.$on('sortEvent', function(e, data){
+      var data = data;
       var displayIndex = 0;
-      debugger;
+      var items = data[1];
+
       angular.forEach(items, function(el){
         el.display_order = displayIndex;
         displayIndex++;

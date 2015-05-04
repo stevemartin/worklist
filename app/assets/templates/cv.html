@@ -98,7 +98,7 @@
               popover="Education isn't for everyone, but we've all been through the system. Let your new employer know how far you went."
               popover-trigger="mouseenter"
               >Education History</h1>
-            <div ui-sortable ng-model='worklist.worklist.qualifications_attributes' class='left'>
+            <div ui-sortable='sortableQualificationsOptions()' ng-model='worklist.worklist.qualifications_attributes' class='left'>
               <div ng-show='education._destroy == null' ng-repeat="education in worklist.worklist.qualifications_attributes | orderBy:'display_order'">
                 <input class="h4 qualification" ng-model="education.title" placeholder="Qualification earned" />
                 <input class="span grade" ng-model="education.grade" placeholder="Grade/Level received"/>
@@ -109,13 +109,7 @@
             </div>
           </div>
         </section>
-        <!-- <section id="skills" class="row"> -->
-        <!-- </section> -->
-        <!-- <section id="interests" class="row"> -->
-        <!-- </section> -->
-        <!-- <div class='row'> -->
-        <!--   <span>Copyright 2014</span> -->
-        <!-- </div> -->
+
         <br/>
 
       </form>

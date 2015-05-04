@@ -62,7 +62,7 @@
 
           <section class='left col-lg-6 col-md-6 col-sm-6'>
             <h4>Job Skills</h4>
-            <ul>
+            <ul ui-sortable='sortableOptions(job.skills_attributes)' ng-model='job.skills_attributes'>
               <li ng-show='skill._destroy == null' class="left job-skills" ng-repeat="skill in job.skills_attributes">
               <input ng-model="skill.title" placeholder="Job specific skill"/>
               <a class="btn btn-danger btn-xs" ng-click="removeJobSkill(job,skill)">-</a>
@@ -79,7 +79,7 @@
 
             <h4>Experience</h4>
 
-            <ul>
+            <ul ui-sortable='sortableOptions(job.experiences_attributes)' ng-model='job.experiences_attributes'>
               <li ng-show='experience._destroy == null' class="left job-experiences" ng-repeat="experience in job.experiences_attributes">
               <input class='h3' ng-model="experience.heading" placeholder="Job experience"/>
               <a class="btn btn-danger btn-xs" ng-click="removeJobExperience(job,experience)">-</a>
