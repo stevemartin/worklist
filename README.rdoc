@@ -1,3 +1,5 @@
+{<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
+
 == Worklist! The open source CV generator and hosting tool!
 Worklist lets you effortlessly generate one or more CV's and host them online.
 
