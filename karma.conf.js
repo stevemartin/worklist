@@ -27,8 +27,8 @@ module.exports = function(config) {
       './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-devise-0.3.0/app/assets/javascripts/angular-devise/devise.js',
       './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-route-1.2.16/app/assets/javascripts/angular-route/angular-route.js',
       './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-cookies-1.2.16/app/assets/javascripts/angular-cookies/angular-cookies.js',
-      'public/assets/javascripts/**/*.js',
-      'spec/javascripts/**/*_spec.js'
+      './public/assets/**/*.js',
+      './spec/javascripts/**/*_spec.js'
     ],
 
 
