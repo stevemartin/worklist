@@ -7,7 +7,8 @@ Worklist lets you effortlessly generate one or more CV's and host them online.
 
 install rvm from rvm.io
 
-    bundle install
+    bundle install --path vendor/bundle
+    npm install -g karma-cli
     npm install
 
     rake db:create:all
@@ -15,22 +16,25 @@ install rvm from rvm.io
     RAILS_ENV=test rake db:migrate
 
 in seperate terminals or tmux windows respectively...
-    guard
-    karma start
-    karma start karma-e2e.conf.js
+    guard # for ruby tests
+    karma start # for angular unit tests ( NOTE - depends on vendored gems )
+    karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
 
 == Deploying
-cap production deploy
-cap production deploy:stop
-cap production deploy:start
+
+    cap production deploy
+    cap production deploy:stop
+    cap production deploy:start
 
 #### Note: migration cap tasks are currently hardcoded to production ( but you should never need to use them in dev anyway ).
-cap production db:create # shouldn't ever need this.
-cap production db:migrate
+
+    cap production db:create # shouldn't ever need this.
+    cap production db:migrate
 
 == Testing
 For visual integration tests:
-`JAVASCRIPT_DRIVER=selenium cucumber features`
+
+    JAVASCRIPT_DRIVER=selenium cucumber features
 
 == API Reference
                   Prefix Verb   URI Pattern                            Controller#Action
@@ -76,3 +80,11 @@ cancel_user_registration GET    /users/cancel(html, json)              devise/re
                   Prefix Verb   URI Pattern                            Controller#Action
                          POST   /link_worklist/:url/:url_key(json)     worklists#link_worklist
 
+
+== Development
+
+Worklist is an all in one hybrid Rails & Angular SPA. That means:
+
+* It uses Rails as an API for the main UI
+* It uses Angular as a frontend for the main UI
+* It uses Rails asset management to manage the main Javascript and CSS assets ( rails-assets and sprockets combined )
