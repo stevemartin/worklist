@@ -1,3 +1,6 @@
+== Worklist! The open source CV generator and hosting tool!
+Worklist lets you effortlessly generate one or more CV's and host them online.
+
 == Setup
 
 install rvm from rvm.io
@@ -24,7 +27,7 @@ cap production db:create # shouldn't ever need this.
 cap production db:migrate
 
 == Testing
-For visual integratin tests:
+For visual integration tests:
 `JAVASCRIPT_DRIVER=selenium cucumber features`
 
 == API Reference
