@@ -1,0 +1,8 @@
+test:
+  post:
+    - bundle exec rake assets:precompile && karma start --single-run
+
+dependencies:
+  pre:
+    - npm install -g karma-cli
+    - npm install
