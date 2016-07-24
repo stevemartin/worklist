@@ -38,20 +38,19 @@ describe WorklistPresenter do
   end
 
   let(:skills_attributes) do
-    [OpenStruct.new(:id => 1)]
+    double(:skills, order: [OpenStruct.new(:id => 1)])
   end
 
   let(:experiences_attributes) do
-    [OpenStruct.new(:id => 1)]
+    double(:experiences, order: [OpenStruct.new(:id => 1)])
   end
 
   let(:jobs_attributes) do
-    [OpenStruct.new(:id => 1, skills:skills_attributes, experiences:experiences_attributes)]
+    double(:jobs, order: [OpenStruct.new(:id => 1, skills:skills_attributes, experiences:experiences_attributes)])
   end
 
   let(:qualifications_attributes) do
-    [OpenStruct.new(:id => 1)]
-    # Array.new( OpenStruct.new(:id => 1) )
+    double(:qualifications, order: [OpenStruct.new(:id => 1)])
   end
 
   it 'should output hash attributes by default' do

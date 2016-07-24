@@ -10,6 +10,14 @@ describe JobPresenter do
     OpenStruct.new(id:1,heading:"experience",content:"content")
   end
 
+  let(:skills) do
+    double(:skills, order: [skill, skill])
+  end
+
+  let(:experiences) do
+    double(:experiences, order: [experience, experience])
+  end
+
   let(:job) do
     OpenStruct.new(
           id: "@job.id",
@@ -18,8 +26,8 @@ describe JobPresenter do
           employer: "@job.employer",
           employer_description: "@job.employer_description",
           end_date: "@job.end_date",
-          skills:[skill, skill],
-          experiences:[experience, experience],
+          skills:skills,
+          experiences:experiences,
           start_date: "@job.start_date",
           title: "@job.title"
     )
