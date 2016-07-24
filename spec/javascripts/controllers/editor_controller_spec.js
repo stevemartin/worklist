@@ -19,11 +19,14 @@ describe("controllers", function(){
       dump("MBE:", mockBackend );
     }));
 
-    it("should initialise with scope editable false", function(){
-      expect($scope.editing).toBe(false);
+    it("should initialise with iniitial auth settings", function(){
+        expect($scope.showSignUp).toBe(false);
+        expect($scope.showSignIn).toBe(false);
+        expect($scope.showSignOut).toBe(false);
     });
 
-    it("should save the worklist", function(){
+    xit("should save the worklist", function(){
+      mockBackend.expectPOST('/users/sign_in.json', testWorkList).respond({status:'success'});
       mockBackend.expectPOST('/worklist/1', testWorkList).respond({id:2});
 
       expect($scope.workList).toBeUndefined();
