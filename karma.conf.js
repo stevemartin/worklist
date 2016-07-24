@@ -20,13 +20,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      process.env.GEM_HOME+'/gems/rails-assets-angular-1.2.16/app/assets/javascripts/angular/angular.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-resource-1.2.16/app/assets/javascripts/angular-resource/angular-resource.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-bootstrap-0.10.0/app/assets/javascripts/angular-bootstrap/ui-bootstrap.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-mocks-1.2.16/app/assets/javascripts/angular-mocks/angular-mocks.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-devise-0.3.0/app/assets/javascripts/angular-devise/devise.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-route-1.2.16/app/assets/javascripts/angular-route/angular-route.js',
-      process.env.GEM_HOME+'/gems/rails-assets-angular-cookies-1.2.16/app/assets/javascripts/angular-cookies/angular-cookies.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-1.2.16/app/assets/javascripts/angular/angular.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-resource-1.2.16/app/assets/javascripts/angular-resource/angular-resource.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-bootstrap-0.10.0/app/assets/javascripts/angular-bootstrap/ui-bootstrap.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-mocks-1.2.16/app/assets/javascripts/angular-mocks/angular-mocks.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-devise-0.3.0/app/assets/javascripts/angular-devise/devise.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-route-1.2.16/app/assets/javascripts/angular-route/angular-route.js',
+      './vendor/bundle/ruby/2.1.0/gems/rails-assets-angular-cookies-1.2.16/app/assets/javascripts/angular-cookies/angular-cookies.js',
       'public/assets/javascripts/**/*.js',
       'spec/javascripts/**/*_spec.js'
     ],
