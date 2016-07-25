@@ -1,5 +1,6 @@
 wkh_path =  '/usr/local/bin/wkhtmltopdf'
 wkh_path =  '/usr/bin/wkhtmltopdf' if ENV['CIRCLECI'] == 'true'
+wkh_path = Gem.bin_path('wkhtmltopdf-heroku') if Rails.env.production?
 
 WickedPdf.config = {
   :exe_path => wkh_path

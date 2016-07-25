@@ -9,6 +9,7 @@ gem 'unicorn'
 gem 'sqlite3'
 gem 'pg'
 
+gem 'wkhtmltopdf-heroku'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
@@ -47,6 +48,7 @@ gem 'haml'
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'zeus'
+  gem 'pry'
 end
 
 group :test do
