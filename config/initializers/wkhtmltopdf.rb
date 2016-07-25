@@ -1,4 +1,5 @@
 wkh_path =  '/usr/local/bin/wkhtmltopdf'
+wkh_path =  '/usr/bin/wkhtmltopdf' if ENV['CIRCLECI'] == 'true'
 
 WickedPdf.config = {
   :exe_path => wkh_path
