@@ -6,7 +6,6 @@ gem 'rails', '4.1.4'
 gem 'unicorn'
 # Use sqlite3 as the database for Active Record
 
-gem 'sqlite3'
 gem 'pg'
 
 gem 'wkhtmltopdf-heroku'
@@ -46,6 +45,7 @@ gem 'rails-assets-angular-mocks'
 gem 'haml'
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'factory_girl_rails'
   gem 'zeus'
   gem 'pry'
