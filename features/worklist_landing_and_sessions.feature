@@ -19,6 +19,14 @@ Feature: Inline homepage signup
     And I save my changes
     Then the worklist should be persisted when I reload the page
 
+  Scenario: User creates a worklist and views pdf version
+    When I edit the homepage CV
+    And I save my changes
+    And the worklist should be persisted when I reload the page
+    And I click "Pdf View"
+    Then I should see the pdf version
+
+
   Scenario: Users signs up without creating worklist from homepage
     When I sign up
     Then I should be logged in

@@ -124,3 +124,11 @@ end
 Then(/^I should see a notice telling me that it failed$/) do
   pending # express the regexp above with the code you wish you had
 end
+
+When(/^I click "(.*?)"$/) do |arg1|
+  click_link 'Pdf View'
+end
+
+Then(/^I should see the pdf version$/) do
+  page.current_path.should match('pdf')
+end
