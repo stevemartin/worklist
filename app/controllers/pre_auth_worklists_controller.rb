@@ -56,7 +56,8 @@ class PreAuthWorklistsController < ApplicationController
                                            jobs_attributes: [:id, :employer, :address,
                                                              :address_id, :start_date,
                                                              :end_date, :title,
-                                                             :employer_description, :description, :display_order, :_destroy,
+                                                             :employer_description, :description,
+                                                             :display_order, :_destroy,
                                                              skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy],
                                                              experiences_attributes:[:id, :heading, :content, :display_order, :_destroy]],
                                            skills_attributes:[:id, :title, :description, :skill_id, :key_skill, :display_order, :_destroy]

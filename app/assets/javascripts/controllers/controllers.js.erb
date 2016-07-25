@@ -247,18 +247,23 @@
     }
 
     $scope.removeSection = function(section, object){
-      $scope.remover($scope.worklist.worklist, section, object);
+        $scope.remover($scope.worklist.worklist, section, object);
     };
 
     $scope.remover = function(object, section, child) {
-      var sectionArr = object[section + 's_attributes'];
-      var childIndex = sectionArr.indexOf(child);
-      if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[childIndex] === 'undefined'){
-        sectionArr.splice( childIndex, 1 );
-      } else {
-        sectionArr[childIndex]['_destroy'] = '1';
-      }
+        var sectionArr = object[section + 's_attributes'];
+        var childIndex = sectionArr.indexOf(child);
+        if(typeof $scope.worklist.worklist.url === 'undefined' || typeof sectionArr[childIndex] === 'undefined'){
+            sectionArr.splice( childIndex, 1 );
+        } else {
+            sectionArr[childIndex]['_destroy'] = '1';
+        }
     }
+
+    $scope.removeJob = function removeJob(jobIndex){
+      var jobAttrs = $scope.worklist.worklist.jobs_attributes[jobIndex];
+      jobAttrs['_destroy'] = '1';
+    };
 
     // JOB SKILL
     $scope.removeJobSkill = function removeSkill(job,skill){
