@@ -1,6 +1,6 @@
 {<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
 
-== Worklist! The open source CV generator and hosting tool!
+== Worklist! The open source CV hosting and editing tool!
 Worklist lets you effortlessly generate one or more CV's and host them online.
 
 == Setup
@@ -20,16 +20,14 @@ in seperate terminals or tmux windows respectively...
     karma start # for angular unit tests ( NOTE - depends on vendored gems )
     karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
 
-== Deploying
+== Deploying to heroku
 
-    cap production deploy
-    cap production deploy:stop
-    cap production deploy:start
+First log in to your heroku toolbelt and create an app like:
 
-#### Note: migration cap tasks are currently hardcoded to production ( but you should never need to use them in dev anyway ).
-
-    cap production db:create # shouldn't ever need this.
-    cap production db:migrate
+    heroku create worklist-{fooname} --region eu
+    heroku config:set BUNDLE_WITHOUT="development:test"
+    git push heroku master
+    heroku run rake --trace db:migrate
 
 == Testing
 For visual integration tests:
