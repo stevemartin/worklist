@@ -1,6 +1,6 @@
 {<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
 
-= Worklist! The open source CV hosting and editing tool!
+= Worklist! A web based CV!
 Worklist lets you effortlessly generate one or more CV's and host them online.
 
 == Setup
@@ -53,6 +53,7 @@ Worklist is an all in one hybrid Rails & Angular SPA. That means:
 
 == Feature Wishlist
 * Invite only viewing - this would enable you to lock the CV and send single view links to individual emails.
+* User avatar
 * User CSS editing ( Remember MySpace! ) - upload your own custom theme for your CV
 * Component library with drag and drop components to enable you to customise your CV further.
 * CV Blockchain ( linking all the CV's that want to be searchable in a distributed network ).
