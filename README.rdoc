@@ -1,7 +1,7 @@
 {<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
 
-= Worklist! A web based CV!
-Worklist lets you effortlessly generate one or more CV's and host them online.
+= Worklist! A web based CV tool.
+Worklist lets you effortlessly generate CV's and host & edit them online.
 
 == Setup
 
