@@ -45,6 +45,8 @@ Worklist is an all in one hybrid Rails & Angular SPA. That means:
 * It uses Angular as a frontend for the main UI
 * It uses Rails asset management to manage the main Javascript and CSS assets ( rails-assets and sprockets combined )
 
+If this app seems useful to you, well, the code and UI is by no means perfect, so if you see something you don't like, please feel free fix it and open a PR! :)
+
 == Feature Wishlist
 * Invite only viewing - this would enable you to lock the CV and send single view links to individual emails.
 * User avatar
