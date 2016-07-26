@@ -29,9 +29,11 @@ Now visit the running app, it _should_ all be working.
 = Screenshots
 
 == Edit mode
+
 link:wl-edit-mode.png
 
 == HTML view mode
+
 link:wl-view-mode.png
 
 
