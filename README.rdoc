@@ -1,9 +1,9 @@
 {<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
 
-== Worklist! The open source CV hosting and editing tool!
+=== Worklist! The open source CV hosting and editing tool!
 Worklist lets you effortlessly generate one or more CV's and host them online.
 
-== Setup
+==== Setup
 
 install rvm from rvm.io
 
@@ -20,14 +20,23 @@ in seperate terminals or tmux windows respectively...
     karma start # for angular unit tests ( NOTE - depends on vendored gems )
     karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
 
-== Deploying to heroku
+=== End to end deployment ( currently only supporting heroku deploys )
+[Please follow this guide first](https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction) if you haven't already got a heroku account.
 
-First log in to your heroku toolbelt and create an app like:
+=== 1. Get the code
+    git clone https://github.com/stevemartin/worklist.git
+    cd worklist
+
+==== 2. Deploy to heroku
+
+First [log in to your heroku toolbelt]( and create an app like:
 
     heroku create worklist-{fooname} --region eu
     heroku config:set BUNDLE_WITHOUT="development:test"
     git push heroku master
     heroku run rake --trace db:migrate
+
+Now visit the app, it should all be working.
 
 == Testing
 For visual integration tests:
@@ -86,3 +95,19 @@ Worklist is an all in one hybrid Rails & Angular SPA. That means:
 * It uses Rails as an API for the main UI
 * It uses Angular as a frontend for the main UI
 * It uses Rails asset management to manage the main Javascript and CSS assets ( rails-assets and sprockets combined )
+
+== Feature Wishlist
+* Invite only viewing - this would enable you to lock the CV and send single view links to individual emails.
+* User CSS editing ( Remember MySpace! ) - upload your own custom theme for your CV
+* Component library with drag and drop components to enable you to customise your CV further.
+* CV Blockchain ( linking all the CV's that want to be searchable in a distributed network ).
+* Theme library so that users can pick from predefined CV themes.
+
+== (Theoretical) Development timeline
+
+* Speed up PDF generation ( currently times out on some deployments, something to do with CSS )
+* Upgrade to Rails 5, Angular 2 and Bootstrap 4
+* User CSS editing feature
+* Invite only viewing
+* Build theme library
+
