@@ -22,7 +22,7 @@ in seperate terminals or tmux windows respectively...
 
 = End to end deployment
 
-_Currently only supporting heroku._
+_currently only supporting heroku_
 
 {Please follow this guide first}[https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction] if you haven't already got a heroku account.
 
@@ -43,7 +43,30 @@ Where {fooname} is your name or similar and {eu|us} is one or the other, dependi
 
 Now visit the running app, it _should_ all be working.
 
-= Testing
+= Development
+
+Worklist is an all in one hybrid Rails & Angular SPA. That means:
+
+* It uses Rails as an API for the main UI
+* It uses Angular as a frontend for the main UI
+* It uses Rails asset management to manage the main Javascript and CSS assets ( rails-assets and sprockets combined )
+
+== Feature Wishlist
+* Invite only viewing - this would enable you to lock the CV and send single view links to individual emails.
+* User CSS editing ( Remember MySpace! ) - upload your own custom theme for your CV
+* Component library with drag and drop components to enable you to customise your CV further.
+* CV Blockchain ( linking all the CV's that want to be searchable in a distributed network ).
+* Theme library so that users can pick from predefined CV themes.
+
+== (Theoretical) Development timeline
+
+* Speed up PDF generation ( currently times out on some deployments, something to do with CSS )
+* Upgrade to Rails 5, Angular 2 and Bootstrap 4
+* User CSS editing feature
+* Invite only viewing
+* Build theme library
+
+== Testing
 For visual integration tests:
 
     JAVASCRIPT_DRIVER=selenium cucumber features
@@ -91,28 +114,3 @@ cancel_user_registration GET    /users/cancel(html, json)              devise/re
 
                   Prefix Verb   URI Pattern                            Controller#Action
                          POST   /link_worklist/:url/:url_key(json)     worklists#link_worklist
-
-
-= Development
-
-Worklist is an all in one hybrid Rails & Angular SPA. That means:
-
-* It uses Rails as an API for the main UI
-* It uses Angular as a frontend for the main UI
-* It uses Rails asset management to manage the main Javascript and CSS assets ( rails-assets and sprockets combined )
-
-== Feature Wishlist
-* Invite only viewing - this would enable you to lock the CV and send single view links to individual emails.
-* User CSS editing ( Remember MySpace! ) - upload your own custom theme for your CV
-* Component library with drag and drop components to enable you to customise your CV further.
-* CV Blockchain ( linking all the CV's that want to be searchable in a distributed network ).
-* Theme library so that users can pick from predefined CV themes.
-
-== (Theoretical) Development timeline
-
-* Speed up PDF generation ( currently times out on some deployments, something to do with CSS )
-* Upgrade to Rails 5, Angular 2 and Bootstrap 4
-* User CSS editing feature
-* Invite only viewing
-* Build theme library
-
