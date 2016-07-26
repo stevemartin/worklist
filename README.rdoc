@@ -36,7 +36,9 @@ Assuming you are logged in to your heroku toolbelt, create an app like:
     git push heroku master
     heroku run rake --trace db:migrate
 
-Now visit the app, it *should* all be working.
+Where {fooname} is your name or similar and {eu|us} is one or the other, depending on your location.
+
+Now visit the running app, it _should_ all be working.
 
 = Testing
 For visual integration tests:
