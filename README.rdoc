@@ -3,23 +3,6 @@
 = Worklist! A web based CV tool.
 Worklist lets you effortlessly generate CV's and host & edit them online.
 
-== Setup
-
-install rvm from rvm.io
-
-    bundle install --path vendor/bundle
-    npm install -g karma-cli
-    npm install
-
-    rake db:create:all
-    rake db:migrate
-    RAILS_ENV=test rake db:migrate
-
-in seperate terminals or tmux windows respectively...
-    guard # for ruby tests
-    karma start # for angular unit tests ( NOTE - depends on vendored gems )
-    karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
-
 = End to end deployment
 
 _currently only supporting heroku_
@@ -67,9 +50,26 @@ Worklist is an all in one hybrid Rails & Angular SPA. That means:
 * Invite only viewing
 * Build theme library
 
-== Testing
-For visual integration tests:
+== Setup
 
+    git clone https://github.com/stevemartin/worklist.git
+    cd worklist
+    bundle install --path vendor/bundle
+    npm install -g karma-cli
+    npm install
+
+    rake db:create:all
+    rake db:migrate
+    RAILS_ENV=test rake db:migrate
+
+
+== Testing
+
+in seperate terminals or tmux windows respectively...
+
+    guard # for ruby tests
+    karma start # for angular unit tests ( NOTE - depends on vendored gems )
+    karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
     JAVASCRIPT_DRIVER=selenium cucumber features
 
 = API Reference
