@@ -27,8 +27,12 @@ Where {fooname} is your name or similar and {eu|us} is one or the other, dependi
 Now visit the running app, it _should_ all be working.
 
 = Screenshots
-{<img src="wl-edit-mode.png" alt="Edit mode" />}
-{<img src="wl-view-mode.png" alt="HTML view mode" />}
+link:wl-edit-mode.png
+link:wl-view-mode.png
+
+embed
+{<img src="wl-edit-mode.png" alt="Edit mode" />}[]
+{<img src="wl-view-mode.png" alt="HTML view mode" />}[]
 
 = Development
 
