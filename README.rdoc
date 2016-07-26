@@ -21,7 +21,9 @@ in seperate terminals or tmux windows respectively...
     karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
 
 = End to end deployment
-! currently only supporting heroku !
+
+_Currently only supporting heroku._
+
 {Please follow this guide first}[https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction] if you haven't already got a heroku account.
 
 == 1. Get the code
