@@ -1,9 +1,9 @@
 {<img src="https://circleci.com/gh/stevemartin/worklist.svg?style=svg" alt="CircleCI" />}[https://circleci.com/gh/stevemartin/worklist]
 
-=== Worklist! The open source CV hosting and editing tool!
+= Worklist! The open source CV hosting and editing tool!
 Worklist lets you effortlessly generate one or more CV's and host them online.
 
-==== Setup
+== Setup
 
 install rvm from rvm.io
 
@@ -20,30 +20,30 @@ in seperate terminals or tmux windows respectively...
     karma start # for angular unit tests ( NOTE - depends on vendored gems )
     karma start karma-e2e.conf.js # for angular e2e tests ( again, depends on vendored gems )
 
-=== End to end deployment ( currently only supporting heroku deploys )
-[Please follow this guide first](https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction) if you haven't already got a heroku account.
+= End to end deployment ( currently only supporting heroku deploys )
+{Please follow this guide first}[https://devcenter.heroku.com/articles/getting-started-with-ruby#introduction] if you haven't already got a heroku account.
 
-=== 1. Get the code
+== 1. Get the code
     git clone https://github.com/stevemartin/worklist.git
     cd worklist
 
-==== 2. Deploy to heroku
+== 2. Deploy to heroku
 
-First [log in to your heroku toolbelt]( and create an app like:
+Assuming you are logged in to your heroku toolbelt, create an app like:
 
-    heroku create worklist-{fooname} --region eu
+    heroku create worklist-{fooname} --region {eu|us}
     heroku config:set BUNDLE_WITHOUT="development:test"
     git push heroku master
     heroku run rake --trace db:migrate
 
-Now visit the app, it should all be working.
+Now visit the app, it *should* all be working.
 
-== Testing
+= Testing
 For visual integration tests:
 
     JAVASCRIPT_DRIVER=selenium cucumber features
 
-== API Reference
+= API Reference
                   Prefix Verb   URI Pattern                            Controller#Action
                     root GET    /                                      landing#show
                          GET    /:url(html, json)                      worklists#url
@@ -88,7 +88,7 @@ cancel_user_registration GET    /users/cancel(html, json)              devise/re
                          POST   /link_worklist/:url/:url_key(json)     worklists#link_worklist
 
 
-== Development
+= Development
 
 Worklist is an all in one hybrid Rails & Angular SPA. That means:
 
