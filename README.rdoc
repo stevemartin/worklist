@@ -27,8 +27,8 @@ Where {fooname} is your name or similar and {eu|us} is one or the other, dependi
 Now visit the running app, it _should_ all be working.
 
 = Screenshots
-![Edit mode](wl-edit-mode.png?raw=true "Edit mode")
-![HTML view mode](wl-view-mode.png?raw=true "HTML View mode")
+{<img src="wl-edit-mode.png" alt="Edit mode" />}
+{<img src="wl-view-mode.png" alt="HTML view mode" />}
 
 = Development
 
