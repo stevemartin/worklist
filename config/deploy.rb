@@ -1,26 +1,14 @@
-# require 'capistrano/setup'
-# require 'capistrano/deploy'
-# require 'capistrano/rbenv'
-# require 'capistrano/bundler'
-# require 'capistrano/rails/migrations'
-# require 'capistrano/rails/assets'
-
 require "capistrano-rbenv"
 set :application, 'Worklist'
 set :repo_url, 'ssh://git@bitbucket.org/damien_m/worklist.git'
 
-# set :rvm_ruby_string, :system
-# set :rvm_type, :system
-
-# set :rbenv_path, '$HOME/.rbenv'
 set :rbenv_type, :local
 set :rbenv_ruby, '2.4.0'
 
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 set :deploy_to, '/var/www/workli.st'
-set :scm, :git
-set :branch, 'master'
+set :branch, 'sm-r5-upgrade'
 
 # set :bundle_gemfile, -> { release_path.join('Gemfile') }
 # set :bundle_dir, -> { shared_path.join('bundle') }

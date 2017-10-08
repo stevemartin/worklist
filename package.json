@@ -1,14 +1,18 @@
 {
   "name": "worklist",
   "version": "0.0.2",
-  "dependencies": {},
+  "dependencies": {
+    "@rails/webpacker": "^3.0.2",
+    "coffeescript": "1.12.7"
+  },
   "devDependencies": {
     "jasmine-core": "^2.4.1",
     "karma": "latest",
     "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^1.0.2",
     "karma-ng-scenario": "latest",
-    "karma-phantomjs-launcher": "latest"
+    "karma-phantomjs-launcher": "latest",
+    "webpack-dev-server": "^2.9.1"
   },
   "engines": {
     "node": ">=0.8.0"

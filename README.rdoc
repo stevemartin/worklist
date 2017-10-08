@@ -128,3 +128,9 @@ cancel_user_registration GET    /users/cancel(html, json)              devise/re
 
                   Prefix Verb   URI Pattern                            Controller#Action
                          POST   /link_worklist/:url/:url_key(json)     worklists#link_worklist
+
+= Rails 5 Webpacker Upgrade
+
+Read https://github.com/rails/webpacker#usage for some background on how to write stuff
+
+All webpack managed content lives in app/javascript/packs app/javascript/css etc

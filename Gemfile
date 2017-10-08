@@ -26,6 +26,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'bootstrap-glyphicons'
 
+gem 'webpacker', '~> 3.0'
+
 gem 'wicked_pdf'
 
 # Bower assets
@@ -71,11 +73,9 @@ group :development do
   gem 'capistrano', '~> 3.9'
   gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano-rbenv-install'
-  # gem 'rvm1-capistrano3', require: false
   gem 'capistrano-rails', github: 'capistrano/rails'
-  # gem 'rvm-capistrano'
-  # gem 'capistrano-rvm', github: 'capistrano/rvm'
-  # gem 'capistrano-bundler', github: 'capistrano/bundler'
+  gem 'capistrano-yarn'
+  gem 'capistrano3-puma', github: "seuros/capistrano-puma"
   gem 'meta_request'
   gem 'rubocop'
 end
