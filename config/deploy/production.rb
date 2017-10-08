@@ -7,9 +7,9 @@ set :rails_env, 'production'
 # Supports bulk-adding hosts to roles, the primary
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
-role :app, %w{deploy@workli.st}
-role :web, %w{deploy@workli.st}
-role :db,  %w{deploy@workli.st}
+role :app, %w{deploy@139.59.174.93}
+role :web, %w{deploy@139.59.174.93}
+role :db,  %w{deploy@139.59.174.93}
 
 # Extended Server Syntax
 # ======================
@@ -17,7 +17,7 @@ role :db,  %w{deploy@workli.st}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'workli.st', user: 'deploy', roles: %w{web app db} #, my_property: :my_value
+server '139.59.174.93', user: 'deploy', roles: %w{web app db} #, my_property: :my_value
 
 set :stage, :production
 # you can set custom ssh options

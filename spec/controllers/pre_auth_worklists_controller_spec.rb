@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PreAuthWorklistsController do
 
@@ -12,7 +12,7 @@ describe PreAuthWorklistsController do
       let(:valid_attributes) { { title: "MyTitle" } }
       it "creates a new Worklist" do
         expect {
-          post :create, {:worklist => valid_attributes, :format => :json}, valid_session
+          post :create, params: {:worklist => valid_attributes, :format => :json}, session: valid_session
         }.to change(Worklist, :count).by(1)
       end
 
@@ -20,20 +20,32 @@ describe PreAuthWorklistsController do
         Worklist.any_instance.stub(:url).and_return(url)
         Worklist.any_instance.stub(:url_key).and_return(url_key)
         expect {
-          post :create, {:worklist => valid_attributes, :format => :json}, valid_session
+          post :create, params: {:worklist => valid_attributes, :format => :json}, session: valid_session
         }.to change(Worklist, :count).by(1)
         response.cookies['url'].should == url
         response.cookies['url_key'].should == url_key
       end
 
       it "assigns a newly created worklist as @worklist" do
-        post :create, {:worklist => valid_attributes, :format => :json}, valid_session
+        # def process(action,
+        # method: "GET",
+        # params: {},
+        # session: nil,
+        # body: nil,
+        # flash: {},
+        # format: nil,
+        # xhr: false,
+        # as: nil)
+        #
+
+        # binding.pry
+        post :create, params: {:worklist => valid_attributes, :format => :json}, session: valid_session
         assigns(:worklist).should be_a(Worklist)
         assigns(:worklist).should be_persisted
       end
 
       it "redirects to the created worklist" do
-        post :create, {:worklist => valid_attributes, :format => :json}, valid_session
+        post :create, params: {:worklist => valid_attributes, :format => :json}, session: valid_session
         parsed_response.should have_key("worklist")
       end
     end
@@ -41,13 +53,13 @@ describe PreAuthWorklistsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved worklist as @worklist" do
         Worklist.any_instance.stub(:save).and_return(false)
-        post :create, {:worklist => { "url" => "invalid value" }, :format => :json}, valid_session
+        post :create, params: {:worklist => { "url" => "invalid value" }, :format => :json}, session: valid_session
         assigns(:worklist).should be_a_new(Worklist)
       end
 
       it "re-renders the 'new' template" do
         Worklist.any_instance.stub(:save).and_return(false)
-        post :create, {:worklist => { "url" => "invalid value" }, :format => :json}, valid_session
+        post :create, params: {:worklist => { "url" => "invalid value" }, :format => :json}, session: valid_session
         response.header['Content-Type'].should include 'application/json'
       end
     end
@@ -59,18 +71,18 @@ describe PreAuthWorklistsController do
       it "updates the requested worklist" do
         worklist = Worklist.create! valid_attributes
         Worklist.any_instance.should_receive(:update).with({ "title" => "MyString" })
-        put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
       end
 
       it "assigns the requested worklist as @worklist" do
         worklist = Worklist.create! valid_attributes
-        put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         assigns(:worklist).should eq(worklist)
       end
 
       it "redirects to the worklist" do
         worklist = Worklist.create! valid_attributes
-        put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         parsed_response.should have_key("worklist")
       end
 
@@ -79,7 +91,7 @@ describe PreAuthWorklistsController do
           worklist = Worklist.create! valid_attributes
           worklist.user_id = 1
           worklist.save
-          put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+          put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         response.code.should eq("404")
         end
       end
@@ -89,14 +101,14 @@ describe PreAuthWorklistsController do
       it "assigns the worklist as @worklist" do
         worklist = Worklist.create! valid_attributes
         Worklist.any_instance.stub(:save).and_return(false)
-        put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         assigns(:worklist).should eq(worklist)
       end
 
       it "re-renders the 'edit' template" do
         worklist = Worklist.create! valid_attributes
         Worklist.any_instance.stub(:save).and_return(false)
-        put :update, {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         response.header['Content-Type'].should include 'application/json'
       end
     end
@@ -108,12 +120,12 @@ describe PreAuthWorklistsController do
       let(:worklist) { Worklist.create! valid_attributes }
 
       it "returns an error code when url_key is invalid" do
-        put :update, {:url => worklist.url, :url_key => invalid_url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => worklist.url, :url_key => invalid_url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         response.code.should eq("404")
       end
 
       it "returns an error code when url is invalid" do
-        put :update, {:url => invalid_url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, valid_session
+        put :update, params: {:url => invalid_url, :url_key => worklist.url_key, :worklist => { "title" => "MyString"}, :format => :json }, session: valid_session
         response.code.should eq("404")
       end
 

@@ -1,6 +1,6 @@
 # This model is the core of the worklist system.
 class Worklist < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, required: false
   has_many :skills,         dependent: :destroy
   has_many :experiences,    dependent: :destroy
   has_many :jobs,           dependent: :destroy

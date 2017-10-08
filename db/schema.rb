@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -13,104 +12,99 @@
 
 ActiveRecord::Schema.define(version: 20150503163000) do
 
-  create_table "experiences", force: true do |t|
-    t.string   "heading"
-    t.text     "content"
-    t.integer  "display_order", default: 0
+  create_table "experiences", force: :cascade do |t|
+    t.string "heading", limit: 255
+    t.text "content"
+    t.integer "display_order", default: 0
     t.datetime "start_date"
     t.datetime "end_date"
-    t.integer  "worklist_id"
-    t.integer  "job_id"
+    t.integer "worklist_id"
+    t.integer "job_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["job_id"], name: "index_experiences_on_job_id"
+    t.index ["worklist_id"], name: "index_experiences_on_worklist_id"
   end
 
-  add_index "experiences", ["job_id"], name: "index_experiences_on_job_id"
-  add_index "experiences", ["worklist_id"], name: "index_experiences_on_worklist_id"
-
-  create_table "jobs", force: true do |t|
-    t.string   "employer"
-    t.integer  "address_id"
+  create_table "jobs", force: :cascade do |t|
+    t.string "employer", limit: 255
+    t.integer "address_id"
     t.datetime "start_date"
     t.datetime "end_date"
-    t.string   "title"
-    t.string   "employer_description"
-    t.text     "description"
-    t.integer  "worklist_id"
+    t.string "title", limit: 255
+    t.string "employer_description", limit: 255
+    t.text "description"
+    t.integer "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address"
-    t.integer  "display_order",        default: 0
+    t.string "address", limit: 255
+    t.integer "display_order", default: 0
+    t.index ["address_id"], name: "index_jobs_on_address_id"
   end
 
-  add_index "jobs", ["address_id"], name: "index_jobs_on_address_id"
-
-  create_table "qualifications", force: true do |t|
-    t.string   "title"
-    t.string   "grade"
-    t.string   "institute"
-    t.integer  "worklist_id"
+  create_table "qualifications", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.string "grade", limit: 255
+    t.string "institute", limit: 255
+    t.integer "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "display_order", default: 0
+    t.integer "display_order", default: 0
+    t.index ["worklist_id"], name: "index_qualifications_on_worklist_id"
   end
 
-  add_index "qualifications", ["worklist_id"], name: "index_qualifications_on_worklist_id"
-
-  create_table "skills", force: true do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "skill_id"
-    t.boolean  "key_skill"
-    t.integer  "user_id"
-    t.integer  "worklist_id"
+  create_table "skills", force: :cascade do |t|
+    t.string "title", limit: 255
+    t.string "description", limit: 255
+    t.integer "skill_id"
+    t.boolean "key_skill"
+    t.integer "user_id"
+    t.integer "worklist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "job_id"
-    t.integer  "display_order", default: 0
+    t.integer "job_id"
+    t.integer "display_order", default: 0
+    t.index ["skill_id"], name: "index_skills_on_skill_id"
   end
 
-  add_index "skills", ["skill_id"], name: "index_skills_on_skill_id"
-
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string "email", limit: 255, default: "", null: false
+    t.string "encrypted_password", limit: 255, default: "", null: false
+    t.string "reset_password_token", limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string "current_sign_in_ip", limit: 255
+    t.string "last_sign_in_ip", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "worklists", force: true do |t|
-    t.integer  "user_id"
-    t.string   "url"
-    t.string   "url_key"
-    t.string   "title"
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "first_name"
-    t.string   "middle_names"
-    t.string   "last_name"
+  create_table "worklists", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "url", limit: 255
+    t.string "url_key", limit: 255
+    t.string "title", limit: 255
+    t.string "twitter", limit: 255
+    t.string "facebook", limit: 255
+    t.string "first_name", limit: 255
+    t.string "middle_names", limit: 255
+    t.string "last_name", limit: 255
     t.datetime "date_of_birth"
-    t.string   "email"
-    t.string   "email_address"
-    t.string   "address"
-    t.string   "career_objectives"
-    t.string   "website"
-    t.string   "landline_phone"
-    t.string   "mobile_phone"
-    t.text     "description"
-    t.text     "summary",           limit: 255
-    t.text     "personal"
+    t.string "email", limit: 255
+    t.string "email_address", limit: 255
+    t.string "address", limit: 255
+    t.string "career_objectives", limit: 255
+    t.string "website", limit: 255
+    t.string "landline_phone", limit: 255
+    t.string "mobile_phone", limit: 255
+    t.text "description"
+    t.text "summary"
+    t.text "personal"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

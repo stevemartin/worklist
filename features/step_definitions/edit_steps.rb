@@ -30,6 +30,7 @@ Then(/^I should be able to remove it$/) do
   # binding.pry
   within(:xpath, all('section.job').last.path) { first(:xpath, '//a[text()="Remove"]').click }
   click_button "Save"
+  # binding.pry
   sleep(0.1)
   click_link "View"
   sleep(0.1)
